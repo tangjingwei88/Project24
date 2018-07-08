@@ -2,7 +2,8 @@ Shader "Unlit/Transparent Colored"
 {
 	Properties
 	{
-		_MainTex ("Base (RGB), Alpha (A)", 2D) = "black" {}
+		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_AlphaTex("Alpha (RGB)" ,2D) = "white" {}
 	}
 	
 	SubShader
@@ -31,6 +32,7 @@ Shader "Unlit/Transparent Colored"
 			#include "UnityCG.cginc"
 
 			sampler2D _MainTex;
+			sampler2D _AlphaTex;
 			float4 _MainTex_ST;
 	
 			struct appdata_t
@@ -57,9 +59,12 @@ Shader "Unlit/Transparent Colored"
 				return o;
 			}
 				
-			fixed4 frag (v2f IN) : SV_Target
+			fixed4 frag (v2f IN) : COLOR
 			{
-				return tex2D(_MainTex, IN.texcoord) * IN.color;
+				fixed4 col;
+				col.rgb = tex2D(_MainTex, IN.texcoord).rgb;
+				col.a = tex2D(_AlphaTex, IN.texcoord).r;
+				return col * IN.color;
 			}
 			ENDCG
 		}

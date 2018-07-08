@@ -7,6 +7,8 @@ public class UIMain : MonoBehaviour {
     #region 引用
 
     public TipsPopUpPanel theTipsPopUpPanel;
+    public StartPanel theLoginPartPanel;
+    public RegisterPanel theRegisterPanel;
 
     #endregion
 
@@ -50,6 +52,8 @@ public class UIMain : MonoBehaviour {
 
     public enum UIState
     {
+        LoginStartState,                        //登陆界面
+        RegisterPartState,                      //注册界面
         MainState,
         TipsPopUpPanelState,
 
@@ -88,6 +92,65 @@ public class UIMain : MonoBehaviour {
             prefabPath = inputPrefabPath;
             typeName = inputTypeName;
         }
+
+    }
+
+    public List<UIMainPanelHelper> uiMainPanelHelperList = new List<UIMainPanelHelper>
+    {
+        new UIMainPanelHelper(UIState.LoginStartState,"SmallPanel/LoginPartPanel","LoginPartPanel"),
+        new UIMainPanelHelper(UIState.RegisterPartState,"SmallPanel/RegisterPartPanel","RegisterPartPanel")
+    };
+
+
+    /// <summary>
+    /// UI入栈
+    /// </summary>
+    /// <param name="targetState"></param>
+    public void FadeToUIState(UIState targetState)
+    {
+        if (targetState == UIState.MainState)
+            uiStateStack.Clear();
+        else if (targetState != RecentUIState)
+            uiStateStack.Push(targetState);
+    }
+
+
+    /// <summary>
+    /// 进入UI
+    /// </summary>
+    /// <param name="targetState"></param>
+    public void EnterUIState(UIState targetState)
+    { 
+        if(targetState == UIState.LoginStartState)
+        {
+            theLoginPartPanel.gameObject.SetActive(true);
+            //TODO
+
+        }
+        else if (targetState == UIState.RegisterPartState)
+        {
+            theRegisterPanel.gameObject.SetActive(true);
+            //TODO
+        }
+
+
+    }
+
+    /// <summary>
+    /// 退出UI
+    /// </summary>
+    /// <param name="targetState"></param>
+    public void LeaveUIState(UIState targetState)
+    {
+        if (targetState == UIState.LoginStartState)
+        {
+            theLoginPartPanel.gameObject.SetActive(false);
+        }
+        else if (targetState == UIState.RegisterPartState)
+        {
+            theRegisterPanel.gameObject.SetActive(false);
+        }
+
 
     }
 }
