@@ -6,9 +6,13 @@ public class UIMain : MonoBehaviour {
 
     #region 引用
 
+    public GameObject topBottomAnchorStorageForUIMainLoadedPanel;
+
     public TipsPopUpPanel theTipsPopUpPanel;
     public StartPanel theLoginPartPanel;
     public RegisterPanel theRegisterPanel;
+
+
 
     #endregion
 
@@ -47,7 +51,10 @@ public class UIMain : MonoBehaviour {
         _Instance = this;
     }
 
-    void Start() { }
+    void Start() {
+        EnterUIState(UIState.LoginStartState);
+    
+    }
 
 
     public enum UIState
@@ -152,5 +159,47 @@ public class UIMain : MonoBehaviour {
         }
 
 
+    }
+
+
+
+    public GameObject GetHelp(UIState inputTargetState, Component inputComponent)
+    {
+        if (inputComponent == null)
+        {
+            for (int i = 0; i < uiMainPanelHelperList.Count; i++)
+            {
+                if (uiMainPanelHelperList[i].targetState == inputTargetState)
+                { 
+                    UIMainPanelHelper targetUIMainPanelHelper = uiMainPanelHelperList[i];
+                    GameObject newGO = HelperTools.NewUI(targetUIMainPanelHelper.prefabPath);
+
+                    GameObject targetGO = newGO.GetComponent<UIMainLoadedPanel>().targetPanel;
+
+                    targetGO.transform.parent = transform.GetChild(0);
+                    targetGO.transform.localPosition = Vector3.zero;
+                    targetGO.transform.localScale = Vector3.zero;
+
+                    GameObject topBottomAnchorRoot = newGO.GetComponent<UIMainLoadedPanel>().topBottomAnchorRoot;
+                    if (topBottomAnchorRoot != null)
+                    {
+                        topBottomAnchorRoot.transform.parent = topBottomAnchorStorageForUIMainLoadedPanel.transform;
+                        topBottomAnchorRoot.transform.localScale = Vector3.zero;
+                    }
+
+                    UIResolutionHelper script = targetGO.GetComponent<UIResolutionHelper>();
+                    if (script != null)
+                    {
+                        script.theUIRoot = GetComponent<UIRoot>();
+                    }
+
+                    Destroy(newGO);
+
+                    return targetGO;
+                }
+            }
+        }
+
+        return inputComponent.gameObject;
     }
 }
