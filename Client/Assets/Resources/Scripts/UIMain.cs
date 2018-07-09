@@ -130,12 +130,14 @@ public class UIMain : MonoBehaviour {
     { 
         if(targetState == UIState.LoginStartState)
         {
+            theLoginPartPanel = GetHelp(UIState.LoginStartState, theLoginPartPanel).GetComponent<StartPanel>() ;
             theLoginPartPanel.gameObject.SetActive(true);
             //TODO
 
         }
         else if (targetState == UIState.RegisterPartState)
         {
+            theRegisterPanel = GetHelp(UIState.RegisterPartState,theRegisterPanel).GetComponent<RegisterPanel>();
             theRegisterPanel.gameObject.SetActive(true);
             //TODO
         }
@@ -162,7 +164,12 @@ public class UIMain : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// 获取UI脚本实例
+    /// </summary>
+    /// <param name="inputTargetState">UI状态</param>
+    /// <param name="inputComponent">UI脚本组件</param>
+    /// <returns></returns>
     public GameObject GetHelp(UIState inputTargetState, Component inputComponent)
     {
         if (inputComponent == null)
