@@ -29,6 +29,7 @@ public class StartPanel : MonoBehaviour
         if (CheckAccountPassWord())
         {
             Debug.LogError("登录成功");
+            LoadingManager.Instance.EnterScene("MainScence");
         }
         else {
             Debug.LogError("登录失败！请检查用户名密码！");

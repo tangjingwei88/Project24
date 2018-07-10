@@ -30,6 +30,12 @@ public class LoadingManager : MonoBehaviour {
     }
 
 
+    public void EnterScene(string sceneName)
+    {
+        StartCoroutine(WaitLoadingTargetScene(sceneName));
+    }
+
+
     #region 方法
 
     /// <summary>
@@ -40,7 +46,7 @@ public class LoadingManager : MonoBehaviour {
     IEnumerator WaitLoadingTargetScene(string sceneName)
     {
         AsyncOperation async = Application.LoadLevelAsync(sceneName);
-        async.priority = 0;
+ //       async.priority = 0;
         yield return async;
 
         loadingFinished = true;
