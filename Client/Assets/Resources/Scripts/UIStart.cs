@@ -32,6 +32,7 @@ public class UIStart : MonoBehaviour {
 
     void Start () {
         theLoginPartPanel.gameObject.SetActive(true);
+        theRegisterPanel.gameObject.SetActive(false);
 	}
 
 

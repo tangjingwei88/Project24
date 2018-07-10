@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6D563D1A-1A14-45B9-3B2D-5E7B11D145FF}</ProjectGuid>
+    <ProjectGuid>{12F44184-A422-5F27-22E6-507969043F15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -183,8 +183,18 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+     <Compile Include="Assets\Resources\Scripts\DataType.cs" />
+     <Compile Include="Assets\Resources\Scripts\GameData.cs" />
+     <Compile Include="Assets\Resources\Scripts\GameDefine.cs" />
+     <Compile Include="Assets\Resources\Scripts\HelperTools.cs" />
+     <Compile Include="Assets\Resources\Scripts\LoadingManager.cs" />
      <Compile Include="Assets\Resources\Scripts\RegisterPanel.cs" />
      <Compile Include="Assets\Resources\Scripts\StartPanel.cs" />
+     <Compile Include="Assets\Resources\Scripts\TipsPopUpPanel.cs" />
+     <Compile Include="Assets\Resources\Scripts\UIMain.cs" />
+     <Compile Include="Assets\Resources\Scripts\UIMainLoadedPanel.cs" />
+     <Compile Include="Assets\Resources\Scripts\UIResolutionHelper.cs" />
+     <Compile Include="Assets\Resources\Scripts\UIStart.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.9.9.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />

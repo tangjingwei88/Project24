@@ -8,25 +8,25 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":720},
 	"sourceSize": {"w":1280,"h":720}
 },
-"password.png":
+"passWord.png":
 {
-	"frame": {"x":1716,"y":70,"w":144,"h":72},
+	"frame": {"x":1690,"y":72,"w":149,"h":67},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":144,"h":72},
-	"sourceSize": {"w":144,"h":72}
+	"spriteSourceSize": {"x":0,"y":0,"w":149,"h":67},
+	"sourceSize": {"w":149,"h":67}
 },
 "register.png":
 {
-	"frame": {"x":1918,"y":2,"w":72,"h":40},
+	"frame": {"x":1911,"y":2,"w":72,"h":32},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":40},
-	"sourceSize": {"w":72,"h":40}
+	"spriteSourceSize": {"x":0,"y":0,"w":72,"h":32},
+	"sourceSize": {"w":72,"h":32}
 },
 "shape.png":
 {
-	"frame": {"x":1284,"y":132,"w":430,"h":68},
+	"frame": {"x":1284,"y":2,"w":430,"h":68},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":430,"h":68},
@@ -34,7 +34,7 @@
 },
 "startgame.png":
 {
-	"frame": {"x":1284,"y":202,"w":401,"h":115},
+	"frame": {"x":1284,"y":194,"w":401,"h":115},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":401,"h":115},
@@ -42,19 +42,19 @@
 },
 "startgamelight.png":
 {
-	"frame": {"x":1284,"y":2,"w":430,"h":128},
+	"frame": {"x":1284,"y":72,"w":404,"h":120},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":430,"h":128},
-	"sourceSize": {"w":430,"h":128}
+	"spriteSourceSize": {"x":0,"y":0,"w":404,"h":120},
+	"sourceSize": {"w":404,"h":120}
 },
 "user.png":
 {
-	"frame": {"x":1716,"y":2,"w":200,"h":66},
+	"frame": {"x":1716,"y":2,"w":193,"h":68},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":66},
-	"sourceSize": {"w":200,"h":66}
+	"spriteSourceSize": {"x":0,"y":0,"w":193,"h":68},
+	"sourceSize": {"w":193,"h":68}
 }},
 "meta": {
 	"app": "http://www.texturepacker.com",
@@ -63,6 +63,6 @@
 	"format": "ALPHA",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:05c6d6f0652c9988a6820a32207ea756$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ee0bd9a24fee75892d093e8698f9cfd3$"
 }
 }
