@@ -5,8 +5,9 @@ public class UIStart : MonoBehaviour {
 
     #region 引用
 
-    public GameObject theLoginPartPanel;
-    public GameObject theRegisterPanel;
+    public TipsPopUpPanel theTipsPopUpPanel;
+    public StartPanel theLoginPartPanel;
+    public RegisterPanel theRegisterPanel;
 
     #endregion
 
