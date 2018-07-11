@@ -6,11 +6,6 @@ public class UIMain : MonoBehaviour {
 
     #region 引用
 
-    public GameObject topBottomAnchorStorageForUIMainLoadedPanel;
-
-    public TipsPopUpPanel theTipsPopUpPanel;
-    public StartPanel theLoginPartPanel;
-    public RegisterPanel theRegisterPanel;
     public GamePanel theGamePanel;
 
 
@@ -131,15 +126,15 @@ public class UIMain : MonoBehaviour {
     { 
         if(targetState == UIState.LoginStartState)
         {
-            theLoginPartPanel = GetHelp(UIState.LoginStartState, theLoginPartPanel).GetComponent<StartPanel>() ;
-            theLoginPartPanel.gameObject.SetActive(true);
+//            theLoginPartPanel = GetHelp(UIState.LoginStartState, theLoginPartPanel).GetComponent<StartPanel>() ;
+//            theLoginPartPanel.gameObject.SetActive(true);
             //TODO
 
         }
         else if (targetState == UIState.RegisterPartState)
         {
-            theRegisterPanel = GetHelp(UIState.RegisterPartState,theRegisterPanel).GetComponent<RegisterPanel>();
-            theRegisterPanel.gameObject.SetActive(true);
+//            theRegisterPanel = GetHelp(UIState.RegisterPartState,theRegisterPanel).GetComponent<RegisterPanel>();
+//            theRegisterPanel.gameObject.SetActive(true);
             //TODO
         }
 
@@ -154,11 +149,11 @@ public class UIMain : MonoBehaviour {
     {
         if (targetState == UIState.LoginStartState)
         {
-            theLoginPartPanel.gameObject.SetActive(false);
+//            theLoginPartPanel.gameObject.SetActive(false);
         }
         else if (targetState == UIState.RegisterPartState)
         {
-            theRegisterPanel.gameObject.SetActive(false);
+//            theRegisterPanel.gameObject.SetActive(false);
         }
 
 
@@ -191,7 +186,7 @@ public class UIMain : MonoBehaviour {
                     GameObject topBottomAnchorRoot = newGO.GetComponent<UIMainLoadedPanel>().topBottomAnchorRoot;
                     if (topBottomAnchorRoot != null)
                     {
-                        topBottomAnchorRoot.transform.parent = topBottomAnchorStorageForUIMainLoadedPanel.transform;
+//                        topBottomAnchorRoot.transform.parent = topBottomAnchorStorageForUIMainLoadedPanel.transform;
                         topBottomAnchorRoot.transform.localScale = Vector3.zero;
                     }
 

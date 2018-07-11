@@ -78,7 +78,7 @@ public class GamePanel : MonoBehaviour {
 /// <param name="dic"></param>
     private void RefreshLighterShow(Dictionary<LightType, int> dic)
     {
-        theShowResultPart.Apply(dic);
+     //   theShowResultPart.Apply(dic);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class GamePanel : MonoBehaviour {
     /// <param name="dic"></param>
     private void RefreshLoggerShow(Dictionary<LightType, int> dic)
     {
-        theShowLogPart.Apply(dic);
+      //  theShowLogPart.Apply(dic);
     }
 
     /// <summary>
@@ -144,6 +144,11 @@ public class GamePanel : MonoBehaviour {
         numThree = Convert.ToInt32(number_three_Input.value);
         numFour = Convert.ToInt32(number_four_Input.value);
 
+        Debug.LogError(numOne);
+        Debug.LogError(numTwo);
+        Debug.LogError(numThree);
+        Debug.LogError(numFour);
+
         dic.Add(1,numOne);
         dic.Add(2,numTwo);
         dic.Add(3,numThree);
@@ -169,6 +174,7 @@ public class GamePanel : MonoBehaviour {
         else if (number == 4)
         {
             randNum = rand.Next(1000, 9999);
+            Debug.LogError(randNum);
             randomDic = SplitRandomNumber(randNum);
         }
         else if (number == 5)
@@ -181,8 +187,8 @@ public class GamePanel : MonoBehaviour {
             randNum = rand.Next(100000, 999999);
             randomDic = SplitRandomNumber(randNum);
         }
-        
 
+        Debug.LogError(randomDic.Values);
         return randomDic;
     }
 
@@ -192,14 +198,16 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     /// <param name="Num"></param>
     /// <returns></returns>
-    private Dictionary<int, int> SplitRandomNumber(int Num)
+    private Dictionary<int, int> SplitRandomNumber(int num)
     {
         int i = 1;
         Dictionary<int, int> dic = new Dictionary<int, int>();
-        while (Num != 0)
+        if (num > 0)
         {
-            dic.Add(i++,Num%10);
-            Num /= 10;
+            SplitRandomNumber(num/10);
+
+            dic.Add(i++,num%10);
+            Debug.LogError(num % 10);
         }
         return dic;
     }
