@@ -11,7 +11,7 @@ public class UIMain : MonoBehaviour {
     public TipsPopUpPanel theTipsPopUpPanel;
     public StartPanel theLoginPartPanel;
     public RegisterPanel theRegisterPanel;
-
+    public GamePanel theGamePanel;
 
 
     #endregion
@@ -61,6 +61,7 @@ public class UIMain : MonoBehaviour {
     {
         LoginStartState,                        //登陆界面
         RegisterPartState,                      //注册界面
+        GamePanelState,                         //游戏界面
         MainState,
         TipsPopUpPanelState,
 
