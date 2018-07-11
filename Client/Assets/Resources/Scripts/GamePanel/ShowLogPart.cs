@@ -6,7 +6,7 @@ public class ShowLogPart : MonoBehaviour {
 
 
 
-    public void Apply(Dictionary<string,int> dic)
+    public void Apply(Dictionary<LightType, int> dic)
     {
 
     }

@@ -34,7 +34,14 @@ public class GamePanel : MonoBehaviour {
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();             //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();            //系统随机生成的数据
-    private Dictionary<string, int> resultDic = new Dictionary<string, int>();      //游戏结果数据
+    private Dictionary<LightType, int> resultDic = new Dictionary<LightType, int>();      //游戏结果数据
+
+
+    public enum LightType {
+        red,
+        green,
+        yellow
+    }
     #endregion
 
     void Awake()
@@ -69,7 +76,7 @@ public class GamePanel : MonoBehaviour {
 /// 刷新红黄绿的显示
 /// </summary>
 /// <param name="dic"></param>
-    private void RefreshLighterShow(Dictionary<string,int> dic)
+    private void RefreshLighterShow(Dictionary<LightType, int> dic)
     {
         theShowResultPart.Apply(dic);
     }
@@ -78,7 +85,7 @@ public class GamePanel : MonoBehaviour {
     /// 刷新玩家游戏记录
     /// </summary>
     /// <param name="dic"></param>
-    private void RefreshLoggerShow(Dictionary<string, int> dic)
+    private void RefreshLoggerShow(Dictionary<LightType, int> dic)
     {
         theShowLogPart.Apply(dic);
     }
@@ -89,12 +96,12 @@ public class GamePanel : MonoBehaviour {
     /// <param name="inputDic"></param>
     /// <param name="randomDic"></param>
     /// <returns></returns>
-    private Dictionary<string, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
+    private Dictionary<LightType, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
     {
         int green = 0;
         int yellow = 0;
         int red = 0;
-        Dictionary<string, int> resultDic = new Dictionary<string, int>();
+        Dictionary<LightType, int> resultDic = new Dictionary<LightType, int>();
         foreach (var idic in inputDic)
         {
             foreach (var randDic in randomDic)
@@ -116,9 +123,9 @@ public class GamePanel : MonoBehaviour {
         }
         red = inputDic.Count - green - yellow;
 
-        resultDic.Add("red",red);
-        resultDic.Add("yellow", yellow);
-        resultDic.Add("green", green);
+        resultDic.Add(LightType.red,red);
+        resultDic.Add(LightType.yellow, yellow);
+        resultDic.Add(LightType.green, green);
 
         return resultDic;
     }
