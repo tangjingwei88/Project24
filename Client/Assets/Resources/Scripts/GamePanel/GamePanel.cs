@@ -57,8 +57,11 @@ public class GamePanel : MonoBehaviour {
         randomDic = GetRandomNumber(4);
         //比较用户输入的数据和系统生成的数据
         resultDic = CompareInputAndRandomNum(inputDic,randomDic);
-        
-   }
+        //刷新游戏结果
+        RefreshLighterShow(resultDic);
+        //刷新游戏记录
+        RefreshLoggerShow(resultDic);
+    }
 
 
 
@@ -68,10 +71,17 @@ public class GamePanel : MonoBehaviour {
 /// <param name="dic"></param>
     private void RefreshLighterShow(Dictionary<string,int> dic)
     {
-
-
+        theShowResultPart.Apply(dic);
     }
 
+    /// <summary>
+    /// 刷新玩家游戏记录
+    /// </summary>
+    /// <param name="dic"></param>
+    private void RefreshLoggerShow(Dictionary<string, int> dic)
+    {
+        theShowLogPart.Apply(dic);
+    }
 
     /// <summary>
     /// 比较玩家输入数据和系统生成的随机数
