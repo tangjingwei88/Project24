@@ -34,7 +34,7 @@ public class GamePanel : MonoBehaviour {
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();             //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();            //系统随机生成的数据
-    private Dictionary<LightType, int> resultDic = new Dictionary<LightType, int>();      //游戏结果数据
+    private Dictionary<GameData.LightType, int> resultDic = new Dictionary<GameData.LightType, int>();      //游戏结果数据
 
 
     public enum LightType {
@@ -76,18 +76,18 @@ public class GamePanel : MonoBehaviour {
 /// 刷新红黄绿的显示
 /// </summary>
 /// <param name="dic"></param>
-    private void RefreshLighterShow(Dictionary<LightType, int> dic)
+    private void RefreshLighterShow(Dictionary<GameData.LightType, int> dic)
     {
-     //   theShowResultPart.Apply(dic);
+        theShowResultPart.Apply(dic);
     }
 
     /// <summary>
     /// 刷新玩家游戏记录
     /// </summary>
     /// <param name="dic"></param>
-    private void RefreshLoggerShow(Dictionary<LightType, int> dic)
+    private void RefreshLoggerShow(Dictionary<GameData.LightType, int> dic)
     {
-      //  theShowLogPart.Apply(dic);
+        theShowLogPart.Apply(dic);
     }
 
     /// <summary>
@@ -96,12 +96,12 @@ public class GamePanel : MonoBehaviour {
     /// <param name="inputDic"></param>
     /// <param name="randomDic"></param>
     /// <returns></returns>
-    private Dictionary<LightType, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
+    private Dictionary<GameData.LightType, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
     {
         int green = 0;
         int yellow = 0;
         int red = 0;
-        Dictionary<LightType, int> resultDic = new Dictionary<LightType, int>();
+        Dictionary<GameData.LightType, int> resultDic = new Dictionary<GameData.LightType, int>();
         foreach (var idic in inputDic)
         {
             foreach (var randDic in randomDic)
@@ -123,9 +123,9 @@ public class GamePanel : MonoBehaviour {
         }
         red = inputDic.Count - green - yellow;
 
-        resultDic.Add(LightType.red,red);
-        resultDic.Add(LightType.yellow, yellow);
-        resultDic.Add(LightType.green, green);
+        resultDic.Add(GameData.LightType.red,red);
+        resultDic.Add(GameData.LightType.yellow, yellow);
+        resultDic.Add(GameData.LightType.green, green);
 
         return resultDic;
     }

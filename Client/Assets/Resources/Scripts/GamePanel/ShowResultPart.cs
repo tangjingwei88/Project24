@@ -26,7 +26,7 @@ public class ShowResultPart : MonoBehaviour {
 
 
 
-    public void Apply(Dictionary<LightType, int> dictionary)
+    public void Apply(Dictionary<GameData.LightType, int> dictionary)
     {
         foreach (var dic in dictionary)
         {
