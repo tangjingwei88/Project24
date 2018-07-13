@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameData : MonoBehaviour {
+public class GameData {
 
-    public enum LightType {
-        red,
-        yellow,
-        green
-    }
+
+}
+
+
+/// <summary>
+/// 红黄绿类型
+/// </summary>
+public enum LIGHT_TYPE
+{
+    red,
+    yellow,
+    green
 }

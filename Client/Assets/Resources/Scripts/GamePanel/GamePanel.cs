@@ -21,6 +21,7 @@ public class GamePanel : MonoBehaviour {
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
 
+    
     #endregion
 
     
@@ -34,14 +35,9 @@ public class GamePanel : MonoBehaviour {
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();             //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();            //系统随机生成的数据
-    private Dictionary<GameData.LightType, int> resultDic = new Dictionary<GameData.LightType, int>();      //游戏结果数据
+    private Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();      //游戏结果数据
 
 
-    public enum LightType {
-        red,
-        green,
-        yellow
-    }
     #endregion
 
     void Awake()
@@ -76,7 +72,7 @@ public class GamePanel : MonoBehaviour {
 /// 刷新红黄绿的显示
 /// </summary>
 /// <param name="dic"></param>
-    private void RefreshLighterShow(Dictionary<GameData.LightType, int> dic)
+    private void RefreshLighterShow(Dictionary<LIGHT_TYPE, int> dic)
     {
         theShowResultPart.Apply(dic);
     }
@@ -85,7 +81,7 @@ public class GamePanel : MonoBehaviour {
     /// 刷新玩家游戏记录
     /// </summary>
     /// <param name="dic"></param>
-    private void RefreshLoggerShow(Dictionary<GameData.LightType, int> dic)
+    private void RefreshLoggerShow(Dictionary<LIGHT_TYPE, int> dic)
     {
         theShowLogPart.Apply(dic);
     }
@@ -96,26 +92,36 @@ public class GamePanel : MonoBehaviour {
     /// <param name="inputDic"></param>
     /// <param name="randomDic"></param>
     /// <returns></returns>
-    private Dictionary<GameData.LightType, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
+    private Dictionary<LIGHT_TYPE, int> CompareInputAndRandomNum(Dictionary<int,int> inputDic,Dictionary<int,int> randomDic)
     {
         int green = 0;
         int yellow = 0;
         int red = 0;
-        Dictionary<GameData.LightType, int> resultDic = new Dictionary<GameData.LightType, int>();
+
+        foreach (var randDic in randomDic)
+        {
+            Debug.LogError("**" + randDic.Key + " " + randDic.Value);
+        }
+
+            Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();
         foreach (var idic in inputDic)
         {
+            Debug.LogError("@@" + idic.Key + " " + idic.Value);
             foreach (var randDic in randomDic)
             {
+               // Debug.LogError("**" + randDic.Key + " " + randDic.Value);
                 if (idic.Value == randDic.Value)
                 {
+                    
                     if (idic.Key == randDic.Key)
                     {
+                       // Debug.LogError("**" + idic.Value + " " + idic.Key);
                         green++;
-                        continue;
+                       // continue;
                     }
                     else {
                         yellow++;
-                        continue;
+                       // continue;
                     }
                     
                 }
@@ -123,9 +129,9 @@ public class GamePanel : MonoBehaviour {
         }
         red = inputDic.Count - green - yellow;
 
-        resultDic.Add(GameData.LightType.red,red);
-        resultDic.Add(GameData.LightType.yellow, yellow);
-        resultDic.Add(GameData.LightType.green, green);
+        resultDic.Add(LIGHT_TYPE.red,red);
+        resultDic.Add(LIGHT_TYPE.yellow, yellow);
+        resultDic.Add(LIGHT_TYPE.green, green);
 
         return resultDic;
     }
@@ -188,7 +194,7 @@ public class GamePanel : MonoBehaviour {
             randomDic = SplitRandomNumber(randNum);
         }
 
-        Debug.LogError(randomDic.Values);
+        Debug.LogError("@@randNum:" + randomDic.Values);
         return randomDic;
     }
 
@@ -207,7 +213,7 @@ public class GamePanel : MonoBehaviour {
             SplitRandomNumber(num/10);
 
             dic.Add(i++,num%10);
-            Debug.LogError(num % 10);
+            Debug.LogError("%%" + num % 10);
         }
         return dic;
     }

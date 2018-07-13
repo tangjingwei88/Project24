@@ -26,12 +26,16 @@ public class ShowResultPart : MonoBehaviour {
 
 
 
-    public void Apply(Dictionary<GameData.LightType, int> dictionary)
+    public void Apply(Dictionary<LIGHT_TYPE, int> dictionary)
     {
-        foreach (var dic in dictionary)
-        {
 
-        }
+        ShowLight(LIGHT_TYPE.red, dictionary[LIGHT_TYPE.red]);
+        ShowLight(LIGHT_TYPE.yellow, dictionary[LIGHT_TYPE.yellow]);
+        ShowLight(LIGHT_TYPE.green, dictionary[LIGHT_TYPE.green]);
+
+        Debug.LogError("#redNum:" + dictionary[LIGHT_TYPE.red]);
+        Debug.LogError("#yellowNum" + dictionary[LIGHT_TYPE.yellow]);
+        Debug.LogError("#greenNum" + dictionary[LIGHT_TYPE.green]);
     }
 
 
@@ -39,8 +43,33 @@ public class ShowResultPart : MonoBehaviour {
     /// <summary>
     ///显示灯
     /// </summary>
-    private void ShowLight()
+    public  void ShowLight(LIGHT_TYPE LType,int num)
     {
+        if (LType == LIGHT_TYPE.red)
+        {
+            ShowSprite("showIcon/redSprite_", num);
+        }
+        else if (LType == LIGHT_TYPE.yellow)
+        {
+            ShowSprite("showIcon/yellowSprite_", num);
+        }
+        else if (LType == LIGHT_TYPE.green)
+        {
+            ShowSprite("showIcon/greenSprite_",num);
+        }
+    }
 
+
+    /// <summary>
+    /// 控制sprite顯示
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="num"></param>
+    private void ShowSprite(string path,int num)
+    {
+        for (int i = 1; i <= num; i++)
+        {
+            transform.Find(path + i).gameObject.SetActive(true); ;
+        }
     }
 }
