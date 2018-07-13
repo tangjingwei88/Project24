@@ -67,9 +67,20 @@ public class ShowResultPart : MonoBehaviour {
     /// <param name="num"></param>
     private void ShowSprite(string path,int num)
     {
-        for (int i = 1; i <= num; i++)
+        Debug.LogError(path + " " + num);
+        if (num >= 1) 
         {
-            transform.Find(path + i).gameObject.SetActive(true); ;
+            for (int i = 1; i <= num; i++)
+            {
+                transform.Find(path + i).gameObject.SetActive(true); ;
+            }
+        }
+        if(num < 4)
+        {
+            for (int i = num + 1; i < (int)GameData.Instance.GameLevel; i++)
+            {
+                transform.Find(path + i).gameObject.SetActive(false); ;
+            }
         }
     }
 }

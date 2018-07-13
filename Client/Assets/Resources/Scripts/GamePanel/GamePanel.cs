@@ -20,6 +20,8 @@ public class GamePanel : MonoBehaviour {
 
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
+    //测试用显示结果
+    public UILabel ResultLabel;                       
 
     
     #endregion
@@ -31,10 +33,11 @@ public class GamePanel : MonoBehaviour {
     private int numThree;
     private int numFour;
 
+    //正确结果
     private int resultNum;
 
-    private Dictionary<int, int> inputDic = new Dictionary<int, int>();             //玩家输入的数据
-    private Dictionary<int, int> randomDic = new Dictionary<int, int>();            //系统随机生成的数据
+    private Dictionary<int, int> inputDic = new Dictionary<int, int>();                     //玩家输入的数据
+    private Dictionary<int, int> randomDic = new Dictionary<int, int>();                    //系统随机生成的数据
     private Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();      //游戏结果数据
 
 
@@ -46,7 +49,11 @@ public class GamePanel : MonoBehaviour {
         number_Two_Input.value = "0";
         number_three_Input.value = "0";
         number_four_Input.value = "0";
+        //获取系统生成的随机数据
+        randomDic = GetRandomNumber(GAME_LEVEL.Four);
     }
+
+
 
     #region 方法
     /// <summary>
@@ -56,8 +63,7 @@ public class GamePanel : MonoBehaviour {
    {
         //获得用户输入的数据
         inputDic = GetInputNumber();
-        //获取系统生成的随机数据
-        randomDic = GetRandomNumber(4);
+
         //比较用户输入的数据和系统生成的数据
         resultDic = CompareInputAndRandomNum(inputDic,randomDic);
         //刷新游戏结果
@@ -67,15 +73,15 @@ public class GamePanel : MonoBehaviour {
     }
 
 
-
-/// <summary>
-/// 刷新红黄绿的显示
-/// </summary>
-/// <param name="dic"></param>
+    /// <summary>
+    /// 刷新红黄绿的显示
+    /// </summary>
+    /// <param name="dic"></param>
     private void RefreshLighterShow(Dictionary<LIGHT_TYPE, int> dic)
     {
         theShowResultPart.Apply(dic);
     }
+
 
     /// <summary>
     /// 刷新玩家游戏记录
@@ -85,6 +91,7 @@ public class GamePanel : MonoBehaviour {
     {
         theShowLogPart.Apply(dic);
     }
+
 
     /// <summary>
     /// 比较玩家输入数据和系统生成的随机数
@@ -98,36 +105,26 @@ public class GamePanel : MonoBehaviour {
         int yellow = 0;
         int red = 0;
 
-        foreach (var randDic in randomDic)
-        {
-            Debug.LogError("**" + randDic.Key + " " + randDic.Value);
-        }
-
-            Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();
+        Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();
         foreach (var idic in inputDic)
         {
-            Debug.LogError("@@" + idic.Key + " " + idic.Value);
-            foreach (var randDic in randomDic)
+            foreach (var randDic in randomDic)                                  //数字相同
             {
-               // Debug.LogError("**" + randDic.Key + " " + randDic.Value);
-                if (idic.Value == randDic.Value)
+                if (idic.Value == randDic.Value)                                //数字顺序相同
                 {
                     
                     if (idic.Key == randDic.Key)
                     {
-                       // Debug.LogError("**" + idic.Value + " " + idic.Key);
-                        green++;
-                       // continue;
+                        green++;                                                //数字且顺序相同的个数
                     }
                     else {
-                        yellow++;
-                       // continue;
+                        yellow++;                                               //数字相同但顺序不同的个数
                     }
                     
                 }
             }
         }
-        red = inputDic.Count - green - yellow;
+        red = inputDic.Count - green - yellow;                                  //数字不同且顺序不同的个数
 
         resultDic.Add(LIGHT_TYPE.red,red);
         resultDic.Add(LIGHT_TYPE.yellow, yellow);
@@ -168,30 +165,37 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     /// <param name="number">生成的随机数位数</param>
     /// <returns></returns>
-    private Dictionary<int, int> GetRandomNumber(int number)
+    private Dictionary<int, int> GetRandomNumber(GAME_LEVEL gameLv)
     {
         System.Random rand = new System.Random();
         int randNum;
-        if (number == 3)
+        if (gameLv == GAME_LEVEL.Three)
         {
             randNum = rand.Next(100, 999);
             randomDic = SplitRandomNumber(randNum);
+
+            ResultLabel.text = randNum.ToString();
         }
-        else if (number == 4)
+        else if (gameLv == GAME_LEVEL.Four)
         {
             randNum = rand.Next(1000, 9999);
-            Debug.LogError(randNum);
-            randomDic = SplitRandomNumber(randNum);
+            randomDic = SplitRandomNumber(randNum)
+                ;
+            ResultLabel.text = randNum.ToString();
         }
-        else if (number == 5)
+        else if (gameLv == GAME_LEVEL.Five)
         {
             randNum = rand.Next(10000, 99999);
             randomDic = SplitRandomNumber(randNum);
+
+            ResultLabel.text = randNum.ToString();
         }
-        else if (number == 6)
+        else if (gameLv == GAME_LEVEL.Six)
         {
             randNum = rand.Next(100000, 999999);
             randomDic = SplitRandomNumber(randNum);
+
+            ResultLabel.text = randNum.ToString();
         }
 
         Debug.LogError("@@randNum:" + randomDic.Values);
@@ -200,20 +204,30 @@ public class GamePanel : MonoBehaviour {
 
 
     /// <summary>
+    /// 检测系统随机生成的数字是否合法（没有重复数字）
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    private bool CheckRandomNumLegal(int num)
+    {
+
+        return false;
+    }
+
+    /// <summary>
     /// 拆分系统随机生成的数字
     /// </summary>
     /// <param name="Num"></param>
     /// <returns></returns>
     private Dictionary<int, int> SplitRandomNumber(int num)
     {
-        int i = 1;
+        int i = 4;
         Dictionary<int, int> dic = new Dictionary<int, int>();
-        if (num > 0)
+        while (num > 0)
         {
-            SplitRandomNumber(num/10);
-
-            dic.Add(i++,num%10);
-            Debug.LogError("%%" + num % 10);
+            dic.Add(i--,num % 10);
+ //           Debug.LogError("%%" + num % 10);
+            num /= 10;
         }
         return dic;
     }

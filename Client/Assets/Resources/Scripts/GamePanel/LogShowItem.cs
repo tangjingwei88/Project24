@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LogShowItem : MonoBehaviour {
 
@@ -22,8 +23,6 @@ public class LogShowItem : MonoBehaviour {
     #region 变量
 
     #endregion
-
-    public void LogShowItem() { }
     
     public void Apply(Dictionary<LIGHT_TYPE,int> dic)
     {
