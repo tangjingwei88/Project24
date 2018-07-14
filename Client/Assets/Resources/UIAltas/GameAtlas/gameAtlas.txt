@@ -2,7 +2,7 @@
 
 "BelifPt.png":
 {
-	"frame": {"x":861,"y":298,"w":89,"h":90},
+	"frame": {"x":762,"y":378,"w":89,"h":90},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":89,"h":90},
@@ -18,11 +18,19 @@
 },
 "FlagIcon.png":
 {
-	"frame": {"x":864,"y":76,"w":97,"h":120},
+	"frame": {"x":904,"y":150,"w":97,"h":120},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":120},
 	"sourceSize": {"w":97,"h":120}
+},
+"LightFrame.png":
+{
+	"frame": {"x":762,"y":76,"w":140,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":200},
+	"sourceSize": {"w":140,"h":200}
 },
 "ReturnBtn.png":
 {
@@ -34,7 +42,7 @@
 },
 "closeBtn.png":
 {
-	"frame": {"x":762,"y":76,"w":100,"h":72},
+	"frame": {"x":904,"y":76,"w":100,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":72},
@@ -42,7 +50,7 @@
 },
 "greenPlus.png":
 {
-	"frame": {"x":952,"y":298,"w":66,"h":65},
+	"frame": {"x":762,"y":470,"w":66,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":66,"h":65},
@@ -50,7 +58,7 @@
 },
 "green_Light.png":
 {
-	"frame": {"x":762,"y":250,"w":97,"h":98},
+	"frame": {"x":861,"y":372,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -58,7 +66,7 @@
 },
 "red_Light.png":
 {
-	"frame": {"x":861,"y":198,"w":97,"h":98},
+	"frame": {"x":762,"y":278,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -66,7 +74,7 @@
 },
 "yellow_Light.png":
 {
-	"frame": {"x":762,"y":150,"w":97,"h":98},
+	"frame": {"x":904,"y":272,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -79,6 +87,6 @@
 	"format": "ALPHA",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:0e78c54f3ea8584b6afbbae588b6b262$"
+	"smartupdate": "$TexturePacker:SmartUpdate:2f0f08e1d1f8acc9982120210c1c812f$"
 }
 }

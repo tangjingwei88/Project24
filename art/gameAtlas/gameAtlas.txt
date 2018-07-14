@@ -1,0 +1,92 @@
+{"frames": {
+
+"BelifPt.png":
+{
+	"frame": {"x":762,"y":378,"w":89,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":89,"h":90},
+	"sourceSize": {"w":89,"h":90}
+},
+"Bg.png":
+{
+	"frame": {"x":2,"y":2,"w":758,"h":987},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":758,"h":987},
+	"sourceSize": {"w":758,"h":987}
+},
+"FlagIcon.png":
+{
+	"frame": {"x":904,"y":150,"w":97,"h":120},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":120},
+	"sourceSize": {"w":97,"h":120}
+},
+"LightFrame.png":
+{
+	"frame": {"x":762,"y":76,"w":140,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":200},
+	"sourceSize": {"w":140,"h":200}
+},
+"ReturnBtn.png":
+{
+	"frame": {"x":762,"y":2,"w":197,"h":72},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":197,"h":72},
+	"sourceSize": {"w":197,"h":72}
+},
+"closeBtn.png":
+{
+	"frame": {"x":904,"y":76,"w":100,"h":72},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":72},
+	"sourceSize": {"w":100,"h":72}
+},
+"greenPlus.png":
+{
+	"frame": {"x":762,"y":470,"w":66,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":66,"h":65},
+	"sourceSize": {"w":66,"h":65}
+},
+"green_Light.png":
+{
+	"frame": {"x":861,"y":372,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
+},
+"red_Light.png":
+{
+	"frame": {"x":762,"y":278,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
+},
+"yellow_Light.png":
+{
+	"frame": {"x":904,"y":272,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "gameAtlasMask.png",
+	"format": "ALPHA",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:2f0f08e1d1f8acc9982120210c1c812f$"
+}
+}

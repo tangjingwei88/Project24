@@ -187,7 +187,7 @@
      <Compile Include="Assets\Resources\Scripts\GameData.cs" />
      <Compile Include="Assets\Resources\Scripts\GameDefine.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\GamePanel.cs" />
-     <Compile Include="Assets\Resources\Scripts\GamePanel\LogShowItem.cs" />
+     <Compile Include="Assets\Resources\Scripts\GamePanel\LogShowItemTemplate.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\ShowLogPart.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\ShowResultPart.cs" />
      <Compile Include="Assets\Resources\Scripts\HelperTools.cs" />

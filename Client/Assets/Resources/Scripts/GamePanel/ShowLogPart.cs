@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ShowLogPart : MonoBehaviour {
 
     #region 引用
-    public GameObject theShowLogItem;
+    public GameObject logShowItemTemplate;
     public GameObject LogItemRoot;
     #endregion
 
