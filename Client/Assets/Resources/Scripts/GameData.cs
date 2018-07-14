@@ -4,7 +4,7 @@ using System.Collections;
 public class GameData {
 
     //游戏等级
-    public GAME_LEVEL GameLevel = GAME_LEVEL.Four;
+    public GAME_LEVEL GameLevel = GAME_LEVEL.Seven;
 
     private static GameData _instance;
     public static GameData Instance {
@@ -39,5 +39,8 @@ public enum GAME_LEVEL
     Three = 3,
     Four =  4,
     Five = 5,
-    Six = 6
+    Six = 6,
+    Seven = 7,
+    Eight = 8,
+    Nine = 9
 }

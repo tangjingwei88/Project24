@@ -19,6 +19,9 @@ public class GamePanel : MonoBehaviour {
     public UIInput numberInput_4;
     public UIInput numberInput_5;
     public UIInput numberInput_6;
+    public UIInput numberInput_7;
+    public UIInput numberInput_8;
+    public UIInput numberInput_9;
 
 
     public ShowLogPart theShowLogPart;
@@ -37,6 +40,9 @@ public class GamePanel : MonoBehaviour {
     private int inputNum_4;
     private int inputNum_5;
     private int inputNum_6;
+    private int inputNum_7;
+    private int inputNum_8;
+    private int inputNum_9;
 
     //正确结果
     private int resultNum;
@@ -50,14 +56,19 @@ public class GamePanel : MonoBehaviour {
 
     void Awake()
     {
-        numberInput_1.value = "0";
-        numberInput_2.value = "0";
-        numberInput_3.value = "0";
-        numberInput_4.value = "0";
-        numberInput_5.value = "0";
-        numberInput_6.value = "0";
+        numberInput_1.value = "1";
+        numberInput_2.value = "1";
+        numberInput_3.value = "1";
+        numberInput_4.value = "1";
+        numberInput_5.value = "1";
+        numberInput_6.value = "1";
+        numberInput_7.value = "1";
+        numberInput_8.value = "1";
+        numberInput_9.value = "1";
         //获取系统生成的随机数据
-        randomDic = GetRandomNumber(GAME_LEVEL.Four);
+        randomDic = GetRandomNumber(GameData.Instance.GameLevel);
+        //显示输入框
+        ShowInputNumRoot(GameData.Instance.GameLevel);
     }
 
 
@@ -69,7 +80,7 @@ public class GamePanel : MonoBehaviour {
     public void OnOkBtnClick()
    {
         //获得用户输入的数据
-        inputDic = GetInputNumber();
+        inputDic = GetInputNumber(GameData.Instance.GameLevel);
 
         //比较用户输入的数据和系统生成的数据
         resultDic = CompareInputAndRandomNum(inputDic,randomDic);
@@ -140,30 +151,34 @@ public class GamePanel : MonoBehaviour {
         return resultDic;
     }
 
-
+    /// <summary>
+    /// 显示输入框
+    /// </summary>
+    /// <param name="gameLv"></param>
+    private void ShowInputNumRoot(GAME_LEVEL gameLv)
+    {
+        for (int i = 1; i <= (int)gameLv; i++)
+        {
+            GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            obj.SetActive(true);
+        }
+    }
 
     /// <summary>
     /// 获取玩家输入的数据
     /// </summary>
     /// <returns></returns>
-    private Dictionary<int, int> GetInputNumber()
+    private Dictionary<int, int> GetInputNumber(GAME_LEVEL gameLv)
     {
         Dictionary<int, int> dic = new Dictionary<int, int>();
         Dictionary<int, int> reDic = new Dictionary<int, int>();
 
-        inputNum_1 = Convert.ToInt32(numberInput_1.value);
-        inputNum_2 = Convert.ToInt32(numberInput_2.value);
-        inputNum_3 = Convert.ToInt32(numberInput_3.value);
-        inputNum_4 = Convert.ToInt32(numberInput_4.value);
-        inputNum_5 = Convert.ToInt32(numberInput_5.value);
-        inputNum_6 = Convert.ToInt32(numberInput_6.value);
-
-        dic.Add(1, inputNum_1);
-        dic.Add(2, inputNum_2);
-        dic.Add(3, inputNum_3);
-        dic.Add(4, inputNum_4);
-        dic.Add(4, inputNum_5);
-        dic.Add(4, inputNum_6);
+        for (int i = 1; i <= (int)gameLv; i++)
+        {
+            GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            dic[i] = Convert.ToInt32(obj.GetComponent<UIInput>().value);
+        }
+        //检测输入数据是否合法
         if (CheckInputNumLegal(dic))
         {
             reDic = dic;
@@ -221,6 +236,18 @@ public class GamePanel : MonoBehaviour {
         {
             randomDic = GetRandomNum((int)GAME_LEVEL.Six);
         }
+        else if (gameLv == GAME_LEVEL.Seven)
+        {
+            randomDic = GetRandomNum((int)GAME_LEVEL.Seven);
+        }
+        else if (gameLv == GAME_LEVEL.Eight)
+        {
+            randomDic = GetRandomNum((int)GAME_LEVEL.Eight);
+        }
+        else if (gameLv == GAME_LEVEL.Nine)
+        {
+            randomDic = GetRandomNum((int)GAME_LEVEL.Nine);
+        }
 
         Debug.LogError("@@randNum:" + randomDic.Values);
         return randomDic;
@@ -271,6 +298,7 @@ public class GamePanel : MonoBehaviour {
             {
                 //将随机生成的1-9的数字保存到输出字典中
                 randDic.Add(key++, numArrayDic[randNum]);
+                Debug.LogError(numArrayDic[randNum]);
                 //显示随机生成的测试数据
                 randNumStr += numArrayDic[randNum];
                 //移除数字库字典中已经使用过的数字

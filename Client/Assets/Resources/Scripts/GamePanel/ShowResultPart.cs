@@ -11,6 +11,9 @@ public class ShowResultPart : MonoBehaviour {
     public GameObject redSprite_4;
     public GameObject redSprite_5;
     public GameObject redSprite_6;
+    public GameObject redSprite_7;
+    public GameObject redSprite_8;
+    public GameObject redSprite_9;
 
     public GameObject yellowSprite_1;
     public GameObject yellowSprite_2;
@@ -18,6 +21,9 @@ public class ShowResultPart : MonoBehaviour {
     public GameObject yellowSprite_4;
     public GameObject yellowSprite_5;
     public GameObject yellowSprite_6;
+    public GameObject yellowSprite_7;
+    public GameObject yellowSprite_8;
+    public GameObject yellowSprite_9;
 
     public GameObject greenSprite_1;
     public GameObject greenSprite_2;
@@ -25,6 +31,12 @@ public class ShowResultPart : MonoBehaviour {
     public GameObject greenSprite_4;
     public GameObject greenSprite_5;
     public GameObject greenSprite_6;
+    public GameObject greenSprite_7;
+    public GameObject greenSprite_8;
+    public GameObject greenSprite_9;
+
+    public Transform anchorRoot;
+    public GameObject numberInputRoot;
     #endregion
 
 
@@ -32,6 +44,11 @@ public class ShowResultPart : MonoBehaviour {
 
 
     #endregion
+
+    void Awake()
+    {
+
+    }
 
 
 
@@ -51,15 +68,15 @@ public class ShowResultPart : MonoBehaviour {
     {
         if (LType == LIGHT_TYPE.red)
         {
-            ShowSprite("showIcon/redSprite_", num);
+            ShowSprite("showIcon/redSpriteRoot/redSprite_", num);
         }
         else if (LType == LIGHT_TYPE.yellow)
         {
-            ShowSprite("showIcon/yellowSprite_", num);
+            ShowSprite("showIcon/yellowSpriteRoot/yellowSprite_", num);
         }
         else if (LType == LIGHT_TYPE.green)
         {
-            ShowSprite("showIcon/greenSprite_",num);
+            ShowSprite("showIcon/greenSpriteRoot/greenSprite_", num);
         }
     }
 
@@ -80,7 +97,7 @@ public class ShowResultPart : MonoBehaviour {
         }
         if(num < 4)
         {
-            for (int i = num + 1; i < (int)GameData.Instance.GameLevel; i++)
+            for (int i = num + 1; i <= (int)GameData.Instance.GameLevel; i++)
             {
                 transform.Find(path + i).gameObject.SetActive(false); ;
             }
