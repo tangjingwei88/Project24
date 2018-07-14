@@ -8,14 +8,23 @@ public class ShowResultPart : MonoBehaviour {
     public GameObject redSprite_1;
     public GameObject redSprite_2;
     public GameObject redSprite_3;
+    public GameObject redSprite_4;
+    public GameObject redSprite_5;
+    public GameObject redSprite_6;
 
     public GameObject yellowSprite_1;
     public GameObject yellowSprite_2;
     public GameObject yellowSprite_3;
+    public GameObject yellowSprite_4;
+    public GameObject yellowSprite_5;
+    public GameObject yellowSprite_6;
 
     public GameObject greenSprite_1;
     public GameObject greenSprite_2;
     public GameObject greenSprite_3;
+    public GameObject greenSprite_4;
+    public GameObject greenSprite_5;
+    public GameObject greenSprite_6;
     #endregion
 
 
@@ -28,14 +37,9 @@ public class ShowResultPart : MonoBehaviour {
 
     public void Apply(Dictionary<LIGHT_TYPE, int> dictionary)
     {
-
         ShowLight(LIGHT_TYPE.red, dictionary[LIGHT_TYPE.red]);
         ShowLight(LIGHT_TYPE.yellow, dictionary[LIGHT_TYPE.yellow]);
         ShowLight(LIGHT_TYPE.green, dictionary[LIGHT_TYPE.green]);
-
-        Debug.LogError("#redNum:" + dictionary[LIGHT_TYPE.red]);
-        Debug.LogError("#yellowNum" + dictionary[LIGHT_TYPE.yellow]);
-        Debug.LogError("#greenNum" + dictionary[LIGHT_TYPE.green]);
     }
 
 
@@ -67,7 +71,6 @@ public class ShowResultPart : MonoBehaviour {
     /// <param name="num"></param>
     private void ShowSprite(string path,int num)
     {
-        Debug.LogError(path + " " + num);
         if (num >= 1) 
         {
             for (int i = 1; i <= num; i++)

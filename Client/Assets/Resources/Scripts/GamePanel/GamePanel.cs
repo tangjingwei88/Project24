@@ -13,10 +13,13 @@ using System;
 public class GamePanel : MonoBehaviour {
 
     #region 引用
-    public UIInput number_One_Input;
-    public UIInput number_Two_Input;
-    public UIInput number_three_Input;
-    public UIInput number_four_Input;
+    public UIInput numberInput_1;
+    public UIInput numberInput_2;
+    public UIInput numberInput_3;
+    public UIInput numberInput_4;
+    public UIInput numberInput_5;
+    public UIInput numberInput_6;
+
 
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
@@ -28,10 +31,12 @@ public class GamePanel : MonoBehaviour {
 
     
     #region 变量
-    private int numOne;
-    private int numTwo;
-    private int numThree;
-    private int numFour;
+    private int inputNum_1;
+    private int inputNum_2;
+    private int inputNum_3;
+    private int inputNum_4;
+    private int inputNum_5;
+    private int inputNum_6;
 
     //正确结果
     private int resultNum;
@@ -45,10 +50,12 @@ public class GamePanel : MonoBehaviour {
 
     void Awake()
     {
-        number_One_Input.value = "0";
-        number_Two_Input.value = "0";
-        number_three_Input.value = "0";
-        number_four_Input.value = "0";
+        numberInput_1.value = "0";
+        numberInput_2.value = "0";
+        numberInput_3.value = "0";
+        numberInput_4.value = "0";
+        numberInput_5.value = "0";
+        numberInput_6.value = "0";
         //获取系统生成的随机数据
         randomDic = GetRandomNumber(GAME_LEVEL.Four);
     }
@@ -142,23 +149,53 @@ public class GamePanel : MonoBehaviour {
     private Dictionary<int, int> GetInputNumber()
     {
         Dictionary<int, int> dic = new Dictionary<int, int>();
-        numOne = Convert.ToInt32(number_One_Input.value);
-        numTwo = Convert.ToInt32(number_Two_Input.value);
-        numThree = Convert.ToInt32(number_three_Input.value);
-        numFour = Convert.ToInt32(number_four_Input.value);
+        Dictionary<int, int> reDic = new Dictionary<int, int>();
 
-        Debug.LogError(numOne);
-        Debug.LogError(numTwo);
-        Debug.LogError(numThree);
-        Debug.LogError(numFour);
+        inputNum_1 = Convert.ToInt32(numberInput_1.value);
+        inputNum_2 = Convert.ToInt32(numberInput_2.value);
+        inputNum_3 = Convert.ToInt32(numberInput_3.value);
+        inputNum_4 = Convert.ToInt32(numberInput_4.value);
+        inputNum_5 = Convert.ToInt32(numberInput_5.value);
+        inputNum_6 = Convert.ToInt32(numberInput_6.value);
 
-        dic.Add(1,numOne);
-        dic.Add(2,numTwo);
-        dic.Add(3,numThree);
-        dic.Add(4,numFour);
-
-        return dic;
+        dic.Add(1, inputNum_1);
+        dic.Add(2, inputNum_2);
+        dic.Add(3, inputNum_3);
+        dic.Add(4, inputNum_4);
+        dic.Add(4, inputNum_5);
+        dic.Add(4, inputNum_6);
+        if (CheckInputNumLegal(dic))
+        {
+            reDic = dic;
+        }
+        return reDic;
     }
+
+
+    /// <summary>
+    /// 判断玩家输入的数据是否合法
+    /// </summary>
+    /// <param name="inputDic"></param>
+    /// <returns></returns>
+    private bool CheckInputNumLegal(Dictionary<int,int> inDic) 
+    {
+        Dictionary<int, int> checkDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
+        { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
+
+        foreach (var item in inDic)
+        {
+            if (checkDic.ContainsValue(item.Value))                     //
+            {
+                checkDic.Remove(item.Value);
+            }
+            else {
+                Debug.LogError("不能输入0或重复数字哦！");
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /// <summary>
     /// 系统随机生成数据
@@ -167,35 +204,22 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     private Dictionary<int, int> GetRandomNumber(GAME_LEVEL gameLv)
     {
-        System.Random rand = new System.Random();
         int randNum;
         if (gameLv == GAME_LEVEL.Three)
         {
-            randNum = rand.Next(100, 999);
-            randomDic = SplitRandomNumber(randNum);
-
-            ResultLabel.text = randNum.ToString();
+            randomDic = GetRandomNum((int)GAME_LEVEL.Three);
         }
         else if (gameLv == GAME_LEVEL.Four)
         {
-            randNum = rand.Next(1000, 9999);
-            randomDic = SplitRandomNumber(randNum)
-                ;
-            ResultLabel.text = randNum.ToString();
+            randomDic = GetRandomNum((int)GAME_LEVEL.Four);
         }
         else if (gameLv == GAME_LEVEL.Five)
         {
-            randNum = rand.Next(10000, 99999);
-            randomDic = SplitRandomNumber(randNum);
-
-            ResultLabel.text = randNum.ToString();
+            randomDic = GetRandomNum((int)GAME_LEVEL.Five);
         }
         else if (gameLv == GAME_LEVEL.Six)
         {
-            randNum = rand.Next(100000, 999999);
-            randomDic = SplitRandomNumber(randNum);
-
-            ResultLabel.text = randNum.ToString();
+            randomDic = GetRandomNum((int)GAME_LEVEL.Six);
         }
 
         Debug.LogError("@@randNum:" + randomDic.Values);
@@ -203,19 +227,9 @@ public class GamePanel : MonoBehaviour {
     }
 
 
-    /// <summary>
-    /// 检测系统随机生成的数字是否合法（没有重复数字）
-    /// </summary>
-    /// <param name="num"></param>
-    /// <returns></returns>
-    private bool CheckRandomNumLegal(int num)
-    {
-
-        return false;
-    }
 
     /// <summary>
-    /// 拆分系统随机生成的数字
+    /// 拆分系统随机生成的数字（---弃用----）
     /// </summary>
     /// <param name="Num"></param>
     /// <returns></returns>
@@ -226,10 +240,46 @@ public class GamePanel : MonoBehaviour {
         while (num > 0)
         {
             dic.Add(i--,num % 10);
- //           Debug.LogError("%%" + num % 10);
             num /= 10;
         }
         return dic;
+    }
+
+
+    /// <summary>
+    /// 从1-9的数字字典中随机生成不重复的数字
+    /// </summary>
+    /// <param name="num">生成几位数</param>
+    /// <returns></returns>
+    private Dictionary<int, int> GetRandomNum(int num)
+    {
+        int randNum;
+        int key = 1;
+        string randNumStr = "";
+        Dictionary<int, int> numArrayDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
+        { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
+        Dictionary<int, int> randDic = new Dictionary<int, int>();
+
+        System.Random rand = new System.Random();
+
+        while (key <= num)
+        {
+            //随机生成1-9的数字
+            randNum = rand.Next(1, 9);
+            //数字库中是否还存在这个key，即用来判断是否有重复的数字
+            if (numArrayDic.ContainsValue(randNum))
+            {
+                //将随机生成的1-9的数字保存到输出字典中
+                randDic.Add(key++, numArrayDic[randNum]);
+                //显示随机生成的测试数据
+                randNumStr += numArrayDic[randNum];
+                //移除数字库字典中已经使用过的数字
+                numArrayDic.Remove(randNum);
+            }
+        }
+
+        ResultLabel.text = randNumStr;
+        return randDic;
     }
     #endregion
 }
