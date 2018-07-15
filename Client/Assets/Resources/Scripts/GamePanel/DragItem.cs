@@ -22,16 +22,18 @@ public class DragItem : UIDragDropItem {
         base.OnDragDropRelease(surface);
         if (surface.tag == "DragInput")
         {
-            Debug.LogError("###surface.GetComponentInChildren<UILabel>().text " + surface.GetComponentInChildren<UILabel>().text);
-            Debug.LogError("###transform.GetComponentInChildren<UILabel>().text " + transform.GetComponentInChildren<UILabel>().text);
+            //获取拖拽过程中碰撞检测到的item的内容
             string tempStr = surface.GetComponentInChildren<UILabel>().text;
+            //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
             //检测输入的合法性
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.GameLevel)))
             {
                 return;
             }
-            else {
+            else 
+            {
+                 //检测输入的数据不合法，被修改的item显示内容不做修改
                 surface.GetComponentInChildren<UILabel>().text = tempStr;
             }
         }
