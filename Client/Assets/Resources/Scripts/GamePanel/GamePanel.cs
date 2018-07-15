@@ -23,6 +23,17 @@ public class GamePanel : MonoBehaviour {
     public UIInput numberInput_8;
     public UIInput numberInput_9;
 
+    public GameObject DragInputItem_1;
+    public GameObject DragInputItem_2;
+    public GameObject DragInputItem_3;
+    public GameObject DragInputItem_4;
+    public GameObject DragInputItem_5;
+    public GameObject DragInputItem_6;
+    public GameObject DragInputItem_7;
+    public GameObject DragInputItem_8;
+    public GameObject DragInputItem_9;
+
+
 
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
@@ -47,16 +58,26 @@ public class GamePanel : MonoBehaviour {
 
     private int resultNum;              //正确结果
     private int round = 1;              //游戏轮数
+    private string gameInput = "";      //玩家输入数据
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();                     //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();                    //系统随机生成的数据
     private Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();      //游戏结果数据
 
-
+    Dictionary<int, int> inputTempDic = new Dictionary<int, int>();                         //玩家输入待检测的数据
     #endregion
+
+    private static GamePanel _instance;
+    public static GamePanel Instance {
+        get {
+            return _instance;
+        }
+    }
+
 
     void Awake()
     {
+        _instance = this;
         numberInput_1.value = "1";
         numberInput_2.value = "1";
         numberInput_3.value = "1";
@@ -159,7 +180,8 @@ public class GamePanel : MonoBehaviour {
     {
         for (int i = 1; i <= (int)gameLv; i++)
         {
-            GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            //GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            GameObject obj = transform.Find("LeftPart/DragInputNumRoot/DragInputItem_" + i).gameObject;
             obj.SetActive(true);
         }
     }
@@ -168,19 +190,14 @@ public class GamePanel : MonoBehaviour {
     /// 获取玩家输入的数据
     /// </summary>
     /// <returns></returns>
-    private Dictionary<int, int> GetInputNumber(GAME_LEVEL gameLv)
+    public Dictionary<int, int> GetInputNumber(GAME_LEVEL gameLv)
     {
-        string gameInput = "";
-        Dictionary<int, int> dic = new Dictionary<int, int>();
         Dictionary<int, int> reDic = new Dictionary<int, int>();
+        Dictionary<int, int> dic = new Dictionary<int, int>();
 
-        for (int i = 1; i <= (int)gameLv; i++)
-        {
-            GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
-            string inputValue = obj.GetComponent<UIInput>().value;
-            dic[i] = Convert.ToInt32(inputValue);
-            gameInput += inputValue;
-        }
+        //获得用户输入的数据
+        dic = GetTempInputNumber(gameLv);
+
         //检测输入数据是否合法
         if (CheckInputNumLegal(dic))
         {
@@ -191,17 +208,38 @@ public class GamePanel : MonoBehaviour {
     }
 
 
+    public Dictionary<int, int> GetTempInputNumber(GAME_LEVEL gameLv)
+    {
+        string inputStr = "";
+        Dictionary<int, int> dic = new Dictionary<int, int>();
+
+        for (int i = 1; i <= (int)gameLv; i++)
+        {
+            //GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            //string inputValue = obj.GetComponent<UIInput>().value;
+
+            GameObject obj = transform.Find("LeftPart/DragInputNumRoot/DragInputItem_" + i + "/Label").gameObject;
+            string inputValue = obj.GetComponent<UILabel>().text;
+            inputStr += inputValue;
+            dic[i] = Convert.ToInt32(inputValue);
+        }
+        gameInput = inputStr;
+        Debug.LogError("##gameInput" + gameInput);
+        return dic;
+    }
+
+
     /// <summary>
     /// 判断玩家输入的数据是否合法
     /// </summary>
     /// <param name="inputDic"></param>
     /// <returns></returns>
-    private bool CheckInputNumLegal(Dictionary<int,int> inDic) 
+    public bool CheckInputNumLegal(Dictionary<int, int> inputDic) 
     {
         Dictionary<int, int> checkDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
         { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
 
-        foreach (var item in inDic)
+        foreach (var item in inputDic)
         {
             if (checkDic.ContainsValue(item.Value))                     //
             {

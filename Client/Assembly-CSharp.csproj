@@ -186,7 +186,9 @@
      <Compile Include="Assets\Resources\Scripts\DataType.cs" />
      <Compile Include="Assets\Resources\Scripts\GameData.cs" />
      <Compile Include="Assets\Resources\Scripts\GameDefine.cs" />
+     <Compile Include="Assets\Resources\Scripts\GamePanel\DragItem.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\GamePanel.cs" />
+     <Compile Include="Assets\Resources\Scripts\GamePanel\InputDragItem.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\LogShowItemTemplate.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\ShowLogPart.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\ShowResultPart.cs" />
