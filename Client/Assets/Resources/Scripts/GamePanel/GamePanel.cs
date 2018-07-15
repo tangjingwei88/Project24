@@ -44,8 +44,9 @@ public class GamePanel : MonoBehaviour {
     private int inputNum_8;
     private int inputNum_9;
 
-    //正确结果
-    private int resultNum;
+
+    private int resultNum;              //正确结果
+    private int round = 1;              //游戏轮数
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();                     //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();                    //系统随机生成的数据
@@ -81,7 +82,6 @@ public class GamePanel : MonoBehaviour {
    {
         //获得用户输入的数据
         inputDic = GetInputNumber(GameData.Instance.GameLevel);
-
         //比较用户输入的数据和系统生成的数据
         resultDic = CompareInputAndRandomNum(inputDic,randomDic);
         //刷新游戏结果
@@ -170,18 +170,22 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     private Dictionary<int, int> GetInputNumber(GAME_LEVEL gameLv)
     {
+        string gameInput = "";
         Dictionary<int, int> dic = new Dictionary<int, int>();
         Dictionary<int, int> reDic = new Dictionary<int, int>();
 
         for (int i = 1; i <= (int)gameLv; i++)
         {
             GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
-            dic[i] = Convert.ToInt32(obj.GetComponent<UIInput>().value);
+            string inputValue = obj.GetComponent<UIInput>().value;
+            dic[i] = Convert.ToInt32(inputValue);
+            gameInput += inputValue;
         }
         //检测输入数据是否合法
         if (CheckInputNumLegal(dic))
         {
             reDic = dic;
+            GameData.Instance.gameInput = gameInput;
         }
         return reDic;
     }

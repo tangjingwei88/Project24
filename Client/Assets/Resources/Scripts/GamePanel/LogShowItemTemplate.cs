@@ -50,6 +50,59 @@ public class LogShowItemTemplate : MonoBehaviour {
     
     public void Apply(Dictionary<LIGHT_TYPE,int> dic)
     {
-        
+        ShowLight(LIGHT_TYPE.red, dic[LIGHT_TYPE.red]);
+        ShowLight(LIGHT_TYPE.yellow, dic[LIGHT_TYPE.yellow]);
+        ShowLight(LIGHT_TYPE.green, dic[LIGHT_TYPE.green]);
+        resultLabel.text = GameData.Instance.gameInput;
+        roundLabel.text = "R" + GameData.Instance.gameRound.ToString();
     }
+
+
+    #region 方法
+
+    /// <summary>
+    ///显示灯
+    /// </summary>
+    public void ShowLight(LIGHT_TYPE LType, int num)
+    {
+        if (LType == LIGHT_TYPE.red)
+        {
+            ShowSprite("redSpriteRoot/redSprite_", num);
+        }
+        else if (LType == LIGHT_TYPE.yellow)
+        {
+            ShowSprite("yellowSpriteRoot/yellowSprite_", num);
+        }
+        else if (LType == LIGHT_TYPE.green)
+        {
+            ShowSprite("greenSpriteRoot/greenSprite_", num);
+        }
+    }
+
+
+    /// <summary>
+    /// 控制sprite顯示
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="num"></param>
+    private void ShowSprite(string path, int num)
+    {
+        if (num >= 1)
+        {
+            for (int i = 1; i <= num; i++)
+            {
+                transform.Find(path + i).gameObject.SetActive(true); ;
+            }
+        }
+        if (num < 4)
+        {
+            for (int i = num + 1; i <= (int)GameData.Instance.GameLevel; i++)
+            {
+                transform.Find(path + i).gameObject.SetActive(false); ;
+            }
+        }
+    }
+
+
+    #endregion
 }

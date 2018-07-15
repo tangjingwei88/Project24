@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameData {
+public class GameData
+{
 
-    //游戏等级
-    public GAME_LEVEL GameLevel = GAME_LEVEL.Seven;
+    #region 变量
+
+    public GAME_LEVEL GameLevel = GAME_LEVEL.Five;     //游戏等级
+    public string gameInput;        //玩家输入数据
+    public int gameRound = 1;        //玩家输入次数
+
+    #endregion
 
     private static GameData _instance;
     public static GameData Instance {
