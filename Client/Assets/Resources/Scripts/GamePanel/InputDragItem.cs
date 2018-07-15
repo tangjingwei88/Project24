@@ -29,24 +29,16 @@ public class InputDragItem : UIDragDropItem {
         base.OnDragDropRelease(surface);
         if (surface.tag == "DragInput")
         {
-            Debug.LogError("###surface.GetComponentInChildren<UILabel>().text " + surface.GetComponentInChildren<UILabel>().text);
-            Debug.LogError("###transform.GetComponentInChildren<UILabel>().text " + transform.GetComponentInChildren<UILabel>().text);
-
+            //被拖拽item的显示内容
             string tempStr = transform.GetComponentInChildren<UILabel>().text;
-            Debug.LogError("tempStr " + tempStr);
-
+            //被拖拽item的名字
             string itemName = this.gameObject.name;
-            itemName = itemName.Substring(0,itemName.Length -7);
-
-            Debug.LogError("itemName " + itemName);
-            Debug.LogError("itemParent " + itemParent);
-
-
+            //被拖拽item的名字截去"(clone)"字符
+            itemName = itemName.Substring(0, itemName.Length - 7);
+            //将拖拽碰撞检测到item显示内容赋值给被拖拽item
             itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surface.GetComponentInChildren<UILabel>().text;
+            //将被拖拽item的内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = tempStr;
-
         }
-        
-
     }
 }
