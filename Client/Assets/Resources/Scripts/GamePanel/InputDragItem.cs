@@ -34,12 +34,15 @@ public class InputDragItem : UIDragDropItem {
 
             string tempStr = transform.GetComponentInChildren<UILabel>().text;
             Debug.LogError("tempStr " + tempStr);
-            int itemNum = Convert.ToInt32(tempStr);
 
+            string itemName = this.gameObject.name;
+            itemName = itemName.Substring(0,itemName.Length -7);
+
+            Debug.LogError("itemName " + itemName);
             Debug.LogError("itemParent " + itemParent);
-            Debug.LogError("itemNum " + itemNum);
 
-            itemParent.transform.Find("DragInputItem_" + itemNum + "/Label").GetComponent<UILabel>().text = surface.GetComponentInChildren<UILabel>().text;
+
+            itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surface.GetComponentInChildren<UILabel>().text;
             surface.GetComponentInChildren<UILabel>().text = tempStr;
 
         }
