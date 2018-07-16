@@ -10,6 +10,7 @@ public class GameData
     public string gameInput;         //玩家输入数据
     public int gameRound = 1;        //玩家输入次数
     public float roundTime = 2;     //每局游戏时间
+    public bool win = false;         //游戏结果
     #endregion
 
     private static GameData _instance;
