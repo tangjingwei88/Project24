@@ -35,6 +35,8 @@ public class GamePanel : MonoBehaviour {
 
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
+    public GameOverPanel theGameOverPanel;
+
     public UILabel TimeLabel;             //倒计时显示
     public UILabel ResultLabel;           //测试用显示结果           
 
@@ -103,7 +105,7 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator TimeSliping(float time)
     {
-        while (time > 0)
+        while (time >= 0)
         {
             yield return new WaitForSeconds(1);
             TimeLabel.text = time.ToString();
@@ -112,6 +114,8 @@ public class GamePanel : MonoBehaviour {
 
         //TODO
         //游戏结束
+        Debug.LogError("游戏结束");
+        theGameOverPanel.gameObject.SetActive(true);
     }
 
     /// <summary>

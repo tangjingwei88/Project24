@@ -2,7 +2,7 @@
 
 "BelifPt.png":
 {
-	"frame": {"x":762,"y":378,"w":89,"h":90},
+	"frame": {"x":235,"y":1408,"w":89,"h":90},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":89,"h":90},
@@ -16,33 +16,105 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":758,"h":987},
 	"sourceSize": {"w":758,"h":987}
 },
+"BlackBackground.png":
+{
+	"frame": {"x":2,"y":1459,"w":231,"h":156},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":231,"h":156},
+	"sourceSize": {"w":231,"h":156}
+},
+"BlackShelter.png":
+{
+	"frame": {"x":2,"y":1896,"w":126,"h":126},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":126,"h":126},
+	"sourceSize": {"w":126,"h":126}
+},
 "FlagIcon.png":
 {
-	"frame": {"x":904,"y":150,"w":97,"h":120},
+	"frame": {"x":130,"y":1768,"w":97,"h":120},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":120},
 	"sourceSize": {"w":97,"h":120}
 },
+"GoldIcon.png":
+{
+	"frame": {"x":192,"y":1408,"w":32,"h":33},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":33},
+	"sourceSize": {"w":32,"h":33}
+},
+"HighLight.png":
+{
+	"frame": {"x":2,"y":1768,"w":126,"h":126},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":126,"h":126},
+	"sourceSize": {"w":126,"h":126}
+},
+"HoveringFrame.png":
+{
+	"frame": {"x":2,"y":991,"w":283,"h":264},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":264},
+	"sourceSize": {"w":283,"h":264}
+},
 "LightFrame.png":
 {
-	"frame": {"x":762,"y":76,"w":140,"h":200},
+	"frame": {"x":2,"y":1257,"w":140,"h":200},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":200},
 	"sourceSize": {"w":140,"h":200}
 },
+"ProgressBar.png":
+{
+	"frame": {"x":2,"y":1617,"w":150,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":149},
+	"sourceSize": {"w":150,"h":149}
+},
+"RedMark.png":
+{
+	"frame": {"x":144,"y":1408,"w":46,"h":46},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":46,"h":46},
+	"sourceSize": {"w":46,"h":46}
+},
 "ReturnBtn.png":
 {
-	"frame": {"x":762,"y":2,"w":197,"h":72},
+	"frame": {"x":235,"y":1500,"w":197,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":197,"h":72},
 	"sourceSize": {"w":197,"h":72}
 },
+"StopWatchBack.png":
+{
+	"frame": {"x":287,"y":991,"w":150,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":149},
+	"sourceSize": {"w":150,"h":149}
+},
+"StopWatchFront.png":
+{
+	"frame": {"x":144,"y":1257,"w":150,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":150,"h":149},
+	"sourceSize": {"w":150,"h":149}
+},
 "closeBtn.png":
 {
-	"frame": {"x":904,"y":76,"w":100,"h":72},
+	"frame": {"x":296,"y":1242,"w":100,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":72},
@@ -50,7 +122,7 @@
 },
 "greenPlus.png":
 {
-	"frame": {"x":762,"y":470,"w":66,"h":65},
+	"frame": {"x":296,"y":1316,"w":66,"h":65},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":66,"h":65},
@@ -58,7 +130,7 @@
 },
 "green_Light.png":
 {
-	"frame": {"x":861,"y":372,"w":97,"h":98},
+	"frame": {"x":130,"y":1890,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -66,7 +138,7 @@
 },
 "red_Light.png":
 {
-	"frame": {"x":762,"y":278,"w":97,"h":98},
+	"frame": {"x":154,"y":1617,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -74,7 +146,7 @@
 },
 "yellow_Light.png":
 {
-	"frame": {"x":904,"y":272,"w":97,"h":98},
+	"frame": {"x":287,"y":1142,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -83,10 +155,10 @@
 "meta": {
 	"app": "http://www.texturepacker.com",
 	"version": "1.0",
-	"image": "gameAtlasMask.png",
-	"format": "ALPHA",
-	"size": {"w":1024,"h":1024},
+	"image": "gameAtlas.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2f0f08e1d1f8acc9982120210c1c812f$"
+	"smartupdate": "$TexturePacker:SmartUpdate:88640975b600d961b3833f9aba07fe52$"
 }
 }
