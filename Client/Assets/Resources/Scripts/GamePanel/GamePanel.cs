@@ -33,17 +33,15 @@ public class GamePanel : MonoBehaviour {
     public GameObject DragInputItem_8;
     public GameObject DragInputItem_9;
 
-
-
     public ShowLogPart theShowLogPart;
     public ShowResultPart theShowResultPart;
-    //测试用显示结果
-    public UILabel ResultLabel;                       
+    public UILabel TimeLabel;             //倒计时显示
+    public UILabel ResultLabel;           //测试用显示结果           
 
-    
+
     #endregion
 
-    
+
     #region 变量
     private int inputNum_1;
     private int inputNum_2;
@@ -91,11 +89,31 @@ public class GamePanel : MonoBehaviour {
         randomDic = GetRandomNumber(GameData.Instance.GameLevel);
         //显示输入框
         ShowInputNumRoot(GameData.Instance.GameLevel);
+        //显示倒计时
+        StartCoroutine(TimeSliping(GameData.Instance.roundTime));
     }
 
 
 
     #region 方法
+    /// <summary>
+    /// 倒计时显示
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public IEnumerator TimeSliping(float time)
+    {
+        while (time > 0)
+        {
+            yield return new WaitForSeconds(1);
+            TimeLabel.text = time.ToString();
+            time--;
+        }
+
+        //TODO
+        //游戏结束
+    }
+
     /// <summary>
     /// 确定按钮
     /// </summary>
