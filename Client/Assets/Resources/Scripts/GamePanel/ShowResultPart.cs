@@ -103,4 +103,40 @@ public class ShowResultPart : MonoBehaviour {
             }
         }
     }
+
+    /// <summary>
+    /// 刷新显示
+    /// </summary>
+    public void Clear()
+    {
+        redSprite_1.SetActive(false);
+        redSprite_2.SetActive(false);
+        redSprite_3.SetActive(false);
+        redSprite_4.SetActive(false);
+        redSprite_5.SetActive(false);
+        redSprite_6.SetActive(false);
+        redSprite_7.SetActive(false);
+        redSprite_8.SetActive(false);
+        redSprite_9.SetActive(false);
+
+        yellowSprite_1.SetActive(false);
+        yellowSprite_2.SetActive(false);
+        yellowSprite_3.SetActive(false);
+        yellowSprite_4.SetActive(false);
+        yellowSprite_5.SetActive(false);
+        yellowSprite_6.SetActive(false);
+        yellowSprite_7.SetActive(false);
+        yellowSprite_8.SetActive(false);
+        yellowSprite_9.SetActive(false);
+
+        greenSprite_1.SetActive(false);
+        greenSprite_2.SetActive(false);
+        greenSprite_3.SetActive(false);
+        greenSprite_4.SetActive(false);
+        greenSprite_5.SetActive(false);
+        greenSprite_6.SetActive(false);
+        greenSprite_7.SetActive(false);
+        greenSprite_8.SetActive(false);
+        greenSprite_9.SetActive(false);
+    }
 }

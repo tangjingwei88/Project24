@@ -38,14 +38,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/SoftwareInstall/unity537/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/SoftwareInstall/unity537/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GameOverPanel.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipRandomItem.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\UICursor.cs" />
@@ -188,6 +187,7 @@
      <Compile Include="Assets\Resources\Scripts\GameData.cs" />
      <Compile Include="Assets\Resources\Scripts\GameDefine.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\DragItem.cs" />
+     <Compile Include="Assets\Resources\Scripts\GamePanel\GameOverPanel.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\GamePanel.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\InputDragItem.cs" />
      <Compile Include="Assets\Resources\Scripts\GamePanel\LogShowItemTemplate.cs" />
@@ -197,6 +197,7 @@
      <Compile Include="Assets\Resources\Scripts\LoadingManager.cs" />
      <Compile Include="Assets\Resources\Scripts\RegisterPanel.cs" />
      <Compile Include="Assets\Resources\Scripts\StartPanel.cs" />
+     <Compile Include="Assets\Resources\Scripts\TipsManager.cs" />
      <Compile Include="Assets\Resources\Scripts\TipsPopUpPanel.cs" />
      <Compile Include="Assets\Resources\Scripts\UIMain.cs" />
      <Compile Include="Assets\Resources\Scripts\UIMainLoadedPanel.cs" />
@@ -224,6 +225,7 @@
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
+     <None Include="Assets\Resources\UIAltas\AnimoAtlas\animoAtlas.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
@@ -246,13 +248,13 @@
      <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
      <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

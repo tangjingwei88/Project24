@@ -13,6 +13,8 @@ public class ShowLogPart : MonoBehaviour {
 
     #region 变量
 
+    private List<GameObject> logList = new List<GameObject>();
+    #endregion
 
     void Update()
     {
@@ -20,7 +22,7 @@ public class ShowLogPart : MonoBehaviour {
     }
 
 
-    #endregion
+    
 
     public void Apply(Dictionary<LIGHT_TYPE, int> dic)
     {
@@ -32,11 +34,23 @@ public class ShowLogPart : MonoBehaviour {
         Debug.LogError("#" +transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value);
         transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value = 1;
         Debug.LogError("##" + transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value);
+        logList.Add(go);
 
         LogShowItemTemplate sc = go.GetComponent<LogShowItemTemplate>();
         sc.Apply(dic);
         LogShowWidget.GetComponent<UIGrid>().repositionNow = true;
         GameData.Instance.gameRound++;
         transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value = 1;
+    }
+
+    /// <summary>
+    /// 清空log列表
+    /// </summary>
+    public void Clear()
+    {
+        for (int i = 0; i < logList.Count; i++)
+        {
+            Destroy(logList[i]);
+        }
     }
 }

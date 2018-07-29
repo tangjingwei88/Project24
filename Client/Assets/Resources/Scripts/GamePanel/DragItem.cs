@@ -8,7 +8,10 @@ public class DragItem : UIDragDropItem {
     /// </summary>
     protected override void OnDragDropStart()
     {
+//        this.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+//        this.gameObject.transform.localPosition = Camera.main.WorldToScreenPoint(transform.position);
         base.OnDragDropStart();
+        
     }
 
 

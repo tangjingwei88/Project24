@@ -13,15 +13,6 @@ using System;
 public class GamePanel : MonoBehaviour {
 
     #region 引用
-    public UIInput numberInput_1;
-    public UIInput numberInput_2;
-    public UIInput numberInput_3;
-    public UIInput numberInput_4;
-    public UIInput numberInput_5;
-    public UIInput numberInput_6;
-    public UIInput numberInput_7;
-    public UIInput numberInput_8;
-    public UIInput numberInput_9;
 
     public GameObject DragInputItem_1;
     public GameObject DragInputItem_2;
@@ -78,15 +69,18 @@ public class GamePanel : MonoBehaviour {
     void Awake()
     {
         _instance = this;
-        numberInput_1.value = "1";
-        numberInput_2.value = "1";
-        numberInput_3.value = "1";
-        numberInput_4.value = "1";
-        numberInput_5.value = "1";
-        numberInput_6.value = "1";
-        numberInput_7.value = "1";
-        numberInput_8.value = "1";
-        numberInput_9.value = "1";
+        InitGame();
+
+    }
+
+
+    /// <summary>
+    /// 游戏初始化
+    /// </summary>
+    public void InitGame()
+    {
+        GameData.Instance.gameRound = 1;
+        RefreshPanel();
         //获取系统生成的随机数据
         randomDic = GetRandomNumber(GameData.Instance.GameLevel);
         //显示输入框
@@ -96,8 +90,17 @@ public class GamePanel : MonoBehaviour {
     }
 
 
-
     #region 方法
+
+    /// <summary>
+    /// 刷新界面，重新开始游戏
+    /// </summary>
+    public void RefreshPanel()
+    {
+        theShowLogPart.Clear();
+        theShowResultPart.Clear();
+    }
+
     /// <summary>
     /// 倒计时显示
     /// </summary>
@@ -115,6 +118,7 @@ public class GamePanel : MonoBehaviour {
         //TODO
         //游戏结束
         Debug.LogError("游戏结束");
+        theShowLogPart.Clear();
         theGameOverPanel.gameObject.SetActive(true);
     }
 
@@ -268,7 +272,8 @@ public class GamePanel : MonoBehaviour {
                 checkDic.Remove(item.Value);
             }
             else {
-                Debug.LogError("不能输入0或重复数字哦！");
+                //Debug.LogError("不能输入0或重复数字哦！");
+                TipsManager.Instance.ShowTips("有重复数字哦！");
                 return false;
             }
         }
