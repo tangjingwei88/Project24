@@ -87,21 +87,14 @@ public class GamePanel : MonoBehaviour {
         ShowInputNumRoot(GameData.Instance.GameLevel);
         //显示倒计时
         StartCoroutine(TimeSliping(GameData.Instance.roundTime));
-
-        LoadCharacter("DarkHunter_B");
+        //加载模型
+        LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
     }
 
 
     #region 方法
 
-    public void LoadCharacter(string name)
-    {
-        GameObject obj = ResourceManager.Instance.NewCharacter(name);
-        if (obj.GetComponent<Animation>().GetClip("Idle") != null)
-        {
-            obj.GetComponent<Animation>().Play("Idle");
-        }
-    }
+
 
     /// <summary>
     /// 刷新界面，重新开始游戏

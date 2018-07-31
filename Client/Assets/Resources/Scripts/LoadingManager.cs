@@ -8,6 +8,8 @@ public class LoadingManager : MonoBehaviour {
     private bool loadingFinished = false;
 
     public GameObject mainSceneGO;
+    private GameObject existingModel;
+    public GameObject ModelCameraPrefab;
     #endregion
 
     private static LoadingManager _instance;
@@ -21,6 +23,11 @@ public class LoadingManager : MonoBehaviour {
     void Awake()
     {
         _instance = this;
+    }
+
+    void Start()
+    {
+        DontDestroyOnLoad(ModelCameraPrefab);
     }
 
 
@@ -65,6 +72,34 @@ public class LoadingManager : MonoBehaviour {
             mainSceneGO.SetActive(true);
         }
     }
+
+
+    /// <summary>
+    /// 加载模型
+    /// </summary>
+    /// <param name="name"></param>
+    public void LoadModelPrefab(string name)
+    {
+        existingModel = ResourceManager.Instance.NewCharacter(name);
+        if (existingModel.GetComponent<Animation>().GetClip("Idle") != null)
+        {
+            existingModel.GetComponent<Animation>().Play("Idle");
+        }
+    }
+
+
+    /// <summary>
+    /// 旋转模型
+    /// </summary>
+    /// <param name="delta">旋转角度</param>
+    public void RotateModel(float delta)
+    {
+        Vector3 formerLocalRotation = existingModel.transform.localRotation.eulerAngles;
+        formerLocalRotation.y -= delta;
+        existingModel.transform.localRotation = Quaternion.Euler(formerLocalRotation);
+    }
+
+
     #endregion
 
 }
