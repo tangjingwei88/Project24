@@ -9,7 +9,12 @@ public class LoadingManager : MonoBehaviour {
 
     public GameObject mainSceneGO;
     private GameObject existingModel;
-    public GameObject ModelCameraPrefab;
+    public GameObject modelCameraPrefab;
+    public Transform modelPositionTransform;
+
+
+    public Skybox targetSkyBoxOnModelCamera;
+
     #endregion
 
     private static LoadingManager _instance;
@@ -27,7 +32,7 @@ public class LoadingManager : MonoBehaviour {
 
     void Start()
     {
-        DontDestroyOnLoad(ModelCameraPrefab);
+        DontDestroyOnLoad(modelCameraPrefab);
     }
 
 
@@ -73,6 +78,24 @@ public class LoadingManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 加载模型相机
+    /// </summary>
+    public void LoadModelCameraPrefab()
+    {
+        Object go;
+        if (modelCameraPrefab == null)
+        {
+            go = Resources.Load("UIPrefab/ModelCameraPrefab");
+            GameObject objCamera = (GameObject)Instantiate(go);
+            DontDestroyOnLoad(objCamera);
+            modelCameraPrefab = objCamera;
+
+            modelPositionTransform = objCamera.transform.GetChild(1);
+            Debug.LogError("modelPositionTransform: " + modelPositionTransform);
+            targetSkyBoxOnModelCamera = objCamera.transform.GetChild(0).GetComponent<Skybox>();
+        }
+    }
 
     /// <summary>
     /// 加载模型
@@ -85,6 +108,11 @@ public class LoadingManager : MonoBehaviour {
         {
             existingModel.GetComponent<Animation>().Play("Idle");
         }
+        Debug.LogError("modelPositionTransform: " + modelPositionTransform);
+        existingModel.transform.parent = modelPositionTransform;
+        existingModel.transform.localPosition = Vector3.zero;
+        existingModel.transform.localRotation = Quaternion.identity;
+        Debug.LogError("existingModel.transform.parent: " + existingModel.transform.parent);
     }
 
 

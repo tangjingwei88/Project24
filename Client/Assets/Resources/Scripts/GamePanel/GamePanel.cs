@@ -88,6 +88,7 @@ public class GamePanel : MonoBehaviour {
         //显示倒计时
         StartCoroutine(TimeSliping(GameData.Instance.roundTime));
         //加载模型
+        LoadingManager.Instance.LoadModelCameraPrefab();
         LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
     }
 

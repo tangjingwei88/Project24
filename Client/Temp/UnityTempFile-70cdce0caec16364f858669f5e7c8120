@@ -2,14 +2,11 @@
 -target:library
 -nowarn:0169
 -out:Temp/Assembly-CSharp.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEngine.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
--r:D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEditor.dll
+-r:D:/SoftwareInstall/unity537/Unity/Editor/Data/Managed/UnityEngine.dll
+-r:D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+-r:D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+-r:D:/SoftwareInstall/unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+-r:D:/SoftwareInstall/unity537/Unity/Editor/Data/Managed/UnityEditor.dll
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_3_7
 -define:UNITY_5_3
@@ -242,5 +239,5 @@ Assets/Resources/Scripts/UIMain.cs
 Assets/Resources/Scripts/UIMainLoadedPanel.cs
 Assets/Resources/Scripts/UIResolutionHelper.cs
 Assets/Resources/Scripts/UIStart.cs
--r:D:\softwareInstall\Unity537\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll
--r:D:\softwareInstall\Unity537\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll
+-r:D:\SoftwareInstall\unity537\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll
+-r:D:\SoftwareInstall\unity537\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll
