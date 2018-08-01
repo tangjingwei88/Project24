@@ -37,6 +37,8 @@ public class ShowResultPart : MonoBehaviour {
 
     public Transform anchorRoot;
     public GameObject numberInputRoot;
+    public AudioClip showResultMusic;
+    public Transform showEffectParent;
     #endregion
 
 
@@ -57,6 +59,22 @@ public class ShowResultPart : MonoBehaviour {
         ShowLight(LIGHT_TYPE.red, dictionary[LIGHT_TYPE.red]);
         ShowLight(LIGHT_TYPE.yellow, dictionary[LIGHT_TYPE.yellow]);
         ShowLight(LIGHT_TYPE.green, dictionary[LIGHT_TYPE.green]);
+        ShowResultEffect();
+    }
+
+
+    /// <summary>
+    /// 显示结果特效
+    /// </summary>
+    /// <param name="name"></param>
+    public void ShowResultEffect()
+    {
+        NGUITools.PlaySound(showResultMusic,0.1f);
+        GameObject showEffectGO = ResourceManager.Instance.NewUIParticle("LevelUp_Big_Scale");
+        showEffectGO.transform.parent = showEffectParent;
+        showEffectGO.transform.localPosition = Vector3.zero;
+
+        Destroy(showEffectGO,1.0f);
     }
 
 

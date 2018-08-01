@@ -6,6 +6,7 @@ public class InputDragItem : UIDragDropItem {
 
     //该item的父亲
     private GameObject itemParent;
+    public AudioClip dragMusic;
 
     /// <summary>
     /// 重写父类的拖拽开始函数
@@ -25,7 +26,7 @@ public class InputDragItem : UIDragDropItem {
     /// <param name="surface"></param>
     protected override void OnDragDropRelease(GameObject surface)
     {
-
+        NGUITools.PlaySound(dragMusic,0.1f);
         base.OnDragDropRelease(surface);
         if (surface.tag == "DragInput")
         {

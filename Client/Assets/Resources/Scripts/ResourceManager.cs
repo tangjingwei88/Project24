@@ -16,7 +16,11 @@ public class ResourceManager : MonoBehaviour {
     }
 
 
-
+    /// <summary>
+    /// 实例化模型
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public GameObject NewCharacter(string name)
     {
         Object obj = Resources.Load(GameDefine.CharacterPath + name);
@@ -26,6 +30,18 @@ public class ResourceManager : MonoBehaviour {
             return null;
         }
 
+        return (GameObject)Object.Instantiate(obj);
+    }
+
+
+
+    public GameObject NewUIParticle(string name)
+    {
+        Object obj = Resources.Load(GameDefine.UIParticlePath + name);
+        if (obj == null)
+        {
+            Debug.LogError(name + "is not existed!");
+        }
         return (GameObject)Object.Instantiate(obj);
     }
 }

@@ -92,7 +92,6 @@ public class LoadingManager : MonoBehaviour {
             modelCameraPrefab = objCamera;
 
             modelPositionTransform = objCamera.transform.GetChild(1);
-            Debug.LogError("modelPositionTransform: " + modelPositionTransform);
             targetSkyBoxOnModelCamera = objCamera.transform.GetChild(0).GetComponent<Skybox>();
         }
     }
@@ -108,11 +107,10 @@ public class LoadingManager : MonoBehaviour {
         {
             existingModel.GetComponent<Animation>().Play("Idle");
         }
-        Debug.LogError("modelPositionTransform: " + modelPositionTransform);
+
         existingModel.transform.parent = modelPositionTransform;
         existingModel.transform.localPosition = Vector3.zero;
         existingModel.transform.localRotation = Quaternion.identity;
-        Debug.LogError("existingModel.transform.parent: " + existingModel.transform.parent);
     }
 
 
@@ -127,6 +125,14 @@ public class LoadingManager : MonoBehaviour {
         existingModel.transform.localRotation = Quaternion.Euler(formerLocalRotation);
     }
 
+
+    public void DestroyModel()
+    {
+        if (existingModel != null)
+        {
+            Destroy(existingModel);
+        }
+    }
 
     #endregion
 

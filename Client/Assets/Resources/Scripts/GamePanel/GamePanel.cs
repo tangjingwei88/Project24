@@ -28,6 +28,9 @@ public class GamePanel : MonoBehaviour {
     public ShowResultPart theShowResultPart;
     public GameOverPanel theGameOverPanel;
 
+    public AudioClip dragMusic;            //拖拽音效
+    public AudioSource audioSource;
+
     public UILabel TimeLabel;             //倒计时显示
     public UILabel ResultLabel;           //测试用显示结果           
 
@@ -104,6 +107,7 @@ public class GamePanel : MonoBehaviour {
     {
         theShowLogPart.Clear();
         theShowResultPart.Clear();
+        LoadingManager.Instance.DestroyModel();
     }
 
     /// <summary>
