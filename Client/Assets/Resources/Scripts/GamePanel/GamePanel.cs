@@ -83,6 +83,7 @@ public class GamePanel : MonoBehaviour {
     public void InitGame()
     {
         GameData.Instance.gameRound = 1;
+ 
         RefreshPanel();
         //获取系统生成的随机数据
         randomDic = GetRandomNumber(GameData.Instance.GameLevel);
@@ -92,6 +93,7 @@ public class GamePanel : MonoBehaviour {
         StartCoroutine(TimeSliping(GameData.Instance.roundTime));
         //加载模型
         LoadingManager.Instance.LoadModelCameraPrefab();
+        Debug.LogError("##@" + LoadingManager.Instance.modelPositionTransform);
         LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
     }
 
@@ -107,7 +109,7 @@ public class GamePanel : MonoBehaviour {
     {
         theShowLogPart.Clear();
         theShowResultPart.Clear();
-        LoadingManager.Instance.DestroyModel();
+    //    LoadingManager.Instance.DestroyModel();
     }
 
     /// <summary>

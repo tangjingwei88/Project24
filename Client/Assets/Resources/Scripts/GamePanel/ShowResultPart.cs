@@ -70,7 +70,7 @@ public class ShowResultPart : MonoBehaviour {
     public void ShowResultEffect()
     {
         NGUITools.PlaySound(showResultMusic,0.1f);
-        GameObject showEffectGO = ResourceManager.Instance.NewUIParticle("LevelUp_Big_Scale");
+        GameObject showEffectGO = LoadingManager.Instance.NewUIParticle("LevelUp_Big_Scale");
         showEffectGO.transform.parent = showEffectParent;
         showEffectGO.transform.localPosition = Vector3.zero;
 

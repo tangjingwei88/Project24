@@ -7,41 +7,14 @@ public class ResourceManager : MonoBehaviour {
 
     public static ResourceManager Instance {
         get { 
-            if(_instance == null)
-            {
-                _instance = new ResourceManager();
-            }
             return _instance;
         }
     }
 
-
-    /// <summary>
-    /// 实例化模型
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public GameObject NewCharacter(string name)
+    void Awake()
     {
-        Object obj = Resources.Load(GameDefine.CharacterPath + name);
-        if (obj == null)
-        {
-            Debug.LogError(name + "is not exist!");
-            return null;
-        }
-
-        return (GameObject)Object.Instantiate(obj);
+        _instance = this;
     }
 
 
-
-    public GameObject NewUIParticle(string name)
-    {
-        Object obj = Resources.Load(GameDefine.UIParticlePath + name);
-        if (obj == null)
-        {
-            Debug.LogError(name + "is not existed!");
-        }
-        return (GameObject)Object.Instantiate(obj);
-    }
 }

@@ -195,6 +195,7 @@
      <Compile Include="Assets\Resources\Scripts\GamePanel\ShowResultPart.cs" />
      <Compile Include="Assets\Resources\Scripts\HelperTools.cs" />
      <Compile Include="Assets\Resources\Scripts\LoadingManager.cs" />
+     <Compile Include="Assets\Resources\Scripts\ParticleScaler.cs" />
      <Compile Include="Assets\Resources\Scripts\RegisterPanel.cs" />
      <Compile Include="Assets\Resources\Scripts\ResourceManager.cs" />
      <Compile Include="Assets\Resources\Scripts\RotateModelPrefab.cs" />

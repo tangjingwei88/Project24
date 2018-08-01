@@ -19,7 +19,8 @@ public class LoadingManager : MonoBehaviour {
 
     private static LoadingManager _instance;
     public static LoadingManager Instance {
-        get {
+        get 
+        {
             return _instance;
         }
     }
@@ -78,6 +79,37 @@ public class LoadingManager : MonoBehaviour {
         }
     }
 
+
+    /// <summary>
+    /// 实例化模型
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public GameObject NewCharacter(string name)
+    {
+        Object obj = Resources.Load(GameDefine.CharacterPath + name);
+        if (obj == null)
+        {
+            Debug.LogError(name + "is not exist!");
+            return null;
+        }
+
+        return (GameObject)Object.Instantiate(obj);
+    }
+
+
+
+    public GameObject NewUIParticle(string name)
+    {
+        Object obj = Resources.Load(GameDefine.UIParticlePath + name);
+        Debug.LogError("obj " + obj);
+        if (obj == null)
+        {
+            Debug.LogError(name + "is not existed!");
+        }
+        return (GameObject)Object.Instantiate(obj);
+    }
+
     /// <summary>
     /// 加载模型相机
     /// </summary>
@@ -92,6 +124,7 @@ public class LoadingManager : MonoBehaviour {
             modelCameraPrefab = objCamera;
 
             modelPositionTransform = objCamera.transform.GetChild(1);
+            Debug.LogError("#modelPositionTransform " + modelPositionTransform);
             targetSkyBoxOnModelCamera = objCamera.transform.GetChild(0).GetComponent<Skybox>();
         }
     }
@@ -102,12 +135,14 @@ public class LoadingManager : MonoBehaviour {
     /// <param name="name"></param>
     public void LoadModelPrefab(string name)
     {
-        existingModel = ResourceManager.Instance.NewCharacter(name);
+        Debug.LogError("#4#modelPositionTransform " + modelPositionTransform);
+        existingModel = NewCharacter(name);
+        Debug.LogError("##existingModel " + existingModel);
         if (existingModel.GetComponent<Animation>().GetClip("Idle") != null)
         {
             existingModel.GetComponent<Animation>().Play("Idle");
         }
-
+        Debug.LogError("##modelPositionTransform " + modelPositionTransform);
         existingModel.transform.parent = modelPositionTransform;
         existingModel.transform.localPosition = Vector3.zero;
         existingModel.transform.localRotation = Quaternion.identity;
@@ -128,6 +163,7 @@ public class LoadingManager : MonoBehaviour {
 
     public void DestroyModel()
     {
+        Debug.LogError("###");
         if (existingModel != null)
         {
             Destroy(existingModel);

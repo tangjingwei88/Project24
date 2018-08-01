@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DragItem : UIDragDropItem {
 
+    public AudioClip dragMusic;
+
     /// <summary>
     /// 重写父类的拖拽开始函数
     /// </summary>
@@ -21,7 +23,7 @@ public class DragItem : UIDragDropItem {
     /// <param name="surface"></param>
     protected override void OnDragDropRelease(GameObject surface)
     {
-
+        NGUITools.PlaySound(dragMusic, 0.1f);
         base.OnDragDropRelease(surface);
         Debug.LogError("@@@" + surface.GetComponentInChildren<UILabel>().text);
         Debug.LogError("@@@surface.tag" + surface.tag);
