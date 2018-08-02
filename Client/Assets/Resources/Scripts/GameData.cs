@@ -7,10 +7,12 @@ public class GameData
     #region 变量
 
     public GAME_LEVEL GameLevel = GAME_LEVEL.Five;          //游戏等级
-    public string gameInput;         //玩家输入数据
-    public int gameRound = 1;        //玩家输入次数
-    public float roundTime = 300;     //每局游戏时间
-    public bool win = false;         //游戏结果
+    public string gameInput;            //玩家输入数据
+    public int gameRound = 1;           //玩家输入次数
+    public float roundTime = 300;       //每局游戏时间
+    public bool win = false;            //游戏结果
+
+    public int diamonds = 100;          //钻石总量
     #endregion
 
     private static GameData _instance;
@@ -50,4 +52,14 @@ public enum GAME_LEVEL
     Seven = 7,
     Eight = 8,
     Nine = 9
+}
+
+/// <summary>
+/// 模型朝向
+/// </summary>
+public enum MODEL_DIRECTION
+{
+    front,
+    back,
+    right
 }
