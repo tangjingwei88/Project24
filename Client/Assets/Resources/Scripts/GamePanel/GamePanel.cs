@@ -28,6 +28,11 @@ public class GamePanel : MonoBehaviour {
     public ShowResultPart theShowResultPart;
     public GameOverPanel theGameOverPanel;
 
+    public GameObject DragItemTemplate;
+    public GameObject selectItemPoolRoot;
+    public GameObject selectPoolWidget;
+    public UIScrollView theScrollView;
+
     public AudioClip dragMusic;            //拖拽音效
     public AudioSource audioSource;
 
@@ -57,7 +62,8 @@ public class GamePanel : MonoBehaviour {
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();                     //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();                    //系统随机生成的数据
     private Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();      //游戏结果数据
-
+    private Dictionary<int, int> selectPoolDic = new Dictionary<int, int>();                //供选择的数据池
+    private Dictionary<int, string> numIconPoolDic = new Dictionary<int, string>();         //num:Icon数据池
     Dictionary<int, int> inputTempDic = new Dictionary<int, int>();                         //玩家输入待检测的数据
     #endregion
 
@@ -83,12 +89,15 @@ public class GamePanel : MonoBehaviour {
     public void InitGame()
     {
         GameData.Instance.gameRound = 1;
- 
-        RefreshPanel();
+        //获取可选择数据池
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        numIconPoolDic = stageConfig.numIconPoolDic;
+        //刷新界面
+        RefreshPanel(numIconPoolDic);
         //获取系统生成的随机数据
-        randomDic = GetRandomNumber(GameData.Instance.GameLevel);
-        //显示输入框
-        ShowInputNumRoot(GameData.Instance.GameLevel);
+        randomDic = GetRandomNumber(GameData.Instance.GameStage);
+        //显示输入框(老版)
+        ShowInputNumRoot(GameData.Instance.GameStage);
         //显示倒计时
         StartCoroutine(TimeSliping(GameData.Instance.roundTime));
         //加载模型
@@ -105,11 +114,12 @@ public class GamePanel : MonoBehaviour {
     /// <summary>
     /// 刷新界面，重新开始游戏
     /// </summary>
-    public void RefreshPanel()
+    public void RefreshPanel(Dictionary<int,string> numIconDic)
     {
         theShowLogPart.Clear();
         theShowResultPart.Clear();
-    //    LoadingManager.Instance.DestroyModel();
+        LoadingManager.Instance.DestroyModel();
+        ShowSelectPoolRoot(numIconDic);
     }
 
     /// <summary>
@@ -139,7 +149,7 @@ public class GamePanel : MonoBehaviour {
     public void OnOkBtnClick()
    {
         //获得用户输入的数据
-        inputDic = GetInputNumber(GameData.Instance.GameLevel);
+        inputDic = GetInputNumber(GameData.Instance.GameStage);
         //比较用户输入的数据和系统生成的数据
         resultDic = CompareInputAndRandomNum(inputDic,randomDic);
         //刷新游戏结果
@@ -213,21 +223,47 @@ public class GamePanel : MonoBehaviour {
     /// 显示输入框
     /// </summary>
     /// <param name="gameLv"></param>
-    private void ShowInputNumRoot(GAME_LEVEL gameLv)
+    private void ShowInputNumRoot(int gameLv)
     {
         for (int i = 1; i <= (int)gameLv; i++)
         {
-            //GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
+            //TODO 待改成自动生成
             GameObject obj = transform.Find("LeftPart/DragInputNumRoot/DragInputItem_" + i).gameObject;
             obj.SetActive(true);
         }
     }
 
+
+
+    /// <summary>
+    /// 显示供选择的数据池
+    /// </summary>
+    /// <param name="selectPoolDic"></param>
+    private void ShowSelectPoolRoot(Dictionary<int,string> numIconDic)
+    {
+        for (int i = 1; i < numIconDic.Count; i++)
+        {
+            GameObject go = Instantiate(DragItemTemplate);
+            go.SetActive(true);
+            go.transform.parent = selectPoolWidget.transform;
+            go.transform.localScale = Vector3.one;
+
+            DragItem sc = go.GetComponent<DragItem>();
+            sc.Apply(numIconDic[i]);
+
+            selectPoolWidget.GetComponent<UIGrid>().repositionNow = true;
+            selectPoolWidget.GetComponent<UIGrid>().onReposition = theScrollView.ResetPosition;
+        }
+    }
+
+
+
+
     /// <summary>
     /// 获取玩家输入的数据
     /// </summary>
     /// <returns></returns>
-    public Dictionary<int, int> GetInputNumber(GAME_LEVEL gameLv)
+    public Dictionary<int, int> GetInputNumber(int gameLv)
     {
         Dictionary<int, int> reDic = new Dictionary<int, int>();
         Dictionary<int, int> dic = new Dictionary<int, int>();
@@ -245,12 +281,12 @@ public class GamePanel : MonoBehaviour {
     }
 
 
-    public Dictionary<int, int> GetTempInputNumber(GAME_LEVEL gameLv)
+    public Dictionary<int, int> GetTempInputNumber(int gameStage)
     {
         string inputStr = "";
         Dictionary<int, int> dic = new Dictionary<int, int>();
 
-        for (int i = 1; i <= (int)gameLv; i++)
+        for (int i = 1; i <= gameStage; i++)
         {
             //GameObject obj = transform.Find("LeftPart/numberInputRoot/numberInput_" + i).gameObject;
             //string inputValue = obj.GetComponent<UIInput>().value;
@@ -273,8 +309,8 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     public bool CheckInputNumLegal(Dictionary<int, int> inputDic) 
     {
-        Dictionary<int, int> checkDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
-        { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        Dictionary<int, int> checkDic = stageConfig.NumPoolDic;
 
         foreach (var item in inputDic)
         {
@@ -297,37 +333,11 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     /// <param name="number">生成的随机数位数</param>
     /// <returns></returns>
-    private Dictionary<int, int> GetRandomNumber(GAME_LEVEL gameLv)
+    private Dictionary<int, int> GetRandomNumber(int gameStage)
     {
         int randNum;
-        if (gameLv == GAME_LEVEL.Three)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Three);
-        }
-        else if (gameLv == GAME_LEVEL.Four)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Four);
-        }
-        else if (gameLv == GAME_LEVEL.Five)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Five);
-        }
-        else if (gameLv == GAME_LEVEL.Six)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Six);
-        }
-        else if (gameLv == GAME_LEVEL.Seven)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Seven);
-        }
-        else if (gameLv == GAME_LEVEL.Eight)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Eight);
-        }
-        else if (gameLv == GAME_LEVEL.Nine)
-        {
-            randomDic = GetRandomNum((int)GAME_LEVEL.Nine);
-        }
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        randomDic = GetRandomNum(gameStage, stageConfig.NumPoolDic);
 
         Debug.LogError("@@randNum:" + randomDic.Values);
         return randomDic;
@@ -358,13 +368,14 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     /// <param name="num">生成几位数</param>
     /// <returns></returns>
-    private Dictionary<int, int> GetRandomNum(int num)
+    private Dictionary<int, int> GetRandomNum(int num,Dictionary<int,int> numArrayDic)
     {
         int randNum;
         int key = 1;
         string randNumStr = "";
-        Dictionary<int, int> numArrayDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
-        { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
+        //      Dictionary<int, int> numArrayDic = new Dictionary<int, int> { { 1, 1 }, { 2, 2 }, { 3, 3 },
+        //       { 4, 4 },{ 5, 5 },{ 6, 6 },{ 7, 7 },{ 8, 8 },{ 9, 9 }};
+
         Dictionary<int, int> randDic = new Dictionary<int, int>();
 
         System.Random rand = new System.Random();

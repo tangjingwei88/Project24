@@ -96,7 +96,7 @@ public class LogShowItemTemplate : MonoBehaviour {
         }
         if (num < 4)
         {
-            for (int i = num + 1; i <= (int)GameData.Instance.GameLevel; i++)
+            for (int i = num + 1; i <= (int)GameData.Instance.GameStage; i++)
             {
                 transform.Find(path + i).gameObject.SetActive(false); ;
             }

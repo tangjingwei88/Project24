@@ -4,9 +4,23 @@ using System;
 
 public class InputDragItem : UIDragDropItem {
 
+    #region 引用
     //该item的父亲
     private GameObject itemParent;
     public AudioClip dragMusic;
+    public UILabel nameLabel;
+    public UISprite icon;
+
+    #endregion
+
+
+    #region 方法
+
+    public void Apply()
+    {
+
+    }
+
 
     /// <summary>
     /// 重写父类的拖拽开始函数
@@ -42,4 +56,6 @@ public class InputDragItem : UIDragDropItem {
             surface.GetComponentInChildren<UILabel>().text = tempStr;
         }
     }
+
+    #endregion
 }

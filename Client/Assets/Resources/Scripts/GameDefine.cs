@@ -9,5 +9,6 @@ public class GameDefine : MonoBehaviour
     public const string ScencePath = "Scenes/";
     public const string CharacterPath = "CharacterPrefab/";
     public const string UIParticlePath = "UIParticlePrefab/";
+    public const string ProtoPath = "Config/ClientProto/";
     #endregion
 }

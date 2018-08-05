@@ -1,8 +1,0 @@
-message StageRankConfig
-{
-	required int32 RankID = 1;
-	required string Name = 2;
-	required string Icon = 3;
-	required int32 Time = 4;
-	required int32 Level = 5;
-}

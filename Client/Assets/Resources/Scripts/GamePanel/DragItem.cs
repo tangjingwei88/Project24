@@ -1,9 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DragItem : UIDragDropItem {
 
+    #region 引用
     public AudioClip dragMusic;
+    public UILabel nameLabel;
+    public UISprite icon;
+
+    #endregion
+
+
+    #region 方法
+
+    public void Apply(string numIconStr)
+    {
+        string[] strList = numIconStr.Split(':');
+        nameLabel.text = strList[0];
+        icon.spriteName = strList[1];
+    }
+
+
 
     /// <summary>
     /// 重写父类的拖拽开始函数
@@ -35,7 +53,7 @@ public class DragItem : UIDragDropItem {
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
             //检测输入的合法性
-            if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.GameLevel)))
+            if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.GameStage)))
             {
                 return;
             }
@@ -48,5 +66,5 @@ public class DragItem : UIDragDropItem {
         }
 
     }
-
+    #endregion
 }

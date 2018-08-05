@@ -110,12 +110,12 @@ public class ShowResultPart : MonoBehaviour {
         {
             for (int i = 1; i <= num; i++)
             {
-                transform.Find(path + i).gameObject.SetActive(true); ;
+                transform.Find(path + i).gameObject.SetActive(true);
             }
         }
         if(num < 4)
         {
-            for (int i = num + 1; i <= (int)GameData.Instance.GameLevel; i++)
+            for (int i = num + 1; i <= (int)GameData.Instance.GameStage; i++)
             {
                 transform.Find(path + i).gameObject.SetActive(false); ;
             }

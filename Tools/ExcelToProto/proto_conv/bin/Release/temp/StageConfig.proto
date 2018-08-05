@@ -1,0 +1,12 @@
+message StageConfig
+{
+	required int32 RankID = 1;
+	required string Name = 2;
+	required string Icon = 3;
+	required int32 TimeLong = 4;
+	required string Result = 5;
+	required string SelectPool = 6;
+	required int32 Level = 7;
+	required int32 DiamondsCost = 8;
+	required int32 DiamondsWin = 9;
+}
