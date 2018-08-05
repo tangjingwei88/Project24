@@ -43,12 +43,12 @@ namespace m
       get { return _TimeLong; }
       set { _TimeLong = value; }
     }
-    private string _Result;
-    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"Result", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string Result
+    private int _Level;
+    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"Level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int Level
     {
-      get { return _Result; }
-      set { _Result = value; }
+      get { return _Level; }
+      set { _Level = value; }
     }
     private string _SelectPool;
     [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"SelectPool", DataFormat = global::ProtoBuf.DataFormat.Default)]
@@ -57,22 +57,29 @@ namespace m
       get { return _SelectPool; }
       set { _SelectPool = value; }
     }
-    private int _Level;
-    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"Level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int Level
+    private int _ResultColumn;
+    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"ResultColumn", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int ResultColumn
     {
-      get { return _Level; }
-      set { _Level = value; }
+      get { return _ResultColumn; }
+      set { _ResultColumn = value; }
+    }
+    private int _Column;
+    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"Column", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int Column
+    {
+      get { return _Column; }
+      set { _Column = value; }
     }
     private int _DiamondsCost;
-    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsCost
     {
       get { return _DiamondsCost; }
       set { _DiamondsCost = value; }
     }
     private int _DiamondsWin;
-    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(10, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsWin
     {
       get { return _DiamondsWin; }

@@ -4,9 +4,10 @@ message StageConfig
 	required string Name = 2;
 	required string Icon = 3;
 	required int32 TimeLong = 4;
-	required string Result = 5;
+	required int32 Level = 5;
 	required string SelectPool = 6;
-	required int32 Level = 7;
-	required int32 DiamondsCost = 8;
-	required int32 DiamondsWin = 9;
+	required int32 ResultColumn = 7;
+	required int32 Column = 8;
+	required int32 DiamondsCost = 9;
+	required int32 DiamondsWin = 10;
 }

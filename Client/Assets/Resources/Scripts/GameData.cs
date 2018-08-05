@@ -6,11 +6,14 @@ public class GameData
 
     #region 变量
 
-    public int GameStage = 5;          //游戏关卡
+    public int GameStage = 33;          //游戏关卡
     public string gameInput;            //玩家输入数据
     public int gameRound = 1;           //玩家输入次数
     public float roundTime = 300;       //每局游戏时间
     public bool win = false;            //游戏结果
+    public int gameLv = 4;
+    public int showColumn = 5;          //游戏显示列数
+    public int resultColumn = 4;
 
     public int diamonds = 100;          //钻石总量
     #endregion

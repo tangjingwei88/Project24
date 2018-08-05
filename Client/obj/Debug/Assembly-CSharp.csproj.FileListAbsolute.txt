@@ -44,3 +44,6 @@ E:\work\myproj\Project24\Client\Temp\bin\Debug\UnityEngine.Analytics.xml
 E:\work\myproj\Project24\Client\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 E:\work\myproj\Project24\Client\obj\Debug\Assembly-CSharp.dll
 E:\work\myproj\Project24\Client\obj\Debug\Assembly-CSharp.pdb
+F:\WorkSpace\Project24\Client\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+F:\WorkSpace\Project24\Client\obj\Debug\Assembly-CSharp.dll
+F:\WorkSpace\Project24\Client\obj\Debug\Assembly-CSharp.pdb

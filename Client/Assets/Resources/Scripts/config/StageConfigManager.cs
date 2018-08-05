@@ -9,8 +9,13 @@ public class StageConfigManager : ProtoBase {
         public int ID;
         public string Name;
         public string Icon;
+        //游戏时长
         public int TimeLong;
+        //几位数结果
+        public int ResultNum;                                                          
         public int Level;
+        public int ResultColumn;
+        public int Column;
         public int DiamondsCost;
         public int DiamondsWin;
 
@@ -27,6 +32,8 @@ public class StageConfigManager : ProtoBase {
             Icon = "";
             TimeLong = 0;
             Level = 0;
+            ResultColumn = 4;
+            Column = 5;
             DiamondsCost = 0;
             DiamondsWin = 0;
 
@@ -51,24 +58,22 @@ public class StageConfigManager : ProtoBase {
             Icon = s.Icon;
             TimeLong = s.TimeLong;
             Level = s.Level;
+            ResultColumn = s.ResultColumn;
+            Column = s.Column;
             DiamondsCost = s.DiamondsCost;
             DiamondsWin = s.DiamondsWin;
-
-            string[] strList = s.Result.Split(';');
-            for (int i = 0; i < strList.Length; i++)
-            {
-                ResultDic.Add(i+1,int.Parse(strList[i]));
-            }
 
             string[] str2List = s.SelectPool.Split(';');
             for (int i = 0; i < str2List.Length; i++)
             {
+                //Debug.LogError("##str2List[i] " + str2List[i]);
                 numIconPoolDic.Add(i + 1, str2List[i]);         //"1:10001格式保存"
 
                 string[] numIcon = str2List[i].Split(':');
                 NumPoolDic.Add(i + 1,int.Parse(numIcon[0]));    //只存储数字
                 iconPoolDic.Add(i + 1, numIcon[1]);             //存储icon
             }
+            
         }
 
 

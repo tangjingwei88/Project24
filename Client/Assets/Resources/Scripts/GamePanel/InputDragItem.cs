@@ -16,8 +16,11 @@ public class InputDragItem : UIDragDropItem {
 
     #region 方法
 
-    public void Apply()
+    public void Apply(string nameIconStr)
     {
+        string[] strList = nameIconStr.Split(':');
+        nameLabel.text = strList[0];
+        icon.spriteName = strList[1];
 
     }
 
@@ -46,14 +49,21 @@ public class InputDragItem : UIDragDropItem {
         {
             //被拖拽item的显示内容
             string tempStr = transform.GetComponentInChildren<UILabel>().text;
+            string tempSpriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+            string tempBgName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //被拖拽item的名字
             string itemName = this.gameObject.name;
-            //被拖拽item的名字截去"(clone)"字符
-            itemName = itemName.Substring(0, itemName.Length - 7);
+            //名字裁剪（Clone）
+            itemName = itemName.Substring(0,(itemName.Length - 7));
+
             //将拖拽碰撞检测到item显示内容赋值给被拖拽item
-            itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surface.GetComponentInChildren<UILabel>().text;
+            itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text;
+            itemParent.transform.Find(itemName + "/icon").GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+            itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //将被拖拽item的内容赋值给拖拽检测到的item
-            surface.GetComponentInChildren<UILabel>().text = tempStr;
+            surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
+            surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
+            surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
         }
     }
 
