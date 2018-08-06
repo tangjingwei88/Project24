@@ -36,17 +36,6 @@ public class GamePanel : MonoBehaviour {
 
 
     #region 变量
-    private int inputNum_1;
-    private int inputNum_2;
-    private int inputNum_3;
-    private int inputNum_4;
-    private int inputNum_5;
-    private int inputNum_6;
-    private int inputNum_7;
-    private int inputNum_8;
-    private int inputNum_9;
-
-
     private int resultNum;              //正确结果
     private int round = 1;              //游戏轮数
     private string gameInput = "";      //玩家输入数据
@@ -80,6 +69,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void InitGame()
     {
+        PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
         GameData.Instance.gameRound = 1;
         //获取可选择数据池
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
@@ -136,6 +126,7 @@ public class GamePanel : MonoBehaviour {
         Debug.LogError("游戏结束");
         theShowLogPart.Clear();
         theGameOverPanel.gameObject.SetActive(true);
+        theGameOverPanel.Apply();
     }
 
     /// <summary>
@@ -189,12 +180,12 @@ public class GamePanel : MonoBehaviour {
         Dictionary<LIGHT_TYPE, int> resultDic = new Dictionary<LIGHT_TYPE, int>();
         foreach (var idic in inputDic)
         {
-            foreach (var randDic in randomDic)                                  //数字相同
+            foreach (var randDic in randomDic)                                  
             {
-                if (idic.Value == randDic.Value)                                //数字顺序相同
+                if (idic.Value == randDic.Value)                                //数字相同
                 {
                     
-                    if (idic.Key == randDic.Key)
+                    if (idic.Key == randDic.Key)                                //数字顺序相同
                     {
                         green++;                                                //数字且顺序相同的个数
                     }

@@ -35,10 +35,15 @@ public class ShowResultPart : MonoBehaviour {
     public GameObject greenSprite_8;
     public GameObject greenSprite_9;
 
+    public GameObject LightTemplate;
+    public GameObject LightWidget;
+
     public Transform anchorRoot;
     public GameObject numberInputRoot;
     public AudioClip showResultMusic;
     public Transform showEffectParent;
+
+    public GameOverPanel theGameOverPanel;
     #endregion
 
 
@@ -56,9 +61,24 @@ public class ShowResultPart : MonoBehaviour {
 
     public void Apply(Dictionary<LIGHT_TYPE, int> dictionary)
     {
-        ShowLight(LIGHT_TYPE.red, dictionary[LIGHT_TYPE.red]);
-        ShowLight(LIGHT_TYPE.yellow, dictionary[LIGHT_TYPE.yellow]);
-        ShowLight(LIGHT_TYPE.green, dictionary[LIGHT_TYPE.green]);
+        //游戏胜利
+        if (dictionary[LIGHT_TYPE.green] == GameData.Instance.gameLv)
+        {
+            theGameOverPanel.gameObject.SetActive(true);
+            theGameOverPanel.Apply();
+        }
+        foreach (var item in dictionary)
+        {
+            GameObject go = Instantiate(LightTemplate);
+            go.SetActive(true);
+            go.transform.parent = LightWidget.transform;
+            go.transform.localScale = Vector3.one;
+
+            LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
+            sc.Apply(item);
+
+        }
+
         ShowResultEffect();
     }
 
