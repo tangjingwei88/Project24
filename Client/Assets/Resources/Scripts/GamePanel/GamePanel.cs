@@ -69,7 +69,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void InitGame()
     {
-        PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
+ //       PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
         GameData.Instance.gameRound = 1;
         //获取可选择数据池
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
@@ -198,9 +198,9 @@ public class GamePanel : MonoBehaviour {
         }
         red = inputDic.Count - green - yellow;                                  //数字不同且顺序不同的个数
 
-        resultDic.Add(LIGHT_TYPE.red,red);
-        resultDic.Add(LIGHT_TYPE.yellow, yellow);
         resultDic.Add(LIGHT_TYPE.green, green);
+        resultDic.Add(LIGHT_TYPE.yellow, yellow);
+        resultDic.Add(LIGHT_TYPE.red, red);
 
         return resultDic;
     }

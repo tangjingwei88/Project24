@@ -8,36 +8,8 @@ public class LogShowItemTemplate : MonoBehaviour {
     public UILabel resultLabel;               //玩家输入的数据
     public UILabel roundLabel;                 //第几轮
 
-    public GameObject greenSprite_1;
-    public GameObject greenSprite_2;
-    public GameObject greenSprite_3;
-    public GameObject greenSprite_4;
-    public GameObject greenSprite_5;
-    public GameObject greenSprite_6;
-    public GameObject greenSprite_7;
-    public GameObject greenSprite_8;
-    public GameObject greenSprite_9;
-
-    public GameObject yellowSprite_1;
-    public GameObject yellowSprite_2;
-    public GameObject yellowSprite_3;
-    public GameObject yellowSprite_4;
-    public GameObject yellowSprite_5;
-    public GameObject yellowSprite_6;
-    public GameObject yellowSprite_7;
-    public GameObject yellowSprite_8;
-    public GameObject yellowSprite_9;
-
-    public GameObject redSprite_1;
-    public GameObject redSprite_2;
-    public GameObject redSprite_3;
-    public GameObject redSprite_4;
-    public GameObject redSprite_5;
-    public GameObject redSprite_6;
-    public GameObject redSprite_7;
-    public GameObject redSprite_8;
-    public GameObject redSprite_9;
-
+    public GameObject lightWidget;
+    public GameObject LightItemTemplate;
 
 
 
@@ -45,16 +17,34 @@ public class LogShowItemTemplate : MonoBehaviour {
     #endregion
 
     #region 变量
-
+    public List<GameObject> lightItemList = new List<GameObject>();
     #endregion
-    
+
     public void Apply(Dictionary<LIGHT_TYPE,int> dic)
     {
-        ShowLight(LIGHT_TYPE.red, dic[LIGHT_TYPE.red]);
-        ShowLight(LIGHT_TYPE.yellow, dic[LIGHT_TYPE.yellow]);
-        ShowLight(LIGHT_TYPE.green, dic[LIGHT_TYPE.green]);
-        resultLabel.text = GameData.Instance.gameInput;
+        //ShowLight(LIGHT_TYPE.red, dic[LIGHT_TYPE.red]);
+        //ShowLight(LIGHT_TYPE.yellow, dic[LIGHT_TYPE.yellow]);
+        //ShowLight(LIGHT_TYPE.green, dic[LIGHT_TYPE.green]);
+        //resultLabel.text = GameData.Instance.gameInput;
         roundLabel.text = "R" + GameData.Instance.gameRound.ToString();
+
+        foreach (var item in dic)
+        {
+            for (int i = 0; i < item.Value; i++)
+            {
+                GameObject go = Instantiate(LightItemTemplate);
+                go.SetActive(true);
+                go.transform.parent = lightWidget.transform;
+                go.transform.localScale = new Vector3(0.5f,0.5f,0.5f) ;
+                lightItemList.Add(go);
+
+                LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
+                sc.Apply(item);
+                lightWidget.GetComponent<UIGrid>().repositionNow = true;
+                lightWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+            }
+
+        }
     }
 
 
@@ -103,6 +93,14 @@ public class LogShowItemTemplate : MonoBehaviour {
         }
     }
 
+
+    public void Clear()
+    {
+        for (int i = 0; i < lightItemList.Count; i++)
+        {
+            Destroy(lightItemList[i]);
+        }
+    }
 
     #endregion
 }

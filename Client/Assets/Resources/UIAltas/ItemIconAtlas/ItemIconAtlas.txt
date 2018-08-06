@@ -280,6 +280,14 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":126,"h":126},
 	"sourceSize": {"w":126,"h":126}
 },
+"green.png":
+{
+	"frame": {"x":410,"y":840,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
+},
 "mooncake_2.png":
 {
 	"frame": {"x":2,"y":898,"w":100,"h":100},
@@ -287,6 +295,22 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
 	"sourceSize": {"w":100,"h":100}
+},
+"red.png":
+{
+	"frame": {"x":334,"y":740,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
+},
+"yellow.png":
+{
+	"frame": {"x":334,"y":640,"w":97,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
+	"sourceSize": {"w":97,"h":98}
 }},
 "meta": {
 	"app": "http://www.texturepacker.com",
@@ -295,6 +319,6 @@
 	"format": "ALPHA",
 	"size": {"w":1024,"h":1024},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c5acb8a7246bc5dcb66209b94a2f1912$"
+	"smartupdate": "$TexturePacker:SmartUpdate:3d9ce9a0fb5d169e92fef3e26fbcd1a6$"
 }
 }

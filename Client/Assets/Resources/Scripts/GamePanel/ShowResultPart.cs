@@ -48,7 +48,7 @@ public class ShowResultPart : MonoBehaviour {
 
 
     #region 变量
-
+    public List<GameObject> lightItemList = new List<GameObject>();
 
     #endregion
 
@@ -61,6 +61,7 @@ public class ShowResultPart : MonoBehaviour {
 
     public void Apply(Dictionary<LIGHT_TYPE, int> dictionary)
     {
+        if (lightItemList != null) Clear();
         //游戏胜利
         if (dictionary[LIGHT_TYPE.green] == GameData.Instance.gameLv)
         {
@@ -69,13 +70,19 @@ public class ShowResultPart : MonoBehaviour {
         }
         foreach (var item in dictionary)
         {
-            GameObject go = Instantiate(LightTemplate);
-            go.SetActive(true);
-            go.transform.parent = LightWidget.transform;
-            go.transform.localScale = Vector3.one;
+            for (int i = 0; i < item.Value; i++)
+            {
+                GameObject go = Instantiate(LightTemplate);
+                go.SetActive(true);
+                go.transform.parent = LightWidget.transform;
+                go.transform.localScale = Vector3.one;
+                lightItemList.Add(go);
 
-            LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
-            sc.Apply(item);
+                LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
+                sc.Apply(item);
+                LightWidget.GetComponent<UIGrid>().repositionNow = true;
+                LightWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+            }
 
         }
 
@@ -147,34 +154,9 @@ public class ShowResultPart : MonoBehaviour {
     /// </summary>
     public void Clear()
     {
-        redSprite_1.SetActive(false);
-        redSprite_2.SetActive(false);
-        redSprite_3.SetActive(false);
-        redSprite_4.SetActive(false);
-        redSprite_5.SetActive(false);
-        redSprite_6.SetActive(false);
-        redSprite_7.SetActive(false);
-        redSprite_8.SetActive(false);
-        redSprite_9.SetActive(false);
-
-        yellowSprite_1.SetActive(false);
-        yellowSprite_2.SetActive(false);
-        yellowSprite_3.SetActive(false);
-        yellowSprite_4.SetActive(false);
-        yellowSprite_5.SetActive(false);
-        yellowSprite_6.SetActive(false);
-        yellowSprite_7.SetActive(false);
-        yellowSprite_8.SetActive(false);
-        yellowSprite_9.SetActive(false);
-
-        greenSprite_1.SetActive(false);
-        greenSprite_2.SetActive(false);
-        greenSprite_3.SetActive(false);
-        greenSprite_4.SetActive(false);
-        greenSprite_5.SetActive(false);
-        greenSprite_6.SetActive(false);
-        greenSprite_7.SetActive(false);
-        greenSprite_8.SetActive(false);
-        greenSprite_9.SetActive(false);
+        for (int i = 0; i < lightItemList.Count; i++)
+        {
+            Destroy(lightItemList[i]);
+        }
     }
 }

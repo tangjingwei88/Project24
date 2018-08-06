@@ -31,9 +31,6 @@ public class ShowLogPart : MonoBehaviour {
         go.SetActive(true);
         go.transform.parent = LogShowWidget.transform;
         go.transform.localScale = Vector3.one;
-        Debug.LogError("#" +transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value);
-        transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value = 1;
-        Debug.LogError("##" + transform.Find("LogShowScrollRoot/bar").gameObject.GetComponent<UIProgressBar>().value);
         logList.Add(go);
 
         LogShowItemTemplate sc = go.GetComponent<LogShowItemTemplate>();
