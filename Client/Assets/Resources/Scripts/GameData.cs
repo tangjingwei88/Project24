@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameData
 {
@@ -16,6 +17,8 @@ public class GameData
     public int resultColumn = 4;
 
     public int diamonds = 100;          //钻石总量
+
+    public Dictionary<int, int> curResultItemDic = new Dictionary<int, int>();
     #endregion
 
     private static GameData _instance;

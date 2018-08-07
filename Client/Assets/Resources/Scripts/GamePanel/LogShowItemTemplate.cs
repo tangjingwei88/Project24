@@ -9,8 +9,9 @@ public class LogShowItemTemplate : MonoBehaviour {
     public UILabel roundLabel;                 //第几轮
 
     public GameObject lightWidget;
+    public GameObject resultItemWidget;
     public GameObject LightItemTemplate;
-
+    public GameObject DragInputItemTemplate;
 
 
 
@@ -27,6 +28,31 @@ public class LogShowItemTemplate : MonoBehaviour {
         //ShowLight(LIGHT_TYPE.green, dic[LIGHT_TYPE.green]);
         //resultLabel.text = GameData.Instance.gameInput;
         roundLabel.text = "R" + GameData.Instance.gameRound.ToString();
+
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
+
+        for (int i = 1; i <= GameData.Instance.curResultItemDic.Count; i++)
+        {
+            foreach (var item in numIconPoolDic)
+            {
+                string[] str = item.Value.Split(':');
+                if (GameData.Instance.curResultItemDic[i] == int.Parse(str[0]))
+                {
+                    GameObject go = Instantiate(DragInputItemTemplate);
+                    go.SetActive(true);
+                    go.transform.parent = resultItemWidget.transform;
+                    go.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+
+                    InputDragItem sc = go.GetComponent<InputDragItem>();
+                    sc.interactable = false;
+                    sc.Apply(item.Value);
+                }
+            }
+            resultItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+        }
+
+
 
         foreach (var item in dic)
         {

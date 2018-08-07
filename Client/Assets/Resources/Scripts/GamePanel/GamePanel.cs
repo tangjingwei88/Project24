@@ -213,6 +213,7 @@ public class GamePanel : MonoBehaviour {
     /// <param name="gameLv"></param>
     private void ShowInputNumRoot(int gameLv)
     {
+        List<GameObject> inputList = new List<GameObject>();
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
         Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
         for (int i = 1; i <= gameLv; i++)
@@ -226,7 +227,9 @@ public class GamePanel : MonoBehaviour {
             InputDragItem sc = go.GetComponent<InputDragItem>();
             sc.Apply(numIconPoolDic[i]);
             dragInputItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+            inputList.Add(go);
         }
+        //GameData.Instance.curResultItemList =new List<GameObject>(inputList);
     }
 
 
@@ -295,6 +298,7 @@ public class GamePanel : MonoBehaviour {
             dic[i] = Convert.ToInt32(inputValue);
         }
         gameInput = inputStr;
+        GameData.Instance.curResultItemDic = new Dictionary<int, int>(dic);
         return dic;
     }
 

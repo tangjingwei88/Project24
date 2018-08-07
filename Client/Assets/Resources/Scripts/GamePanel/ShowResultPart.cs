@@ -47,16 +47,15 @@ public class ShowResultPart : MonoBehaviour {
                 go.SetActive(true);
                 go.transform.parent = LightWidget.transform;
                 go.transform.localScale = Vector3.one;
-                lightItemList.Add(go);
-
+                
                 LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
                 sc.Apply(item);
                 LightWidget.GetComponent<UIGrid>().repositionNow = true;
                 LightWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+                lightItemList.Add(go);
             }
 
         }
-
         ShowResultEffect();
     }
 
