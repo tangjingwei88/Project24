@@ -50,7 +50,7 @@ public class InputDragItem : UIDragDropItem {
             //被拖拽item的显示内容
             string tempStr = transform.GetComponentInChildren<UILabel>().text;
             string tempSpriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
-            string tempBgName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+        //    string tempBgName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //被拖拽item的名字
             string itemName = this.gameObject.name;
             //名字裁剪（Clone）
@@ -63,7 +63,7 @@ public class InputDragItem : UIDragDropItem {
             //将被拖拽item的内容赋值给拖拽检测到的item
             surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
             surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
-            surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
+       //     surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
         }
     }
 

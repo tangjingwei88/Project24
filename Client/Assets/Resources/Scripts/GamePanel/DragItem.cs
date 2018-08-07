@@ -55,7 +55,7 @@ public class DragItem : UIDragDropItem {
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
             surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
-            surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+         //   surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //检测输入的合法性
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
             {
@@ -66,7 +66,7 @@ public class DragItem : UIDragDropItem {
                  //检测输入的数据不合法，被修改的item显示内容不做修改
                 surface.GetComponentInChildren<UILabel>().text = tempStr;
                 surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
-                surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
+          //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
                 Debug.LogError("@@@illegal");
             }
         }
