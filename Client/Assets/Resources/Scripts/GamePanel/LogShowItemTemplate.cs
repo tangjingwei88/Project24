@@ -23,37 +23,9 @@ public class LogShowItemTemplate : MonoBehaviour {
 
     public void Apply(Dictionary<LIGHT_TYPE,int> dic)
     {
-        //ShowLight(LIGHT_TYPE.red, dic[LIGHT_TYPE.red]);
-        //ShowLight(LIGHT_TYPE.yellow, dic[LIGHT_TYPE.yellow]);
-        //ShowLight(LIGHT_TYPE.green, dic[LIGHT_TYPE.green]);
         //resultLabel.text = GameData.Instance.gameInput;
         roundLabel.text = "R" + GameData.Instance.gameRound.ToString();
-
-        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
-        Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
-
-        for (int i = 1; i <= GameData.Instance.curResultItemDic.Count; i++)
-        {
-            foreach (var item in numIconPoolDic)
-            {
-                string[] str = item.Value.Split(':');
-                if (GameData.Instance.curResultItemDic[i] == int.Parse(str[0]))
-                {
-                    GameObject go = Instantiate(DragInputItemTemplate);
-                    go.SetActive(true);
-                    go.transform.parent = resultItemWidget.transform;
-                    go.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
-
-                    InputDragItem sc = go.GetComponent<InputDragItem>();
-                    sc.interactable = false;
-                    sc.Apply(item.Value);
-                }
-            }
-            resultItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
-        }
-
-
-
+        //显示提示
         foreach (var item in dic)
         {
             for (int i = 0; i < item.Value; i++)
@@ -69,55 +41,41 @@ public class LogShowItemTemplate : MonoBehaviour {
                 lightWidget.GetComponent<UIGrid>().repositionNow = true;
                 lightWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
             }
-
         }
+        ShowCurResultItem();
     }
 
 
     #region 方法
-
     /// <summary>
-    ///显示灯
+    /// 显示当前选择结果
     /// </summary>
-    public void ShowLight(LIGHT_TYPE LType, int num)
+    public void ShowCurResultItem()
     {
-        if (LType == LIGHT_TYPE.red)
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
+
+        for (int i = 1; i <= GameData.Instance.curResultItemDic.Count; i++)
         {
-            ShowSprite("redSpriteRoot/redSprite_", num);
-        }
-        else if (LType == LIGHT_TYPE.yellow)
-        {
-            ShowSprite("yellowSpriteRoot/yellowSprite_", num);
-        }
-        else if (LType == LIGHT_TYPE.green)
-        {
-            ShowSprite("greenSpriteRoot/greenSprite_", num);
+            foreach (var item in numIconPoolDic)
+            {
+                string[] str = item.Value.Split(':');
+                if (GameData.Instance.curResultItemDic[i] == int.Parse(str[0]))
+                {
+                    GameObject go = Instantiate(DragInputItemTemplate);
+                    go.SetActive(true);
+                    go.transform.parent = resultItemWidget.transform;
+                    go.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+                    InputDragItem sc = go.GetComponent<InputDragItem>();
+                    sc.interactable = false;
+                    sc.Apply(item.Value);
+                }
+            }
+            resultItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
         }
     }
 
-
-    /// <summary>
-    /// 控制sprite顯示
-    /// </summary>
-    /// <param name="path"></param>
-    /// <param name="num"></param>
-    private void ShowSprite(string path, int num)
-    {
-        if (num >= 1)
-        {
-            for (int i = 1; i <= num; i++)
-            {
-                transform.Find(path + i).gameObject.SetActive(true); ;
-            }
-        }
-        if (num < 4)
-        {
-            for (int i = num + 1; i <= (int)GameData.Instance.GameStage; i++)
-            {
-                transform.Find(path + i).gameObject.SetActive(false); ;
-            }
-        }
-    }
 
 
     public void Clear()

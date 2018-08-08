@@ -22,8 +22,6 @@ public class ShowLogPart : MonoBehaviour {
     }
 
 
-    
-
     public void Apply(Dictionary<LIGHT_TYPE, int> dic)
     {
         //LogShowScrollRoot.GetComponent<UIScrollView>().verticalScrollBar.value = 1f;

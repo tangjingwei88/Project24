@@ -77,49 +77,6 @@ public class ShowResultPart : MonoBehaviour {
 
 
     /// <summary>
-    ///显示灯
-    /// </summary>
-    public  void ShowLight(LIGHT_TYPE LType,int num)
-    {
-        if (LType == LIGHT_TYPE.red)
-        {
-            ShowSprite("showIcon/redSpriteRoot/redSprite_", num);
-        }
-        else if (LType == LIGHT_TYPE.yellow)
-        {
-            ShowSprite("showIcon/yellowSpriteRoot/yellowSprite_", num);
-        }
-        else if (LType == LIGHT_TYPE.green)
-        {
-            ShowSprite("showIcon/greenSpriteRoot/greenSprite_", num);
-        }
-    }
-
-
-    /// <summary>
-    /// 控制sprite顯示
-    /// </summary>
-    /// <param name="path"></param>
-    /// <param name="num"></param>
-    private void ShowSprite(string path,int num)
-    {
-        if (num >= 1) 
-        {
-            for (int i = 1; i <= num; i++)
-            {
-                transform.Find(path + i).gameObject.SetActive(true);
-            }
-        }
-        if(num < 4)
-        {
-            for (int i = num + 1; i <= (int)GameData.Instance.GameStage; i++)
-            {
-                transform.Find(path + i).gameObject.SetActive(false); ;
-            }
-        }
-    }
-
-    /// <summary>
     /// 刷新显示
     /// </summary>
     public void Clear()

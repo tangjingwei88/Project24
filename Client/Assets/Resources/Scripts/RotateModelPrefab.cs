@@ -6,7 +6,6 @@ public class RotateModelPrefab : MonoBehaviour {
     public void OnDrag(Vector2 delta)
     {
         LoadingManager.Instance.RotateModel(delta.x);
-        Debug.LogError("##delta.x " + delta.x);
     }
 
 }

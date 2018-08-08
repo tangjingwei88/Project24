@@ -28,8 +28,6 @@ public class DragItem : UIDragDropItem {
     /// </summary>
     protected override void OnDragDropStart()
     {
-//        this.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-//        this.gameObject.transform.localPosition = Camera.main.WorldToScreenPoint(transform.position);
         base.OnDragDropStart();
         
     }
@@ -43,15 +41,14 @@ public class DragItem : UIDragDropItem {
     {
         NGUITools.PlaySound(dragMusic, 0.1f);
         base.OnDragDropRelease(surface);
-        Debug.LogError("@@@" + surface.GetComponentInChildren<UILabel>().text);
-        Debug.LogError("@@@surface.tag" + surface.tag);
+
         if (surface.CompareTag("DragInput"))
         {
             //获取拖拽过程中碰撞检测到的item的内容
             string tempStr = surface.GetComponentInChildren<UILabel>().text;
             string tempIconStr = surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName;
             string tempBgStr = surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName;
-            Debug.LogError("@@@tempStr" + tempStr);
+
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
             surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
@@ -67,7 +64,6 @@ public class DragItem : UIDragDropItem {
                 surface.GetComponentInChildren<UILabel>().text = tempStr;
                 surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
           //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
-                Debug.LogError("@@@illegal");
             }
         }
 

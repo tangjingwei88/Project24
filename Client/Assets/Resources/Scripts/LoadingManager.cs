@@ -7,8 +7,10 @@ public class LoadingManager : MonoBehaviour {
     #region 引用
     public GameObject mainSceneGO;
     private GameObject existingModel;
+    private GameObject chestModel;
     public GameObject modelCameraPrefab;
     public Transform modelPositionTransform;
+    public Transform chestModelPositionTransform;
 
     public Skybox targetSkyBoxOnModelCamera;
 
@@ -169,19 +171,37 @@ public class LoadingManager : MonoBehaviour {
     /// <param name="name"></param>
     public void LoadModelPrefab(string name)
     {
-        Debug.LogError("#4#modelPositionTransform " + modelPositionTransform);
         existingModel = NewCharacter(name);
-        Debug.LogError("##existingModel " + existingModel);
         if (existingModel.GetComponent<Animation>().GetClip("Idle") != null)
         {
             existingModel.GetComponent<Animation>().Play("Idle");
         }
-        Debug.LogError("##modelPositionTransform " + modelPositionTransform);
+
         existingModel.transform.parent = modelPositionTransform;
         existingModel.transform.localPosition = Vector3.zero;
         existingModel.transform.localRotation = Quaternion.identity;
     }
 
+    /// <summary>
+    /// 加载宝箱
+    /// </summary>
+    /// <param name="name"></param>
+    public void LoadChestPrefab(string name)
+    {
+        chestModel = NewCharacter(name);
+        if (chestModel.GetComponent<Animation>().GetClip("Move") != null)
+        {
+            chestModel.GetComponent<Animation>().Play("Move");
+        }
+        if (chestModel.GetComponent<Animation>().GetClip("Die") != null)
+        {
+            chestModel.GetComponent<Animation>().PlayQueued("Die");
+        }
+
+        chestModel.transform.parent = chestModelPositionTransform;
+        chestModel.transform.localPosition = Vector3.zero;
+        chestModel.transform.localRotation = Quaternion.identity;
+    }
 
     /// <summary>
     /// 旋转模型
@@ -197,7 +217,6 @@ public class LoadingManager : MonoBehaviour {
 
     public void DestroyModel()
     {
-        Debug.LogError("###");
         if (existingModel != null)
         {
             Destroy(existingModel);

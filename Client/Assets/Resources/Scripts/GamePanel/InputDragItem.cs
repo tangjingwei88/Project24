@@ -59,7 +59,7 @@ public class InputDragItem : UIDragDropItem {
             //将拖拽碰撞检测到item显示内容赋值给被拖拽item
             itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text;
             itemParent.transform.Find(itemName + "/icon").GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
-            itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+      //      itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //将被拖拽item的内容赋值给拖拽检测到的item
             surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
             surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
