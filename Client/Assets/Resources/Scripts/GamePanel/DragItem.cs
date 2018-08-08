@@ -46,8 +46,12 @@ public class DragItem : UIDragDropItem {
         {
             //获取拖拽过程中碰撞检测到的item的内容
             string tempStr = surface.GetComponentInChildren<UILabel>().text;
+
             string tempIconStr = surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName;
             string tempBgStr = surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName;
+
+            //将改变过的item暂存起来，log显示时改变背景色以示区分
+            GameData.Instance.changedItemOne = int.Parse(transform.GetComponentInChildren<UILabel>().text);
 
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;

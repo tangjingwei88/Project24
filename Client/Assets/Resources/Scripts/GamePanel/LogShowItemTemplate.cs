@@ -70,10 +70,23 @@ public class LogShowItemTemplate : MonoBehaviour {
                     InputDragItem sc = go.GetComponent<InputDragItem>();
                     sc.interactable = false;
                     sc.Apply(item.Value);
+
+                    //改变过的item标记出来
+                    if (GameData.Instance.curResultItemDic[i] == GameData.Instance.changedItemOne ||
+                        GameData.Instance.curResultItemDic[i] == GameData.Instance.changedItemTwo)
+                    {
+                        go.transform.FindChild("bg").GetComponent<UISprite>().spriteName = "ItemBack_Red";
+                        go.transform.FindChild("effect").gameObject.SetActive(true);
+                    }
+                    else {
+                        go.transform.FindChild("effect").gameObject.SetActive(false);
+                    }
                 }
             }
             resultItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
         }
+        GameData.Instance.changedItemOne = 0;
+        GameData.Instance.changedItemTwo = 0;
     }
 
 
