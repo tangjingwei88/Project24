@@ -43,9 +43,12 @@ public class ShowLogPart : MonoBehaviour {
     /// </summary>
     public void Clear()
     {
-        for (int i = 0; i < logList.Count; i++)
+        if (logList != null)
         {
-            Destroy(logList[i]);
+            for (int i = 0; i < logList.Count; i++)
+            {
+                Destroy(logList[i]);
+            }
         }
     }
 }

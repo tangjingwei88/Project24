@@ -46,6 +46,9 @@ public class GamePanel : MonoBehaviour {
     private Dictionary<int, int> selectPoolDic = new Dictionary<int, int>();                //供选择的数据池
 //    private Dictionary<int, string> numIconPoolDic = new Dictionary<int, string>();         //num:Icon数据池
     Dictionary<int, int> inputTempDic = new Dictionary<int, int>();                         //玩家输入待检测的数据
+
+    List<GameObject> inputList = new List<GameObject>();
+    List<GameObject> dragItemList = new List<GameObject>();
     #endregion
 
     private static GamePanel _instance;
@@ -101,6 +104,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void RefreshPanel(Dictionary<int,string> numIconDic)
     {
+        this.Clear();
         theShowLogPart.Clear();
         theShowResultPart.Clear();
         LoadingManager.Instance.DestroyModel();
@@ -213,7 +217,7 @@ public class GamePanel : MonoBehaviour {
     /// <param name="gameLv"></param>
     private void ShowInputNumRoot(int gameLv)
     {
-        List<GameObject> inputList = new List<GameObject>();
+
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
         Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
         for (int i = 1; i <= gameLv; i++)
@@ -252,6 +256,7 @@ public class GamePanel : MonoBehaviour {
             sc.Apply(numIconDic[i]);
             //设置grid的显示列数
             selectPoolWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
+            dragItemList.Add(go);
         }
     }
 
@@ -376,6 +381,7 @@ public class GamePanel : MonoBehaviour {
                 Debug.LogError(tempDic[randNum]);
                 //显示随机生成的测试数据
                 randNumStr += tempDic[randNum];
+                randNumStr += ",";
                 //移除数字库字典中已经使用过的数字
                 tempDic.Remove(randNum);
             }
@@ -383,6 +389,51 @@ public class GamePanel : MonoBehaviour {
 
         ResultLabel.text = randNumStr;
         return randDic;
+    }
+
+
+    /// <summary>
+    /// 控制正确答案显示
+    /// </summary>
+    public void OnClickShowResultBtn()
+    {
+        if (ResultLabel.gameObject.activeSelf)
+        {
+            ResultLabel.gameObject.SetActive(false);
+        }
+        else {
+            ResultLabel.gameObject.SetActive(true);
+        }
+    }
+
+
+    /// <summary>
+    /// 下一关卡
+    /// </summary>
+    public void OnNextStageBtn()
+    {
+        GameData.Instance.GameStage += 1;
+        GamePanel.Instance.InitGame();
+    }
+
+
+    public void Clear()
+    {
+        if (inputList!= null)
+        {
+            for (int i = 0; i < inputList.Count; i++)
+            {
+                Destroy(inputList[i]);
+            }
+        }
+
+        if (dragItemList != null)
+        {
+            for (int i = 0; i < dragItemList.Count; i++)
+            {
+                Destroy(dragItemList[i]);
+            }
+        }
     }
     #endregion
 }

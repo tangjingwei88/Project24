@@ -81,9 +81,12 @@ public class ShowResultPart : MonoBehaviour {
     /// </summary>
     public void Clear()
     {
-        for (int i = 0; i < lightItemList.Count; i++)
+        if (lightItemList != null)
         {
-            Destroy(lightItemList[i]);
+            for (int i = 0; i < lightItemList.Count; i++)
+            {
+                Destroy(lightItemList[i]);
+            }
         }
     }
 }
