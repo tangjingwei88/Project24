@@ -36,8 +36,11 @@ public class ShowResultPart : MonoBehaviour {
         //游戏胜利
         if (dictionary[LIGHT_TYPE.green] == GameData.Instance.gameLv)
         {
+            GameData.Instance.win = true;
             theGameOverPanel.gameObject.SetActive(true);
             theGameOverPanel.Apply();
+            GamePanel.Instance.theShowLogPart.Clear();
+            Clear();
         }
         foreach (var item in dictionary)
         {
@@ -46,6 +49,7 @@ public class ShowResultPart : MonoBehaviour {
                 GameObject go = Instantiate(LightTemplate);
                 go.SetActive(true);
                 go.transform.parent = LightWidget.transform;
+                go.transform.localPosition = Vector3.zero;
                 go.transform.localScale = Vector3.one;
                 
                 LightItemTemplate sc = go.GetComponent<LightItemTemplate>();

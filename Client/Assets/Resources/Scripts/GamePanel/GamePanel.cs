@@ -26,6 +26,7 @@ public class GamePanel : MonoBehaviour {
     public UIScrollView theScrollView;
 
     public AudioClip dragMusic;            //拖拽音效
+    public AudioClip erroMusic;
     public AudioSource audioSource;
 
     public UILabel TimeLabel;             //倒计时显示
@@ -165,6 +166,7 @@ public class GamePanel : MonoBehaviour {
     /// <param name="dic"></param>
     private void RefreshLoggerShow(Dictionary<LIGHT_TYPE, int> dic)
     {
+        if(!GameData.Instance.win)
         theShowLogPart.Apply(dic);
     }
 
@@ -227,10 +229,12 @@ public class GamePanel : MonoBehaviour {
             go.SetActive(true);
             go.transform.parent = dragInputItemWidget.transform;
             go.transform.localScale = Vector3.one;
+            go.transform.localPosition = Vector3.zero;
 
             InputDragItem sc = go.GetComponent<InputDragItem>();
             sc.Apply(numIconPoolDic[i]);
             dragInputItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+            dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
             inputList.Add(go);
         }
         //GameData.Instance.curResultItemList =new List<GameObject>(inputList);
@@ -251,11 +255,13 @@ public class GamePanel : MonoBehaviour {
             go.SetActive(true);
             go.transform.parent = selectPoolWidget.transform;
             go.transform.localScale = Vector3.one;
+            go.transform.localPosition = Vector3.zero;
 
             DragItem sc = go.GetComponent<DragItem>();
             sc.Apply(numIconDic[i]);
             //设置grid的显示列数
             selectPoolWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
+            selectPoolWidget.GetComponent<UIGrid>().repositionNow = true;
             dragItemList.Add(go);
         }
     }
@@ -327,6 +333,7 @@ public class GamePanel : MonoBehaviour {
                 checkDic.Remove(item.Value);
             }
             else {
+                NGUITools.PlaySound(erroMusic, 0.1f);
                 TipsManager.Instance.ShowTips("有重复数字哦！");
                 return false;
             }
@@ -408,11 +415,23 @@ public class GamePanel : MonoBehaviour {
 
 
     /// <summary>
+    /// 上一关卡
+    /// </summary>
+    public void OnBeforeStageBtn()
+    {
+        GameData.Instance.GameStage -= 1;
+        StopAllCoroutines();
+        GamePanel.Instance.InitGame();
+    }
+
+
+    /// <summary>
     /// 下一关卡
     /// </summary>
     public void OnNextStageBtn()
     {
         GameData.Instance.GameStage += 1;
+        StopAllCoroutines();
         GamePanel.Instance.InitGame();
     }
 

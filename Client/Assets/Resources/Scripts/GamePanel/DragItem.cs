@@ -8,6 +8,7 @@ public class DragItem : UIDragDropItem {
     public AudioClip dragMusic;
     public UILabel nameLabel;
     public UISprite icon;
+    public GameObject dragItemWidget;
 
     #endregion
 
@@ -39,7 +40,7 @@ public class DragItem : UIDragDropItem {
     /// <param name="surface"></param>
     protected override void OnDragDropRelease(GameObject surface)
     {
-        NGUITools.PlaySound(dragMusic, 0.1f);
+        
         base.OnDragDropRelease(surface);
 
         if (surface.CompareTag("DragInput"))
@@ -60,6 +61,7 @@ public class DragItem : UIDragDropItem {
             //检测输入的合法性
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
             {
+                NGUITools.PlaySound(dragMusic, 0.1f);
                 return;
             }
             else 

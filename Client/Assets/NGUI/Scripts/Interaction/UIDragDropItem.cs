@@ -299,7 +299,7 @@ public class UIDragDropItem : MonoBehaviour
 		NGUITools.MarkParentAsChanged(gameObject);
 
 		if (mTable != null) mTable.repositionNow = true;
-		if (mGrid != null) mGrid.repositionNow = true;
+		if (mGrid != null) mGrid.repositionNow = false;
 	}
 
 	/// <summary>

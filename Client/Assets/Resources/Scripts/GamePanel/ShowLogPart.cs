@@ -43,7 +43,7 @@ public class ShowLogPart : MonoBehaviour {
     /// </summary>
     public void Clear()
     {
-        if (logList != null)
+        if (logList.Count != 0)
         {
             for (int i = 0; i < logList.Count; i++)
             {

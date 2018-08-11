@@ -10,9 +10,13 @@ public class InputDragItem : UIDragDropItem {
     public AudioClip dragMusic;
     public UILabel nameLabel;
     public UISprite icon;
+    public GameObject DragInputWidget;
 
     #endregion
-
+    void Start()
+    {
+        DragInputWidget.GetComponent<UIGrid>().repositionNow = false;
+    }
 
     #region 方法
 
@@ -30,6 +34,7 @@ public class InputDragItem : UIDragDropItem {
     /// </summary>
     protected override void OnDragDropStart()
     {
+
         //得到该item的父亲
         this.itemParent = this.transform.parent.gameObject;
 

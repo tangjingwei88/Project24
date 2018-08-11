@@ -33,7 +33,7 @@ public class LogShowItemTemplate : MonoBehaviour {
                 GameObject go = Instantiate(LightItemTemplate);
                 go.SetActive(true);
                 go.transform.parent = lightWidget.transform;
-                go.transform.localScale = new Vector3(0.5f,0.5f,0.5f) ;
+                go.transform.localScale = new Vector3(0.4f,0.4f,0.4f) ;
                 lightItemList.Add(go);
 
                 LightItemTemplate sc = go.GetComponent<LightItemTemplate>();
@@ -65,7 +65,7 @@ public class LogShowItemTemplate : MonoBehaviour {
                     GameObject go = Instantiate(DragInputItemTemplate);
                     go.SetActive(true);
                     go.transform.parent = resultItemWidget.transform;
-                    go.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
                     InputDragItem sc = go.GetComponent<InputDragItem>();
                     sc.interactable = false;
