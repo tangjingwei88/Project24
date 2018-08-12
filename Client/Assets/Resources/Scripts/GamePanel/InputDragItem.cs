@@ -48,7 +48,6 @@ public class InputDragItem : UIDragDropItem {
     /// <param name="surface"></param>
     protected override void OnDragDropRelease(GameObject surface)
     {
-        NGUITools.PlaySound(dragMusic,0.1f);
         base.OnDragDropRelease(surface);
         if (surface.tag == "DragInput")
         {
@@ -69,14 +68,42 @@ public class InputDragItem : UIDragDropItem {
             GameData.Instance.changedItemTwo = int.Parse(surfaceStr);
 
             //将拖拽碰撞检测到item显示内容赋值给被拖拽item
-            itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surfaceStr;
-            itemParent.transform.Find(itemName + "/icon").GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
-      //      itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
-            
-            //将被拖拽item的内容赋值给拖拽检测到的item
-            surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
-            surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
-       //     surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
+            string str = itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text;
+            if (!str.Equals("0"))
+            {
+                if (!surfaceStr.Equals("0"))
+                {
+                    itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surfaceStr;
+                    itemParent.transform.Find(itemName + "/icon").GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+                    //      itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+
+                    //将被拖拽item的内容赋值给拖拽检测到的item
+                    surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
+                    surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
+                    //     surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
+                }
+                else {
+                    //将拖拽item的值赋给碰撞检测到的item，原来的绿“+”隐藏，label和icon显示出来
+                    surface.transform.Find("plusIcon").gameObject.SetActive(false);
+                    surface.transform.Find("Label").gameObject.SetActive(true);
+                    surface.transform.Find("icon").gameObject.SetActive(true);
+
+                    surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
+                    surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
+
+                    //被拖拽item的值置空，隐藏label和icon，显示绿“+”
+                    itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = "0";
+                    itemParent.transform.FindChild(itemName + "/Label").gameObject.SetActive(false);
+                    itemParent.transform.FindChild(itemName + "/icon").gameObject.SetActive(false);
+                    //显示绿“+”
+                    itemParent.transform.Find(itemName + "/plusIcon").gameObject.SetActive(true);
+                }
+            }
+
+
+
+
+            NGUITools.PlaySound(dragMusic, 0.1f);
         }
     }
 

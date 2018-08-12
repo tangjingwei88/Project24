@@ -30,7 +30,8 @@ public class GamePanel : MonoBehaviour {
     public AudioSource audioSource;
 
     public UILabel TimeLabel;             //倒计时显示
-    public UILabel ResultLabel;           //测试用显示结果           
+    public UILabel ResultLabel;           //测试用显示结果          
+    public UILabel StageNameLabel; 
 
 
     #endregion
@@ -73,14 +74,17 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void InitGame()
     {
+        StopAllCoroutines();
  //       PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
         GameData.Instance.gameRound = 1;
+        GameData.Instance.win = false;
         //获取可选择数据池
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
         Dictionary<int,string> numIconPoolDic = new Dictionary<int,string>(stageConfig.numIconPoolDic);
         GameData.Instance.gameLv = stageConfig.Level;
         GameData.Instance.showColumn = stageConfig.Column;
         GameData.Instance.resultColumn = stageConfig.ResultColumn;
+        StageNameLabel.text = stageConfig.Name;
         //刷新界面
         RefreshPanel(numIconPoolDic);
         //获取系统生成的随机数据
@@ -142,13 +146,34 @@ public class GamePanel : MonoBehaviour {
         //获得用户输入的数据
         inputDic = GetInputNumber(GameData.Instance.gameLv);
         //比较用户输入的数据和系统生成的数据
-        resultDic = CompareInputAndRandomNum(inputDic,randomDic);
+        if (inputDic.Count < GameData.Instance.gameLv)
+        {
+            TipsManager.Instance.ShowTips("数据不完整哦！");
+            NGUITools.PlaySound(erroMusic, 0.1f);
+            return;
+        }
+        else
+        {
+            resultDic = CompareInputAndRandomNum(inputDic, randomDic);
+        }
         //刷新游戏结果
         RefreshLighterShow(resultDic);
-        //刷新游戏记录
-        RefreshLoggerShow(resultDic);
+       //刷新游戏记录
+       RefreshLoggerShow(resultDic);
     }
 
+
+    public bool CheckInputNotEmpty(Dictionary<int,int> dic)
+    {
+        for (int i = 1; i <= dic.Count; i++)
+        {
+            if (dic[i].Equals("0"))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /// <summary>
     /// 刷新红黄绿的显示
@@ -231,8 +256,8 @@ public class GamePanel : MonoBehaviour {
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
 
-            InputDragItem sc = go.GetComponent<InputDragItem>();
-            sc.Apply(numIconPoolDic[i]);
+ //           InputDragItem sc = go.GetComponent<InputDragItem>();
+ //           sc.Apply(numIconPoolDic[i]);
             dragInputItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
             dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
             inputList.Add(go);
@@ -306,7 +331,11 @@ public class GamePanel : MonoBehaviour {
             GameObject obj = transform.Find("LeftPart/DragInputWidget/DragInputItem_" + i + "/Label").gameObject;
             string inputValue = obj.GetComponent<UILabel>().text;
             inputStr += inputValue;
-            dic[i] = Convert.ToInt32(inputValue);
+            //输入为“0”说明是绿“+”状态，不加入字典
+            if (!inputValue.Equals("0"))
+            {
+                dic[i] = Convert.ToInt32(inputValue);
+            }
         }
         gameInput = inputStr;
         GameData.Instance.curResultItemDic = new Dictionary<int, int>(dic);

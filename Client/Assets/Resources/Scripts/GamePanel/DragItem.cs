@@ -45,9 +45,10 @@ public class DragItem : UIDragDropItem {
 
         if (surface.CompareTag("DragInput"))
         {
+            surface.transform.FindChild("Label").gameObject.SetActive(true);
+            surface.transform.FindChild("icon").gameObject.SetActive(true);
             //获取拖拽过程中碰撞检测到的item的内容
             string tempStr = surface.GetComponentInChildren<UILabel>().text;
-
             string tempIconStr = surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName;
             string tempBgStr = surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName;
 
@@ -57,7 +58,10 @@ public class DragItem : UIDragDropItem {
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
             surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
-         //   surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+            //   surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
+            //隐藏绿“+”
+            surface.transform.Find("plusIcon").gameObject.SetActive(false);
+
             //检测输入的合法性
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
             {
@@ -66,10 +70,23 @@ public class DragItem : UIDragDropItem {
             }
             else 
             {
-                 //检测输入的数据不合法，被修改的item显示内容不做修改
-                surface.GetComponentInChildren<UILabel>().text = tempStr;
-                surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
-          //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
+                //检测输入的数据不合法，被修改的item显示内容不做修改
+                if (tempStr.Equals("0"))
+                {
+                    surface.GetComponentInChildren<UILabel>().text = "0";
+                    surface.transform.FindChild("icon").gameObject.SetActive(false);
+                    surface.transform.FindChild("Label").gameObject.SetActive(false);
+                    
+                    //重新显示绿“+”
+                    surface.transform.Find("plusIcon").gameObject.SetActive(true);
+                }
+                else {
+                    surface.GetComponentInChildren<UILabel>().text = tempStr;
+                    surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
+                    //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
+                }
+
+
             }
         }
 
