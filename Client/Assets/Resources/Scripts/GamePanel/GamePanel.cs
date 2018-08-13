@@ -89,7 +89,7 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.resultColumn = stageConfig.ResultColumn;
         GameData.Instance.lockNum = stageConfig.Lock;
         LockNumLabel.gameObject.SetActive(true);
-        LockNumLabel.text = "标签:" + stageConfig.Lock.ToString();
+        LockNumLabel.text = stageConfig.Lock.ToString();
         StageNameLabel.text = stageConfig.Name;
         //刷新界面
         RefreshPanel(numIconPoolDic);

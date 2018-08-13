@@ -2,7 +2,7 @@
 
 "10001.png":
 {
-	"frame": {"x":1776,"y":459,"w":100,"h":100},
+	"frame": {"x":258,"y":532,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -10,7 +10,7 @@
 },
 "100018.png":
 {
-	"frame": {"x":1674,"y":360,"w":100,"h":100},
+	"frame": {"x":400,"y":450,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -18,7 +18,7 @@
 },
 "10002.png":
 {
-	"frame": {"x":1572,"y":360,"w":100,"h":100},
+	"frame": {"x":553,"y":439,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -26,7 +26,7 @@
 },
 "10003.png":
 {
-	"frame": {"x":1470,"y":360,"w":100,"h":100},
+	"frame": {"x":740,"y":393,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -82,7 +82,7 @@
 },
 "10010.png":
 {
-	"frame": {"x":1368,"y":360,"w":100,"h":100},
+	"frame": {"x":876,"y":388,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -202,7 +202,7 @@
 },
 "CrystalIcon4.png":
 {
-	"frame": {"x":751,"y":291,"w":100,"h":100},
+	"frame": {"x":774,"y":291,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -210,7 +210,7 @@
 },
 "EquipmentStoneBag.png":
 {
-	"frame": {"x":751,"y":189,"w":100,"h":100},
+	"frame": {"x":774,"y":189,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -298,7 +298,7 @@
 },
 "bg2.png":
 {
-	"frame": {"x":417,"y":87,"w":332,"h":222},
+	"frame": {"x":440,"y":87,"w":332,"h":222},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":332,"h":222},
@@ -330,7 +330,7 @@
 },
 "green2.png":
 {
-	"frame": {"x":740,"y":393,"w":97,"h":98},
+	"frame": {"x":1368,"y":360,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -362,6 +362,14 @@
 },
 "lock.png":
 {
+	"frame": {"x":417,"y":75,"w":21,"h":28},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":21,"h":28},
+	"sourceSize": {"w":21,"h":28}
+},
+"lock2.png":
+{
 	"frame": {"x":681,"y":372,"w":57,"h":55},
 	"rotated": false,
 	"trimmed": false,
@@ -370,7 +378,7 @@
 },
 "mooncake_2.png":
 {
-	"frame": {"x":751,"y":87,"w":100,"h":100},
+	"frame": {"x":774,"y":87,"w":100,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":100},
@@ -386,7 +394,7 @@
 },
 "red2.png":
 {
-	"frame": {"x":853,"y":388,"w":97,"h":98},
+	"frame": {"x":1077,"y":388,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -426,7 +434,7 @@
 },
 "yellow2.png":
 {
-	"frame": {"x":1878,"y":538,"w":97,"h":98},
+	"frame": {"x":978,"y":388,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -439,6 +447,6 @@
 	"format": "ALPHA",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:a21de21844a199786cafb4fea46e1831$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f483336e7a408a0e29daa7e035fd2766$"
 }
 }
