@@ -61,6 +61,8 @@ public class DragItem : UIDragDropItem {
             //   surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //隐藏绿“+”
             surface.transform.Find("plusIcon").gameObject.SetActive(false);
+            surface.transform.Find("lockIcon").gameObject.SetActive(false);
+
 
             //检测输入的合法性
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
@@ -79,11 +81,13 @@ public class DragItem : UIDragDropItem {
                     
                     //重新显示绿“+”
                     surface.transform.Find("plusIcon").gameObject.SetActive(true);
+                    
                 }
                 else {
                     surface.GetComponentInChildren<UILabel>().text = tempStr;
                     surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
                     //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
+                    surface.transform.Find("lockIcon").gameObject.SetActive(true);
                 }
 
 

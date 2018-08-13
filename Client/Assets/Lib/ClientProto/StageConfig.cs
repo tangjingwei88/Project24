@@ -85,6 +85,13 @@ namespace m
       get { return _DiamondsWin; }
       set { _DiamondsWin = value; }
     }
+    private int _Lock;
+    [global::ProtoBuf.ProtoMember(11, IsRequired = true, Name=@"Lock", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int Lock
+    {
+      get { return _Lock; }
+      set { _Lock = value; }
+    }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }

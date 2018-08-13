@@ -330,7 +330,7 @@
 },
 "green2.png":
 {
-	"frame": {"x":681,"y":393,"w":97,"h":98},
+	"frame": {"x":740,"y":393,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -359,6 +359,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":125,"h":123},
 	"sourceSize": {"w":125,"h":123}
+},
+"lock.png":
+{
+	"frame": {"x":681,"y":372,"w":57,"h":55},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":57,"h":55},
+	"sourceSize": {"w":57,"h":55}
 },
 "mooncake_2.png":
 {
@@ -431,6 +439,6 @@
 	"format": "ALPHA",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:416b3550c3987747c282a3d91557b5ab$"
+	"smartupdate": "$TexturePacker:SmartUpdate:a21de21844a199786cafb4fea46e1831$"
 }
 }

@@ -18,6 +18,7 @@ public class StageConfigManager : ProtoBase {
         public int Column;
         public int DiamondsCost;
         public int DiamondsWin;
+        public int Lock;
 
 
         public Dictionary<int, int> ResultDic = new Dictionary<int, int>();                     //存储结果
@@ -36,6 +37,7 @@ public class StageConfigManager : ProtoBase {
             Column = 5;
             DiamondsCost = 0;
             DiamondsWin = 0;
+            Lock = 0;
 
             //ResultDic = new Dictionary<int, int>();
             //ResultDic.Add(1,1);
@@ -62,6 +64,7 @@ public class StageConfigManager : ProtoBase {
             Column = s.Column;
             DiamondsCost = s.DiamondsCost;
             DiamondsWin = s.DiamondsWin;
+            Lock = s.Lock;
 
             string[] str2List = s.SelectPool.Split(';');
             for (int i = 0; i < str2List.Length; i++)

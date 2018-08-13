@@ -16,9 +16,10 @@ public class GameData
     public int showColumn = 5;          //游戏显示列数
     public int resultColumn = 4;
 
-    public int changedItemOne = 0;          //改变过的item
-    public int changedItemTwo = 0;          //改变过的item
+    public int changedItemOne = 0;      //改变过的item
+    public int changedItemTwo = 0;      //改变过的item
     public int diamonds = 100;          //钻石总量
+    public int lockNum = 0;             //锁标签的数量
 
     public Dictionary<int, int> curResultItemDic = new Dictionary<int, int>();
     #endregion

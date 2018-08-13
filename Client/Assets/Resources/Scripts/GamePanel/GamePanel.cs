@@ -31,8 +31,10 @@ public class GamePanel : MonoBehaviour {
 
     public UILabel TimeLabel;             //倒计时显示
     public UILabel ResultLabel;           //测试用显示结果          
-    public UILabel StageNameLabel; 
-
+    public UILabel StageNameLabel;
+    public GameObject Lock;
+    public UILabel LockNumLabel;
+    
 
     #endregion
 
@@ -41,6 +43,7 @@ public class GamePanel : MonoBehaviour {
     private int resultNum;              //正确结果
     private int round = 1;              //游戏轮数
     private string gameInput = "";      //玩家输入数据
+    public int timer = 0;               //计时器
 
     private Dictionary<int, int> inputDic = new Dictionary<int, int>();                     //玩家输入的数据
     private Dictionary<int, int> randomDic = new Dictionary<int, int>();                    //系统随机生成的数据
@@ -84,6 +87,9 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.gameLv = stageConfig.Level;
         GameData.Instance.showColumn = stageConfig.Column;
         GameData.Instance.resultColumn = stageConfig.ResultColumn;
+        GameData.Instance.lockNum = stageConfig.Lock;
+        LockNumLabel.gameObject.SetActive(true);
+        LockNumLabel.text = "标签:" + stageConfig.Lock.ToString();
         StageNameLabel.text = stageConfig.Name;
         //刷新界面
         RefreshPanel(numIconPoolDic);
@@ -128,6 +134,11 @@ public class GamePanel : MonoBehaviour {
             yield return new WaitForSeconds(1);
             TimeLabel.text = time.ToString();
             time--;
+            timer++;
+            if (time < 30)
+            {
+                TimeLabel.gameObject.transform.localScale = new Vector3(10.0f,10.0f,10.0f);
+            }
         }
 
         //TODO

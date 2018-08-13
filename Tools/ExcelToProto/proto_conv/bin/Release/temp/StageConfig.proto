@@ -10,4 +10,5 @@ message StageConfig
 	required int32 Column = 8;
 	required int32 DiamondsCost = 9;
 	required int32 DiamondsWin = 10;
+	required int32 Lock = 11;
 }

@@ -21,6 +21,7 @@ public class GameOverPanel : MonoBehaviour
     #region 方法
     public void Apply()
     {
+        timeLabel.text = "耗时：" + GamePanel.Instance.timer.ToString();
 
         if (GameData.Instance.win)
         {
