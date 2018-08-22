@@ -21,8 +21,8 @@ public class LoadingManager : MonoBehaviour {
     private bool isConfigInit = false;
     private bool loadingFinished = false;
 
-    public int currentStage = 1;           //当前关卡
-    public int currentDiamonds;            //当前所拥有的钻石
+ //   public int currentStage = 1;           //当前关卡
+//    public int currentDiamonds;            //当前所拥有的钻石
 
     #endregion
 
@@ -95,7 +95,7 @@ public class LoadingManager : MonoBehaviour {
 
 ///        currentStage = PlayerPrefs.GetInt("currentStage");
  //       GameData.Instance.GameStage = currentDiamonds;
-        currentDiamonds = PlayerPrefs.GetInt("currentDiamonds");
+ //       currentDiamonds = PlayerPrefs.GetInt("currentDiamonds");
     }
 
 

@@ -40,9 +40,9 @@ public class LogShowItemTemplate : MonoBehaviour {
                 sc.Apply(item);
                 lightWidget.GetComponent<UIGrid>().repositionNow = true;
                 lightWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
-                go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
-                go.GetComponent<TweenScale>().to = new Vector3(0.4f,0.4f,0.4f); ;
+                go.GetComponent<TweenScale>().to = new Vector3(0.2f,0.2f,0.2f); ;
                 
             }
         }
@@ -69,7 +69,7 @@ public class LogShowItemTemplate : MonoBehaviour {
                     GameObject go = Instantiate(DragInputItemTemplate);
                     go.SetActive(true);
                     go.transform.parent = resultItemWidget.transform;
-                    go.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                    go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
                     go.transform.Find("Label").gameObject.SetActive(true);
                     go.transform.Find("icon").gameObject.SetActive(true);

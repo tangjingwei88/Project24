@@ -7,7 +7,7 @@ public class GameData
 
     #region 变量
 
-    public int GameStage = 33;          //游戏关卡
+    public int GameStage = 10;          //游戏关卡
     public string gameInput;            //玩家输入数据
     public int gameRound = 1;           //玩家输入次数
     public float roundTime = 300;       //每局游戏时间

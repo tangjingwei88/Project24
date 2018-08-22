@@ -135,9 +135,10 @@ public class GamePanel : MonoBehaviour {
             TimeLabel.text = time.ToString();
             time--;
             timer++;
-            if (time < 30)
+            if (time < 40)
             {
-                TimeLabel.gameObject.transform.localScale = new Vector3(10.0f,10.0f,10.0f);
+                //TimeLabel.gameObject.transform.localScale = new Vector3(3.0f,3.0f,3.0f);
+                TimeLabel.gameObject.transform.GetComponent<Animator>().Play();
             }
         }
 
@@ -339,7 +340,7 @@ public class GamePanel : MonoBehaviour {
 
         for (int i = 1; i <= gameLv; i++)
         {
-            GameObject obj = transform.Find("LeftPart/DragInputWidget/DragInputItem_" + i + "/Label").gameObject;
+            GameObject obj = transform.Find("CenterPart/DragInputWidget/DragInputItem_" + i + "/Label").gameObject;
             string inputValue = obj.GetComponent<UILabel>().text;
             inputStr += inputValue;
             //输入为“0”说明是绿“+”状态，不加入字典
@@ -407,6 +408,7 @@ public class GamePanel : MonoBehaviour {
     {
         int randNum;
         int key = 1;
+        int temp = num;
         string randNumStr = "";
         Dictionary<int, int> randDic = new Dictionary<int, int>();
 
@@ -415,29 +417,46 @@ public class GamePanel : MonoBehaviour {
         ///值拷贝用如下方式
         Dictionary<int, int> tempDic = new Dictionary<int, int>(numArrayDic);
 
+        List<int> tempList = DicToList(tempDic);
+
         System.Random rand = new System.Random();
-        while (key <= num)
+        while (temp > 0)
         {
             //随机生成的数字
             randNum = rand.Next(1, tempDic.Count);
             //数字库中是否还存在这个key，即用来判断是否有重复的数字
-            if (tempDic.ContainsValue(randNum))
+            if (tempDic.ContainsValue(tempList[randNum-1]))
             {
                 //将随机生成的1-9的数字保存到输出字典中
-                randDic.Add(key++, tempDic[randNum]);
-                Debug.LogError(tempDic[randNum]);
+                randDic.Add(key++, tempList[randNum - 1]);
+                Debug.LogError(tempList[randNum - 1]);
+
                 //显示随机生成的测试数据
-                randNumStr += tempDic[randNum];
+                randNumStr += tempList[randNum - 1];
                 randNumStr += ",";
+
                 //移除数字库字典中已经使用过的数字
-                tempDic.Remove(randNum);
+                tempDic.Remove(tempList[randNum - 1]);
+                temp--;
+
+                tempList = DicToList(tempDic);
             }
+            
         }
 
         ResultLabel.text = randNumStr;
         return randDic;
     }
 
+    public List<int> DicToList(Dictionary<int,int> dic)
+    {
+        List<int> list = new List<int>();
+        foreach (var item in dic)
+        {
+            list.Add(item.Value);
+        }
+        return list;
+    }
 
     /// <summary>
     /// 控制正确答案显示
@@ -453,6 +472,16 @@ public class GamePanel : MonoBehaviour {
         }
     }
 
+    public void OnShowLogBtnClick()
+    {
+        if (theShowLogPart.gameObject.activeSelf)
+        {
+            theShowLogPart.gameObject.SetActive(false);
+        }
+        else {
+            theShowLogPart.gameObject.SetActive(true);
+        }
+    }
 
     /// <summary>
     /// 上一关卡
