@@ -138,7 +138,7 @@ public class GamePanel : MonoBehaviour {
             if (time < 40)
             {
                 //TimeLabel.gameObject.transform.localScale = new Vector3(3.0f,3.0f,3.0f);
-                TimeLabel.gameObject.transform.GetComponent<Animator>().Play();
+                //TimeLabel.gameObject.transform.GetComponent<Animator>().Play();
             }
         }
 
