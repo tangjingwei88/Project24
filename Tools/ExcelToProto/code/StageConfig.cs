@@ -57,36 +57,43 @@ namespace m
       get { return _SelectPool; }
       set { _SelectPool = value; }
     }
+    private double _ItemScale;
+    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"ItemScale", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public double ItemScale
+    {
+      get { return _ItemScale; }
+      set { _ItemScale = value; }
+    }
     private int _ResultColumn;
-    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"ResultColumn", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"ResultColumn", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int ResultColumn
     {
       get { return _ResultColumn; }
       set { _ResultColumn = value; }
     }
     private int _Column;
-    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"Column", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"Column", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int Column
     {
       get { return _Column; }
       set { _Column = value; }
     }
     private int _DiamondsCost;
-    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(10, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsCost
     {
       get { return _DiamondsCost; }
       set { _DiamondsCost = value; }
     }
     private int _DiamondsWin;
-    [global::ProtoBuf.ProtoMember(10, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(11, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsWin
     {
       get { return _DiamondsWin; }
       set { _DiamondsWin = value; }
     }
     private int _Lock;
-    [global::ProtoBuf.ProtoMember(11, IsRequired = true, Name=@"Lock", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(12, IsRequired = true, Name=@"Lock", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int Lock
     {
       get { return _Lock; }

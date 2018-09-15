@@ -51,24 +51,34 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:/SoftwareInstall/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/SoftwareInstall/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
-      <HintPath>D:/SoftwareInstall/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>D:/SoftwareInstall/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:/SoftwareInstall/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/softwareInstall/Unity537/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CircleRotation.cs" />
     <Compile Include="Assets\CircleRotationRevers.cs" />
+    <Compile Include="Assets\DragPos.cs" />
     <Compile Include="Assets\Lib\ClientProto\StageConfig.cs" />
     <Compile Include="Assets\Lib\protobuf-net\BclHelpers.cs" />
     <Compile Include="Assets\Lib\protobuf-net\BufferExtension.cs" />
@@ -308,6 +318,7 @@
     <Compile Include="Assets\Resources\Scripts\GamePanel\InputItemTemplate.cs" />
     <Compile Include="Assets\Resources\Scripts\GamePanel\LightItemTemplate.cs" />
     <Compile Include="Assets\Resources\Scripts\GamePanel\LockDragItem.cs" />
+    <Compile Include="Assets\Resources\Scripts\GamePanel\LogBtnDrag.cs" />
     <Compile Include="Assets\Resources\Scripts\GamePanel\LogShowItemTemplate.cs" />
     <Compile Include="Assets\Resources\Scripts\GamePanel\ShowLogPart.cs" />
     <Compile Include="Assets\Resources\Scripts\GamePanel\ShowResultPart.cs" />
