@@ -37,7 +37,9 @@ public class ShowResultPart : MonoBehaviour {
         //游戏胜利
         if (dictionary[LIGHT_TYPE.green] == GameData.Instance.gameLv)
         {
+            GamePanel.Instance.StopTimer();
             GameData.Instance.win = true;
+            StopAllCoroutines();
             theGameOverPanel.gameObject.SetActive(true);
             theGameOverPanel.Apply();
             GamePanel.Instance.theShowLogPart.Clear();

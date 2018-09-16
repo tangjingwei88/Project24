@@ -15,7 +15,7 @@ public class LogBtnDrag : UIDragDropItem
     {
         base.OnDragDropRelease(surface);
         Vector3 dragReleasePos = this.gameObject.transform.localPosition;
-        logPart.transform.localPosition = new Vector3( dragReleasePos.x - 300f,dragReleasePos.y - 300f,dragReleasePos.z);
+        logPart.transform.localPosition = new Vector3( dragReleasePos.x - 170f,dragReleasePos.y - 390f,dragReleasePos.z);
     }
 
 

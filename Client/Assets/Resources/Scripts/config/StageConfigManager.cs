@@ -19,8 +19,9 @@ public class StageConfigManager : ProtoBase {
         public int DiamondsCost;
         public int DiamondsWin;
         public int Lock;
-        public double itemScale;
-
+        public float SelectItemScale;
+        public float InputItemScale;
+        public float LightItemScale;
 
         public Dictionary<int, int> ResultDic = new Dictionary<int, int>();                     //存储结果
         public Dictionary<int, int> NumPoolDic = new Dictionary<int, int>();                    //存储数字选择项
@@ -39,8 +40,8 @@ public class StageConfigManager : ProtoBase {
             DiamondsCost = 0;
             DiamondsWin = 0;
             Lock = 0;
-            itemScale = 1;
-
+            SelectItemScale = 1;
+            InputItemScale = 1;
             //ResultDic = new Dictionary<int, int>();
             //ResultDic.Add(1,1);
 
@@ -67,7 +68,9 @@ public class StageConfigManager : ProtoBase {
             DiamondsCost = s.DiamondsCost;
             DiamondsWin = s.DiamondsWin;
             Lock = s.Lock;
-            itemScale = s.ItemScale;
+            SelectItemScale = (float)s.SelectItemScale;
+            InputItemScale = (float)s.InputItemScale;
+            LightItemScale = (float)s.LightItemScale;
 
             string[] str2List = s.SelectPool.Split(';');
             for (int i = 0; i < str2List.Length; i++)

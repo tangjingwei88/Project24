@@ -40,6 +40,7 @@ public class GameOverPanel : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         StopAllCoroutines();
+        GamePanel.Instance.timer = 0;
         GamePanel.Instance.InitGame();
     }
 
@@ -47,6 +48,7 @@ public class GameOverPanel : MonoBehaviour
     {
         StopAllCoroutines();
         this.gameObject.SetActive(false);
+        GamePanel.Instance.timer = 0;
         NextStage();
     }
 

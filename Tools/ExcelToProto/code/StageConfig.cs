@@ -50,54 +50,68 @@ namespace m
       get { return _Level; }
       set { _Level = value; }
     }
-    private string _SelectPool;
-    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"SelectPool", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string SelectPool
-    {
-      get { return _SelectPool; }
-      set { _SelectPool = value; }
-    }
-    private double _ItemScale;
-    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"ItemScale", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public double ItemScale
-    {
-      get { return _ItemScale; }
-      set { _ItemScale = value; }
-    }
     private int _ResultColumn;
-    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"ResultColumn", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"ResultColumn", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int ResultColumn
     {
       get { return _ResultColumn; }
       set { _ResultColumn = value; }
     }
     private int _Column;
-    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"Column", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"Column", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int Column
     {
       get { return _Column; }
       set { _Column = value; }
     }
+    private int _Lock;
+    [global::ProtoBuf.ProtoMember(8, IsRequired = true, Name=@"Lock", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int Lock
+    {
+      get { return _Lock; }
+      set { _Lock = value; }
+    }
+    private string _SelectPool;
+    [global::ProtoBuf.ProtoMember(9, IsRequired = true, Name=@"SelectPool", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string SelectPool
+    {
+      get { return _SelectPool; }
+      set { _SelectPool = value; }
+    }
+    private double _SelectItemScale;
+    [global::ProtoBuf.ProtoMember(10, IsRequired = true, Name=@"SelectItemScale", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public double SelectItemScale
+    {
+      get { return _SelectItemScale; }
+      set { _SelectItemScale = value; }
+    }
+    private double _InputItemScale;
+    [global::ProtoBuf.ProtoMember(11, IsRequired = true, Name=@"InputItemScale", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public double InputItemScale
+    {
+      get { return _InputItemScale; }
+      set { _InputItemScale = value; }
+    }
+    private double _LightItemScale;
+    [global::ProtoBuf.ProtoMember(12, IsRequired = true, Name=@"LightItemScale", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public double LightItemScale
+    {
+      get { return _LightItemScale; }
+      set { _LightItemScale = value; }
+    }
     private int _DiamondsCost;
-    [global::ProtoBuf.ProtoMember(10, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(13, IsRequired = true, Name=@"DiamondsCost", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsCost
     {
       get { return _DiamondsCost; }
       set { _DiamondsCost = value; }
     }
     private int _DiamondsWin;
-    [global::ProtoBuf.ProtoMember(11, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(14, IsRequired = true, Name=@"DiamondsWin", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int DiamondsWin
     {
       get { return _DiamondsWin; }
       set { _DiamondsWin = value; }
-    }
-    private int _Lock;
-    [global::ProtoBuf.ProtoMember(12, IsRequired = true, Name=@"Lock", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int Lock
-    {
-      get { return _Lock; }
-      set { _Lock = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)

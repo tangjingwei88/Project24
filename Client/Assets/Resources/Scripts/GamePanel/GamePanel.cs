@@ -83,26 +83,38 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.win = false;
         //获取可选择数据池
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
-        Dictionary<int,string> numIconPoolDic = new Dictionary<int,string>(stageConfig.numIconPoolDic);
-        GameData.Instance.gameLv = stageConfig.Level;
-        GameData.Instance.showColumn = stageConfig.Column;
-        GameData.Instance.resultColumn = stageConfig.ResultColumn;
-        GameData.Instance.lockNum = stageConfig.Lock;
-        LockNumLabel.gameObject.SetActive(true);
-        LockNumLabel.text = stageConfig.Lock.ToString();
-        StageNameLabel.text = stageConfig.Name;
-        //刷新界面
-        RefreshPanel(numIconPoolDic);
-        //获取系统生成的随机数据
-        randomDic = GetRandomNumber(GameData.Instance.GameStage);
-        //显示输入框(老版)
-        ShowInputNumRoot(stageConfig.Level);
-        //显示倒计时
-        StartCoroutine(TimeSliping(stageConfig.TimeLong));
-        //加载模型
-        LoadingManager.Instance.LoadModelCameraPrefab();
-        Debug.LogError("##@" + LoadingManager.Instance.modelPositionTransform);
-        LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
+        if (stageConfig != null)
+        {
+            Dictionary<int, string> numIconPoolDic = new Dictionary<int, string>(stageConfig.numIconPoolDic);
+            GameData.Instance.gameLv = stageConfig.Level;
+            GameData.Instance.showColumn = stageConfig.Column;
+            GameData.Instance.resultColumn = stageConfig.ResultColumn;
+            GameData.Instance.lockNum = stageConfig.Lock;
+
+            dragInputItemWidget.transform.localScale = new Vector3 (stageConfig.InputItemScale,stageConfig.InputItemScale,1);
+            selectPoolWidget.transform.localScale = new Vector3(stageConfig.SelectItemScale,stageConfig.SelectItemScale,1);
+            theShowResultPart.transform.localScale = new Vector3(stageConfig.LightItemScale, stageConfig.LightItemScale, 1);
+
+            Lock.SetActive(true);
+            LockNumLabel.gameObject.SetActive(true);
+            LockNumLabel.text = stageConfig.Lock.ToString();
+            StageNameLabel.text = stageConfig.Name;
+            //刷新界面
+            RefreshPanel(numIconPoolDic);
+            //获取系统生成的随机数据
+            randomDic = GetRandomNumber(GameData.Instance.GameStage);
+            //显示输入框(老版)
+            ShowInputNumRoot(stageConfig.Level);
+            //显示倒计时
+            StartCoroutine(TimeSliping(stageConfig.TimeLong));
+            //加载模型
+            LoadingManager.Instance.LoadModelCameraPrefab();
+            Debug.LogError("##@" + LoadingManager.Instance.modelPositionTransform);
+            LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
+        }
+        else {
+            return;
+        }
     }
 
 
@@ -146,8 +158,14 @@ public class GamePanel : MonoBehaviour {
         //游戏结束
         Debug.LogError("游戏结束");
         theShowLogPart.Clear();
+//        GamePanel.Instance.timer = 0;
         theGameOverPanel.gameObject.SetActive(true);
         theGameOverPanel.Apply();
+    }
+
+    public void StopTimer()
+    {
+        StopCoroutine("TimeSliping");
     }
 
     /// <summary>
@@ -256,7 +274,6 @@ public class GamePanel : MonoBehaviour {
     /// <param name="gameLv"></param>
     private void ShowInputNumRoot(int gameLv)
     {
-
         StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
         Dictionary<int, string> numIconPoolDic = stageConfig.numIconPoolDic;
         for (int i = 1; i <= gameLv; i++)
