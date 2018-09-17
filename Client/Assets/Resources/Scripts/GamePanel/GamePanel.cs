@@ -77,6 +77,16 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void InitGame()
     {
+        //获取本地保存的关卡信息
+        if (PlayerPrefs.GetInt("GameStage") != 0)
+        {
+            GameData.Instance.GameStage = PlayerPrefs.GetInt("GameStage");
+            Debug.LogError("GameStage： " + PlayerPrefs.GetInt("GameStage"));
+        }
+        else {
+            PlayerPrefs.SetInt("GameStage",1);
+        }
+
         StopAllCoroutines();
  //       PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
         GameData.Instance.gameRound = 1;
@@ -506,6 +516,7 @@ public class GamePanel : MonoBehaviour {
     public void OnBeforeStageBtn()
     {
         GameData.Instance.GameStage -= 1;
+        PlayerPrefs.SetInt("GameStage",GameData.Instance.GameStage);
         StopAllCoroutines();
         GamePanel.Instance.InitGame();
     }
@@ -517,6 +528,7 @@ public class GamePanel : MonoBehaviour {
     public void OnNextStageBtn()
     {
         GameData.Instance.GameStage += 1;
+        PlayerPrefs.SetInt("GameStage", GameData.Instance.GameStage);
         StopAllCoroutines();
         GamePanel.Instance.InitGame();
     }

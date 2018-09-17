@@ -23,7 +23,8 @@ public class LockDragItem : UIDragDropItem
                 GameData.Instance.lockNum--;
                 if (GameData.Instance.lockNum <= 0)
                 {
-                    GamePanel.Instance.Lock.SetActive(false);
+                    GameData.Instance.lockNum = 0;
+                    //GamePanel.Instance.Lock.SetActive(false);
                 }
                 GamePanel.Instance.LockNumLabel.text = GameData.Instance.lockNum.ToString();
             }

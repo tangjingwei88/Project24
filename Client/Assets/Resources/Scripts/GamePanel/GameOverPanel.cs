@@ -27,6 +27,7 @@ public class GameOverPanel : MonoBehaviour
         {
             winLabel.gameObject.SetActive(true);
             LoseLabel.gameObject.SetActive(false);
+            PlayerPrefs.SetInt("GameStage",GameData.Instance.GameStage + 1);
         }
         else {
             winLabel.gameObject.SetActive(false);
