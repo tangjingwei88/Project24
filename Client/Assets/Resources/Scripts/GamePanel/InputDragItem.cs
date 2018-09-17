@@ -76,13 +76,19 @@ public class InputDragItem : UIDragDropItem {
                 if (!surfaceStr.Equals("0"))
                 {
                     itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = surfaceStr;
-                    itemParent.transform.Find(itemName + "/icon").GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+                    GameObject go1 = itemParent.transform.Find(itemName + "/icon").gameObject;
+                    go1.GetComponent<UISprite>().spriteName = surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+                    go1.transform.localScale = Vector3.zero;
+                    TweenScale.Begin(go1, 1, Vector3.one);
                     //      itemParent.transform.Find(itemName + "/bg").GetComponent<UISprite>().spriteName = surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
                     itemParent.transform.Find(itemName + "/lockIcon").gameObject.SetActive(surface.transform.FindChild("lockIcon").gameObject.activeSelf);
 
                     //将被拖拽item的内容赋值给拖拽检测到的item
                     surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
-                    surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
+                    GameObject go2 = surface.transform.FindChild("icon").gameObject;
+                    go2.GetComponentInChildren<UISprite>().spriteName = tempSpriteName;
+                    go2.transform.localScale = Vector3.zero;
+                    TweenScale.Begin(go2, 1, Vector3.one);
                     //     surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = tempBgName;
                     surface.transform.FindChild("lockIcon").gameObject.SetActive(isLock);
                 }
@@ -90,7 +96,10 @@ public class InputDragItem : UIDragDropItem {
                     //将拖拽item的值赋给碰撞检测到的item，原来的绿“+”隐藏，label和icon显示出来
                     surface.transform.Find("plusIcon").gameObject.SetActive(false);
                     surface.transform.Find("Label").gameObject.SetActive(true);
-                    surface.transform.Find("icon").gameObject.SetActive(true);
+                    GameObject go3 = surface.transform.Find("icon").gameObject;
+                    go3.SetActive(true);
+                    go3.transform.localScale = Vector3.zero;
+                    TweenScale.Begin(go3, 1, Vector3.one);
                     surface.transform.Find("lockIcon").gameObject.SetActive(isLock);
 
                     surface.transform.FindChild("Label").GetComponentInChildren<UILabel>().text = tempStr;
@@ -99,7 +108,10 @@ public class InputDragItem : UIDragDropItem {
                     //被拖拽item的值置空，隐藏label和icon，显示绿“+”
                     itemParent.transform.Find(itemName + "/Label").GetComponent<UILabel>().text = "0";
                     itemParent.transform.FindChild(itemName + "/Label").gameObject.SetActive(false);
-                    itemParent.transform.FindChild(itemName + "/icon").gameObject.SetActive(false);
+                    GameObject go4 = itemParent.transform.FindChild(itemName + "/icon").gameObject;
+                    go4.SetActive(false);
+                    go4.transform.localScale = Vector3.zero;
+                    TweenScale.Begin(go4, 1, Vector3.one);
                     //显示绿“+”
                     itemParent.transform.Find(itemName + "/plusIcon").gameObject.SetActive(true);
                     itemParent.transform.FindChild(itemName + "/lockIcon").gameObject.SetActive(false);
