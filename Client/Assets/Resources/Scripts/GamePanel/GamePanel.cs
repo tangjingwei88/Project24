@@ -534,6 +534,34 @@ public class GamePanel : MonoBehaviour {
     }
 
 
+    public void RefreshDragItemState()
+    {
+        Debug.LogError("###RefreshDragItemState");
+        for (int i = 0; i < dragItemList.Count;i++)
+        {
+            GameObject dragGo = dragItemList[i];
+            for (int j = 0; j < inputList.Count;j++)
+            {
+                GameObject go = inputList[j].transform.FindChild("Label").gameObject;
+
+                if (go.GetComponent<UILabel>().text == dragGo.transform.FindChild("Label").gameObject.GetComponent<UILabel>().text)
+                {
+                    Debug.LogError("###go");
+                    dragGo.SetActive(false);
+                   
+                }
+                else
+                {
+                    Debug.LogError("###go2");
+                    dragGo.SetActive(true);
+                   
+                }
+            }
+
+        }
+
+    }
+
     public void Clear()
     {
         if (inputList!= null)

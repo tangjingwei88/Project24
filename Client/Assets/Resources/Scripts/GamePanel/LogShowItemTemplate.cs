@@ -83,11 +83,11 @@ public class LogShowItemTemplate : MonoBehaviour {
                     if (GameData.Instance.curResultItemDic[i] == GameData.Instance.changedItemOne ||
                         GameData.Instance.curResultItemDic[i] == GameData.Instance.changedItemTwo)
                     {
-                        go.transform.FindChild("bg").GetComponent<UISprite>().spriteName = "ItemBack_Red";
-                        go.transform.FindChild("effect").gameObject.SetActive(true);
+                        go.transform.Find("bg").GetComponent<UISprite>().spriteName = "ItemBack_Red";
+                        go.transform.Find("effect").gameObject.SetActive(true);
                     }
                     else {
-                        go.transform.FindChild("effect").gameObject.SetActive(false);
+                        go.transform.Find("effect").gameObject.SetActive(false);
                     }
                 }
             }

@@ -11,7 +11,7 @@ public class DragItem : UIDragDropItem {
     public GameObject dragItemWidget;
 
     #endregion
-
+    public bool isShow = true;
 
     #region 方法
 
@@ -45,19 +45,19 @@ public class DragItem : UIDragDropItem {
 
         if (surface.CompareTag("DragInput"))
         {
-            surface.transform.FindChild("Label").gameObject.SetActive(true);
-            surface.transform.FindChild("icon").gameObject.SetActive(true);
+            surface.transform.Find("Label").gameObject.SetActive(true);
+            surface.transform.Find("icon").gameObject.SetActive(true);
             //获取拖拽过程中碰撞检测到的item的内容
             string tempStr = surface.GetComponentInChildren<UILabel>().text;
-            string tempIconStr = surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName;
-            string tempBgStr = surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName;
+            string tempIconStr = surface.transform.Find("icon").GetComponent<UISprite>().spriteName;
+            string tempBgStr = surface.transform.Find("bg").GetComponent<UISprite>().spriteName;
 
             //将改变过的item暂存起来，log显示时改变背景色以示区分
             GameData.Instance.changedItemOne = int.Parse(transform.GetComponentInChildren<UILabel>().text);
 
             //将被拖拽的item内容赋值给拖拽检测到的item
             surface.GetComponentInChildren<UILabel>().text = transform.GetComponentInChildren<UILabel>().text;
-            surface.transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("icon").GetComponentInChildren<UISprite>().spriteName;
+            surface.transform.Find("icon").GetComponentInChildren<UISprite>().spriteName = transform.Find("icon").GetComponentInChildren<UISprite>().spriteName;
             //   surface.transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName = transform.FindChild("bg").GetComponentInChildren<UISprite>().spriteName;
             //隐藏绿“+”
             surface.transform.Find("plusIcon").gameObject.SetActive(false);
@@ -68,6 +68,7 @@ public class DragItem : UIDragDropItem {
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
             {
                 NGUITools.PlaySound(dragMusic, 0.1f);
+                GamePanel.Instance.RefreshDragItemState();
                 return;
             }
             else 
@@ -76,8 +77,8 @@ public class DragItem : UIDragDropItem {
                 if (tempStr.Equals("0"))
                 {
                     surface.GetComponentInChildren<UILabel>().text = "0";
-                    surface.transform.FindChild("icon").gameObject.SetActive(false);
-                    surface.transform.FindChild("Label").gameObject.SetActive(false);
+                    surface.transform.Find("icon").gameObject.SetActive(false);
+                    surface.transform.Find("Label").gameObject.SetActive(false);
                     
                     //重新显示绿“+”
                     surface.transform.Find("plusIcon").gameObject.SetActive(true);
@@ -85,14 +86,16 @@ public class DragItem : UIDragDropItem {
                 }
                 else {
                     surface.GetComponentInChildren<UILabel>().text = tempStr;
-                    surface.transform.FindChild("icon").GetComponent<UISprite>().spriteName = tempIconStr;
+                    surface.transform.Find("icon").GetComponent<UISprite>().spriteName = tempIconStr;
                     //      surface.transform.FindChild("bg").GetComponent<UISprite>().spriteName = tempBgStr;
                     surface.transform.Find("lockIcon").gameObject.SetActive(true);
+                    GamePanel.Instance.RefreshDragItemState();
                 }
 
 
             }
         }
+
 
     }
     #endregion
