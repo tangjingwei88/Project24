@@ -553,7 +553,7 @@ public class GamePanel : MonoBehaviour {
                 else
                 {
                     Debug.LogError("###go2");
-                    dragGo.SetActive(true);
+                  //  dragGo.SetActive(true);
                    
                 }
             }

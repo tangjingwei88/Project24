@@ -1,68 +1,44 @@
 {"frames": {
 
-"bg.png":
+"Bg.png":
 {
-	"frame": {"x":2,"y":2,"w":1280,"h":720},
-	"rotated": true,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":1280,"h":720},
-	"sourceSize": {"w":1280,"h":720}
-},
-"password.png":
-{
-	"frame": {"x":724,"y":70,"w":144,"h":72},
+	"frame": {"x":2,"y":1284,"w":420,"h":731},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":144,"h":72},
-	"sourceSize": {"w":144,"h":72}
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":731},
+	"sourceSize": {"w":420,"h":731}
 },
-"register.png":
+"bg2.png":
 {
-	"frame": {"x":870,"y":70,"w":70,"h":34},
-	"rotated": true,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":0,"w":70,"h":34},
-	"sourceSize": {"w":72,"h":40}
-},
-"shape.png":
-{
-	"frame": {"x":854,"y":144,"w":424,"h":68},
-	"rotated": true,
-	"trimmed": true,
-	"spriteSourceSize": {"x":0,"y":0,"w":424,"h":68},
-	"sourceSize": {"w":430,"h":68}
-},
-"startgame.png":
-{
-	"frame": {"x":926,"y":2,"w":391,"h":93},
-	"rotated": true,
-	"trimmed": true,
-	"spriteSourceSize": {"x":1,"y":9,"w":391,"h":93},
-	"sourceSize": {"w":401,"h":115}
-},
-"startgamelight.png":
-{
-	"frame": {"x":724,"y":144,"w":430,"h":128},
-	"rotated": true,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":430,"h":128},
-	"sourceSize": {"w":430,"h":128}
-},
-"user.png":
-{
-	"frame": {"x":724,"y":2,"w":200,"h":66},
+	"frame": {"x":2,"y":2,"w":768,"h":1280},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":200,"h":66},
-	"sourceSize": {"w":200,"h":66}
+	"spriteSourceSize": {"x":0,"y":0,"w":768,"h":1280},
+	"sourceSize": {"w":768,"h":1280}
+},
+"btn.png":
+{
+	"frame": {"x":772,"y":2,"w":170,"h":77},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":170,"h":77},
+	"sourceSize": {"w":170,"h":77}
+},
+"inputfield.png":
+{
+	"frame": {"x":944,"y":2,"w":140,"h":43},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":43},
+	"sourceSize": {"w":140,"h":43}
 }},
 "meta": {
 	"app": "http://www.texturepacker.com",
 	"version": "1.0",
-	"image": "LoginAtlasMask.png",
-	"format": "ALPHA",
+	"image": "LoginAtlas.png",
+	"format": "RGBA8888",
 	"size": {"w":1024,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:80592b01a7b25dc06a8060da0a0d7921$"
+	"smartupdate": "$TexturePacker:SmartUpdate:90429f657cef243d07d2de0a94bbfea7$"
 }
 }

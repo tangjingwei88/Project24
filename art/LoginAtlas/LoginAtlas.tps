@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>unity</string>
         <key>textureFileName</key>
-        <filename>LoginAtlasMask.png</filename>
+        <filename>LoginAtlas.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -117,7 +117,7 @@
         <key>forceIdenticalLayout</key>
         <false/>
         <key>outputFormat</key>
-        <enum type="SettingsBase::OutputFormat">ALPHA</enum>
+        <enum type="SettingsBase::OutputFormat">RGBA8888</enum>
         <key>autoAliasEnabled</key>
         <false/>
         <key>trimSpriteNames</key>
