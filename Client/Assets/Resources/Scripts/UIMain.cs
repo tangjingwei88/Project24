@@ -7,6 +7,7 @@ public class UIMain : MonoBehaviour {
     #region 引用
 
     public GamePanel theGamePanel;
+    public StagePassedPanel theStagePassedPanel;
 
 
     #endregion

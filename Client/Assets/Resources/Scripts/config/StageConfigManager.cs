@@ -42,17 +42,7 @@ public class StageConfigManager : ProtoBase {
             Lock = 0;
             SelectItemScale = 1;
             InputItemScale = 1;
-            //ResultDic = new Dictionary<int, int>();
-            //ResultDic.Add(1,1);
 
-            //NumPoolDic = new Dictionary<int, int>();
-            //NumPoolDic.Add(1,1);
-
-            //iconPoolDic = new Dictionary<int, string>();
-            //iconPoolDic.Add(1, "10001");
-
-            //numIconPoolDic = new Dictionary<int, string>();
-            //numIconPoolDic.Add(1, "1:10001");
         }
 
 
@@ -75,7 +65,6 @@ public class StageConfigManager : ProtoBase {
             string[] str2List = s.SelectPool.Split(';');
             for (int i = 0; i < str2List.Length; i++)
             {
-                //Debug.LogError("##str2List[i] " + str2List[i]);
                 numIconPoolDic.Add(i + 1, str2List[i]);         //"1:10001格式保存"
 
                 string[] numIcon = str2List[i].Split(':');
@@ -117,8 +106,12 @@ public class StageConfigManager : ProtoBase {
         {
             m.StageConfig sc = stageConfig[i];
             StageConfig script = new StageConfig(sc);
-            stageConfigDic.Add(script.ID,script);
-            stageConfigList.Add(script);
+            if(!stageConfigDic.ContainsKey(script.ID))
+            {
+                stageConfigDic.Add(script.ID, script);
+                stageConfigList.Add(script);
+            }
+
         }
     }
 

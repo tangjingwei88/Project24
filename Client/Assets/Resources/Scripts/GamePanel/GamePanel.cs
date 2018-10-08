@@ -67,32 +67,18 @@ public class GamePanel : MonoBehaviour {
     void Awake()
     {
         _instance = this;
-        InitGame();
-
     }
 
 
     /// <summary>
     /// 游戏初始化
     /// </summary>
-    public void InitGame()
+    public void InitGame(int gameStage)
     {
-        //获取本地保存的关卡信息
-        if (PlayerPrefs.GetInt("GameStage") != 0)
-        {
-            GameData.Instance.GameStage = PlayerPrefs.GetInt("GameStage");
-            Debug.LogError("GameStage： " + PlayerPrefs.GetInt("GameStage"));
-        }
-        else {
-            PlayerPrefs.SetInt("GameStage",1);
-        }
-
         StopAllCoroutines();
- //       PlayerPrefs.SetInt("CurrentStage",GameData.Instance.GameStage);
-        GameData.Instance.gameRound = 1;
         GameData.Instance.win = false;
         //获取可选择数据池
-        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(gameStage);
         if (stageConfig != null)
         {
             Dictionary<int, string> numIconPoolDic = new Dictionary<int, string>(stageConfig.numIconPoolDic);
@@ -112,14 +98,13 @@ public class GamePanel : MonoBehaviour {
             //刷新界面
             RefreshPanel(numIconPoolDic);
             //获取系统生成的随机数据
-            randomDic = GetRandomNumber(GameData.Instance.GameStage);
+            randomDic = GetRandomNumber(gameStage);
             //显示输入框(老版)
             ShowInputNumRoot(stageConfig.Level);
             //显示倒计时
             StartCoroutine(TimeSliping(stageConfig.TimeLong));
             //加载模型
             LoadingManager.Instance.LoadModelCameraPrefab();
-            Debug.LogError("##@" + LoadingManager.Instance.modelPositionTransform);
             LoadingManager.Instance.LoadModelPrefab("DarkHunter_B");
         }
         else {
@@ -151,7 +136,7 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator TimeSliping(float time)
     {
-        while (time >= 0)
+        while (!GameData.Instance.win && time >= 0)
         {
             yield return new WaitForSeconds(1);
             TimeLabel.text = time.ToString();
@@ -295,13 +280,10 @@ public class GamePanel : MonoBehaviour {
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
 
- //           InputDragItem sc = go.GetComponent<InputDragItem>();
- //           sc.Apply(numIconPoolDic[i]);
             dragInputItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
             dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
             inputList.Add(go);
         }
-        //GameData.Instance.curResultItemList =new List<GameObject>(inputList);
     }
 
 
@@ -518,7 +500,7 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.GameStage -= 1;
         PlayerPrefs.SetInt("GameStage",GameData.Instance.GameStage);
         StopAllCoroutines();
-        GamePanel.Instance.InitGame();
+        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
     }
 
 
@@ -530,10 +512,12 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.GameStage += 1;
         PlayerPrefs.SetInt("GameStage", GameData.Instance.GameStage);
         StopAllCoroutines();
-        GamePanel.Instance.InitGame();
+        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
     }
 
-
+    /// <summary>
+    /// 刷新被拖拽item的状态（灰显）
+    /// </summary>
     public void RefreshDragItemState()
     {
         Debug.LogError("###RefreshDragItemState");
@@ -561,6 +545,20 @@ public class GamePanel : MonoBehaviour {
         }
 
     }
+    
+
+    /// <summary>
+    /// 返回到选关界面
+    /// </summary>
+    public void BackToStagePanel()
+    {
+        int stageNum = PlayerPrefs.GetInt("GameStage");
+        this.gameObject.SetActive(false);
+        UIMain.Instance.theStagePassedPanel.gameObject.SetActive(true);
+        UIMain.Instance.theStagePassedPanel.Clear();
+        UIMain.Instance.theStagePassedPanel.Apply(stageNum);
+    }
+
 
     public void Clear()
     {

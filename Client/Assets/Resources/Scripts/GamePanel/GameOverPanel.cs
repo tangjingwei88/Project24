@@ -36,21 +36,33 @@ public class GameOverPanel : MonoBehaviour
     
     }
 
-
+    /// <summary>
+    /// 确定按钮返回选关界面
+    /// </summary>
     public void OKBtnClick()
     {
         this.gameObject.SetActive(false);
         StopAllCoroutines();
         GamePanel.Instance.timer = 0;
-        GamePanel.Instance.InitGame();
+        //GamePanel.Instance.InitGame(GameData.Instance.GameStage);
+
+        //没加框架，没用栈管理界面显示隐藏真恶心，后面加入
+        this.gameObject.SetActive(false);
+        UIMain.Instance.theStagePassedPanel.gameObject.SetActive(true);
+        UIMain.Instance.theStagePassedPanel.Apply(GameData.Instance.GameStage);
     }
 
+    /// <summary>
+    /// 再玩一局
+    /// </summary>
     public void NextStageBtnClick()
     {
         StopAllCoroutines();
         this.gameObject.SetActive(false);
         GamePanel.Instance.timer = 0;
-        NextStage();
+        //NextStage();
+        this.gameObject.SetActive(false);
+        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
     }
 
 
@@ -60,7 +72,7 @@ public class GameOverPanel : MonoBehaviour
     public void NextStage()
     {
         GameData.Instance.GameStage += 1;
-        GamePanel.Instance.InitGame();
+        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
     }
 
     #endregion

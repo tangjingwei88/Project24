@@ -21,8 +21,6 @@ public class LoadingManager : MonoBehaviour {
     private bool isConfigInit = false;
     private bool loadingFinished = false;
 
- //   public int currentStage = 1;           //当前关卡
-//    public int currentDiamonds;            //当前所拥有的钻石
 
     #endregion
 
@@ -72,7 +70,6 @@ public class LoadingManager : MonoBehaviour {
     IEnumerator WaitLoadingTargetScene(string sceneName)
     {
         AsyncOperation async = Application.LoadLevelAsync(sceneName);
- //       async.priority = 0;
         yield return async;
 
         loadingFinished = true;
@@ -92,10 +89,6 @@ public class LoadingManager : MonoBehaviour {
             isConfigInit = true;
 
         StageConfigManager.Init();           //关卡配置
-
-///        currentStage = PlayerPrefs.GetInt("currentStage");
- //       GameData.Instance.GameStage = currentDiamonds;
- //       currentDiamonds = PlayerPrefs.GetInt("currentDiamonds");
     }
 
 
