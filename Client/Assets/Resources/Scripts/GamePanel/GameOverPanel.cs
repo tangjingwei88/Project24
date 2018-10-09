@@ -25,9 +25,15 @@ public class GameOverPanel : MonoBehaviour
 
         if (GameData.Instance.win)
         {
+            int curStage = PlayerPrefs.GetInt("GameStage");
             winLabel.gameObject.SetActive(true);
             LoseLabel.gameObject.SetActive(false);
-            PlayerPrefs.SetInt("GameStage",GameData.Instance.GameStage + 1);
+            //只有是最新关卡通过，关卡等级才加1
+            if (GameData.Instance.GameStage == curStage)
+            {
+                GameData.Instance.GameStage += 1;
+                PlayerPrefs.SetInt("GameStage", GameData.Instance.GameStage);
+            }
         }
         else {
             winLabel.gameObject.SetActive(false);
@@ -44,12 +50,10 @@ public class GameOverPanel : MonoBehaviour
         this.gameObject.SetActive(false);
         StopAllCoroutines();
         GamePanel.Instance.timer = 0;
-        //GamePanel.Instance.InitGame(GameData.Instance.GameStage);
 
-        //没加框架，没用栈管理界面显示隐藏真恶心，后面加入
-        this.gameObject.SetActive(false);
-        UIMain.Instance.theStagePassedPanel.gameObject.SetActive(true);
-        UIMain.Instance.theStagePassedPanel.Apply(GameData.Instance.GameStage);
+        int curStage = PlayerPrefs.GetInt("GameStage");
+        UIMain.Instance.FadeToUIState(UIState.StagePassedPanelState);
+        UIMain.Instance.theStagePassedPanel.Apply(curStage);
     }
 
     /// <summary>
@@ -62,7 +66,7 @@ public class GameOverPanel : MonoBehaviour
         GamePanel.Instance.timer = 0;
         //NextStage();
         this.gameObject.SetActive(false);
-        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
+        GamePanel.Instance.Apply(GameData.Instance.GameStage);
     }
 
 
@@ -72,7 +76,7 @@ public class GameOverPanel : MonoBehaviour
     public void NextStage()
     {
         GameData.Instance.GameStage += 1;
-        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
+        GamePanel.Instance.Apply(GameData.Instance.GameStage);
     }
 
     #endregion

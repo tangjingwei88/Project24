@@ -73,7 +73,7 @@ public class GamePanel : MonoBehaviour {
     /// <summary>
     /// 游戏初始化
     /// </summary>
-    public void InitGame(int gameStage)
+    public void Apply(int gameStage)
     {
         StopAllCoroutines();
         GameData.Instance.win = false;
@@ -136,7 +136,7 @@ public class GamePanel : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator TimeSliping(float time)
     {
-        while (!GameData.Instance.win && time >= 0)
+        while (time >= 0)
         {
             yield return new WaitForSeconds(1);
             TimeLabel.text = time.ToString();
@@ -500,7 +500,7 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.GameStage -= 1;
         PlayerPrefs.SetInt("GameStage",GameData.Instance.GameStage);
         StopAllCoroutines();
-        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
+        GamePanel.Instance.Apply(GameData.Instance.GameStage);
     }
 
 
@@ -512,7 +512,7 @@ public class GamePanel : MonoBehaviour {
         GameData.Instance.GameStage += 1;
         PlayerPrefs.SetInt("GameStage", GameData.Instance.GameStage);
         StopAllCoroutines();
-        GamePanel.Instance.InitGame(GameData.Instance.GameStage);
+        GamePanel.Instance.Apply(GameData.Instance.GameStage);
     }
 
     /// <summary>
@@ -552,11 +552,9 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void BackToStagePanel()
     {
-        int stageNum = PlayerPrefs.GetInt("GameStage");
-        this.gameObject.SetActive(false);
-        UIMain.Instance.theStagePassedPanel.gameObject.SetActive(true);
-        UIMain.Instance.theStagePassedPanel.Clear();
-        UIMain.Instance.theStagePassedPanel.Apply(stageNum);
+      //  int stageNum = PlayerPrefs.GetInt("GameStage");
+
+        UIMain.Instance.ReturnToLastUIState();
     }
 
 

@@ -107,6 +107,17 @@ public class LoadingManager : MonoBehaviour {
     }
 
 
+    public static GameObject NewUI(string name)
+    {
+        Object obj = Resources.Load(name);
+        if (obj == null)
+        {
+            Debug.LogError(name + "is not exist");
+            return null;
+        }
+
+        return (GameObject)Object.Instantiate(obj);
+    }
 
 
     /// <summary>

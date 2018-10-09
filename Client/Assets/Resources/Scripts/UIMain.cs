@@ -8,7 +8,7 @@ public class UIMain : MonoBehaviour {
 
     public GamePanel theGamePanel;
     public StagePassedPanel theStagePassedPanel;
-
+    public GameOverPanel theGameOverPanel;
 
     #endregion
 
@@ -35,6 +35,9 @@ public class UIMain : MonoBehaviour {
         get {
             return recentUIState;
         }
+        set {
+            recentUIState = value;
+        }
     }
 
 
@@ -48,20 +51,11 @@ public class UIMain : MonoBehaviour {
     }
 
     void Start() {
-        EnterUIState(UIState.LoginStartState);
-    
-    }
-
-
-    public enum UIState
-    {
-        LoginStartState,                        //登陆界面
-        RegisterPartState,                      //注册界面
-        GamePanelState,                         //游戏界面
-        MainState,
-        TipsPopUpPanelState,
 
     }
+
+
+
 
     /// <summary>
     /// 获取UI的名称
@@ -74,23 +68,19 @@ public class UIMain : MonoBehaviour {
         {
             return "主界面";
         }
-        else if (InputUIStateName == UIState.TipsPopUpPanelState)
-        {
-            return "Tips";
-        }
 
         return "";
     }
 
 
 
-    public class UIMainPanelHelper
+    public class UIPanelHelper
     {
         public UIState targetState;
         public string prefabPath;
         public string typeName;
 
-        public UIMainPanelHelper(UIState inputTargetState, string inputPrefabPath, string inputTypeName)
+        public UIPanelHelper(UIState inputTargetState, string inputPrefabPath, string inputTypeName)
         {
             targetState = inputTargetState;
             prefabPath = inputPrefabPath;
@@ -99,11 +89,42 @@ public class UIMain : MonoBehaviour {
 
     }
 
-    public List<UIMainPanelHelper> uiMainPanelHelperList = new List<UIMainPanelHelper>
+    public List<UIPanelHelper> uiPanelList = new List<UIPanelHelper>
     {
-        new UIMainPanelHelper(UIState.LoginStartState,"SmallPanel/LoginPartPanel","LoginPartPanel"),
-        new UIMainPanelHelper(UIState.RegisterPartState,"SmallPanel/RegisterPartPanel","RegisterPartPanel")
+        new UIPanelHelper(UIState.GameOverState,"UIPrefab/UI/SmallPanel/GameOverPanel","GameOverPanel"),
+        new UIPanelHelper(UIState.GamePanelState,"UIPrefab/UI/SmallPanel/GamePanel","GamePanel")
     };
+
+
+    /// <summary>
+    /// 获取UI脚本实例
+    /// </summary>
+    /// <param name="inputTargetState">UI状态</param>
+    /// <param name="inputComponent">UI脚本组件</param>
+    /// <returns></returns>
+    public GameObject GetHelp(UIState inputUIState, Component inputComponet)
+    {
+        if (inputComponet == null)
+        {
+            for (int i = 0; i < uiPanelList.Count; i++)
+            {
+                if (uiPanelList[i].targetState == inputUIState)
+                {
+                    GameObject obj = LoadingManager.NewUI(uiPanelList[i].prefabPath);
+                    GameObject targetGo = obj.GetComponent<UIMainLoadedPanel>().targetPanel;
+
+                    targetGo.transform.parent = transform.GetChild(0);
+                    targetGo.transform.localPosition = Vector3.zero;
+                    targetGo.transform.localScale = Vector3.one;
+
+                    Destroy(obj);
+                    return targetGo;
+                }
+            }
+        }
+
+        return inputComponet.gameObject;
+    }
 
 
     /// <summary>
@@ -116,6 +137,16 @@ public class UIMain : MonoBehaviour {
             uiStateStack.Clear();
         else if (targetState != RecentUIState)
             uiStateStack.Push(targetState);
+
+        FadeToUIStateWithOutPushToUIStateStack(targetState);
+    }
+
+
+    public void FadeToUIStateWithOutPushToUIStateStack(UIState targetState)
+    {
+        LeaveUIState(recentUIState);
+        recentUIState = targetState;
+        EnterUIState(targetState);
     }
 
 
@@ -124,19 +155,25 @@ public class UIMain : MonoBehaviour {
     /// </summary>
     /// <param name="targetState"></param>
     public void EnterUIState(UIState targetState)
-    { 
-        if(targetState == UIState.LoginStartState)
+    {
+        if (targetState == UIState.MainState)
         {
-//            theLoginPartPanel = GetHelp(UIState.LoginStartState, theLoginPartPanel).GetComponent<StartPanel>() ;
-//            theLoginPartPanel.gameObject.SetActive(true);
-            //TODO
-
+            theStagePassedPanel.gameObject.SetActive(true);
         }
-        else if (targetState == UIState.RegisterPartState)
+        else if (targetState == UIState.GamePanelState)
         {
-//            theRegisterPanel = GetHelp(UIState.RegisterPartState,theRegisterPanel).GetComponent<RegisterPanel>();
-//            theRegisterPanel.gameObject.SetActive(true);
-            //TODO
+            theGamePanel = GetHelp(targetState,theGamePanel).GetComponent<GamePanel>();
+            theGamePanel.gameObject.SetActive(true);
+        }
+        else if (targetState == UIState.StagePassedPanelState)
+        {
+            theStagePassedPanel = GetHelp(targetState, theStagePassedPanel).GetComponent<StagePassedPanel>();
+            theStagePassedPanel.gameObject.SetActive(true);
+        }
+        else if (targetState == UIState.GameOverState)
+        {
+            theGameOverPanel = GetHelp(targetState, theGameOverPanel).GetComponent<GameOverPanel>();
+            theGameOverPanel.gameObject.SetActive(true);
         }
 
 
@@ -148,62 +185,81 @@ public class UIMain : MonoBehaviour {
     /// <param name="targetState"></param>
     public void LeaveUIState(UIState targetState)
     {
-        if (targetState == UIState.LoginStartState)
+        if (targetState == UIState.MainState)
         {
-//            theLoginPartPanel.gameObject.SetActive(false);
+            theStagePassedPanel.gameObject.SetActive(false);
         }
-        else if (targetState == UIState.RegisterPartState)
+        else if (targetState == UIState.GamePanelState)
         {
-//            theRegisterPanel.gameObject.SetActive(false);
+            theGamePanel.gameObject.SetActive(false);
+        }
+        else if (targetState == UIState.StagePassedPanelState)
+        {
+            theStagePassedPanel.gameObject.SetActive(false);
+        }
+        else if (targetState == UIState.GameOverState)
+        {
+            theGameOverPanel.gameObject.SetActive(false);
         }
 
 
     }
 
 
-    /// <summary>
-    /// 获取UI脚本实例
-    /// </summary>
-    /// <param name="inputTargetState">UI状态</param>
-    /// <param name="inputComponent">UI脚本组件</param>
-    /// <returns></returns>
-    public GameObject GetHelp(UIState inputTargetState, Component inputComponent)
+
+    public void ReturnToLastUIState()
     {
-        if (inputComponent == null)
+        LeaveUIState(recentUIState);
+        //        uiStateStack.Pop();
+
+        if (uiStateStack.Count > 0)
         {
-            for (int i = 0; i < uiMainPanelHelperList.Count; i++)
+            //栈顶的uistate和recentState一样需要pop掉，不然会进入两个一样的state
+            if (recentUIState == uiStateStack.Peek())
             {
-                if (uiMainPanelHelperList[i].targetState == inputTargetState)
-                { 
-                    UIMainPanelHelper targetUIMainPanelHelper = uiMainPanelHelperList[i];
-                    GameObject newGO = HelperTools.NewUI(targetUIMainPanelHelper.prefabPath);
+                uiStateStack.Pop();
+            }
 
-                    GameObject targetGO = newGO.GetComponent<UIMainLoadedPanel>().targetPanel;
+            if (uiStateStack.Count > 0)
+            {
+                recentUIState = uiStateStack.Pop();
+                EnterUIState(recentUIState);
 
-                    targetGO.transform.parent = transform.GetChild(0);
-                    targetGO.transform.localPosition = Vector3.zero;
-                    targetGO.transform.localScale = Vector3.zero;
-
-                    GameObject topBottomAnchorRoot = newGO.GetComponent<UIMainLoadedPanel>().topBottomAnchorRoot;
-                    if (topBottomAnchorRoot != null)
-                    {
-//                        topBottomAnchorRoot.transform.parent = topBottomAnchorStorageForUIMainLoadedPanel.transform;
-                        topBottomAnchorRoot.transform.localScale = Vector3.zero;
-                    }
-
-                    UIResolutionHelper script = targetGO.GetComponent<UIResolutionHelper>();
-                    if (script != null)
-                    {
-                        script.theUIRoot = GetComponent<UIRoot>();
-                    }
-
-                    Destroy(newGO);
-
-                    return targetGO;
+                if (recentUIState == UIState.GamePanelState)
+                {
+                    UIMain.Instance.theStagePassedPanel.Clear();
+                    UIMain.Instance.theStagePassedPanel.Apply(GameData.Instance.GameStage);
                 }
+                else if (recentUIState == UIState.GameOverState)
+                {
+                    UIMain.Instance.theGameOverPanel.Apply();
+                }
+
+            }
+            else
+            {
+                recentUIState = UIState.MainState;
+
+                EnterUIState(recentUIState);
             }
         }
+        else
+        {
+            recentUIState = UIState.MainState;
 
-        return inputComponent.gameObject;
+            EnterUIState(recentUIState);
+        }
     }
+
+
+
+}
+
+
+public enum UIState
+{
+    GamePanelState,                         //游戏界面
+    MainState,
+    StagePassedPanelState,
+    GameOverState,
 }

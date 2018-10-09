@@ -27,9 +27,10 @@ public class StageInfoTemplate : MonoBehaviour {
 
     public void OnClick()
     {
-        GameData.Instance.GameStage = stage;
-        UIMain.Instance.theStagePassedPanel.gameObject.SetActive(false);
-        UIMain.Instance.theGamePanel.gameObject.SetActive(true);
-        UIMain.Instance.theGamePanel.InitGame(stage);
+        GameData.Instance.GameStage = int.Parse( stageNumLabel.text);
+        //UIMain.Instance.theStagePassedPanel.gameObject.SetActive(false);
+        //UIMain.Instance.theGamePanel.gameObject.SetActive(true);
+        UIMain.Instance.FadeToUIState(UIState.GamePanelState);
+        UIMain.Instance.theGamePanel.Apply(GameData.Instance.GameStage);
     }
 }
