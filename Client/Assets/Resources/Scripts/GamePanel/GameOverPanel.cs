@@ -25,7 +25,7 @@ public class GameOverPanel : MonoBehaviour
 
         if (GameData.Instance.win)
         {
-            NextStageBtn.SetActive(true);
+            
             int curStage = PlayerPrefs.GetInt("GameStage");
             winLabel.gameObject.SetActive(true);
             LoseLabel.gameObject.SetActive(false);
@@ -34,6 +34,7 @@ public class GameOverPanel : MonoBehaviour
             {
                 GameData.Instance.GameStage += 1;
                 PlayerPrefs.SetInt("GameStage", GameData.Instance.GameStage);
+                NextStageBtn.SetActive(true);
             }
         }
         else {
@@ -66,10 +67,10 @@ public class GameOverPanel : MonoBehaviour
         StopAllCoroutines();
         this.gameObject.SetActive(false);
         GamePanel.Instance.timer = 0;
-        //NextStage();
-        //this.gameObject.SetActive(false);
+
+
         UIMain.Instance.FadeToUIState(UIState.GamePanelState);
-        GamePanel.Instance.Apply(GameData.Instance.GameStage + 1);
+        GamePanel.Instance.Apply(GameData.Instance.GameStage);
     }
 
 

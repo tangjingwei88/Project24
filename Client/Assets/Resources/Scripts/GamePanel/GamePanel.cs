@@ -400,7 +400,7 @@ public class GamePanel : MonoBehaviour {
     private Dictionary<int, int> GetRandomNumber(int gameStage)
     {
         int randNum;
-        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(GameData.Instance.GameStage);
+        StageConfigManager.StageConfig stageConfig = StageConfigManager.GetStageConfig(gameStage);
         Dictionary<int, int> dic = stageConfig.NumPoolDic;
         randomDic = GetRandomNum(stageConfig.Level, dic);
         return randomDic;
@@ -520,7 +520,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void RefreshDragItemState()
     {
-        Debug.LogError("###RefreshDragItemState");
+/*        Debug.LogError("###RefreshDragItemState");
         for (int i = 0; i < dragItemList.Count;i++)
         {
             GameObject dragGo = dragItemList[i];
@@ -543,7 +543,7 @@ public class GamePanel : MonoBehaviour {
             }
 
         }
-
+*/
     }
     
 

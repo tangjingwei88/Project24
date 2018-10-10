@@ -40,8 +40,9 @@ public class ShowResultPart : MonoBehaviour {
             GamePanel.Instance.StopTimer();
             GameData.Instance.win = true;
             StopAllCoroutines();
-            theGameOverPanel.gameObject.SetActive(true);
-            theGameOverPanel.Apply();
+            //theGameOverPanel.gameObject.SetActive(true);
+            UIMain.Instance.FadeToUIState(UIState.GameOverState);
+            UIMain.Instance.theGameOverPanel.Apply();
             GamePanel.Instance.theShowLogPart.Clear();
             Clear();
             NGUITools.PlaySound(showResultMusic, 0.1f);
