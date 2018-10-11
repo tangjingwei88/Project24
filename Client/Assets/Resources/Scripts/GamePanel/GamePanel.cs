@@ -305,11 +305,12 @@ public class GamePanel : MonoBehaviour {
 
             DragItem sc = go.GetComponent<DragItem>();
             sc.Apply(numIconDic[i]);
-            //设置grid的显示列数
-            selectPoolWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
-            selectPoolWidget.GetComponent<UIGrid>().repositionNow = true;
+
             dragItemList.Add(go);
         }
+        //设置grid的显示列数
+        selectPoolWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
+        selectPoolWidget.GetComponent<UIGrid>().repositionNow = true;
     }
 
 
