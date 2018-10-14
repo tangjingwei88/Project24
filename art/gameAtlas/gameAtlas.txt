@@ -10,7 +10,7 @@
 },
 "BelifPt.png":
 {
-	"frame": {"x":387,"y":1722,"w":89,"h":90},
+	"frame": {"x":387,"y":1688,"w":89,"h":90},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":89,"h":90},
@@ -98,7 +98,7 @@
 },
 "ReturnBtn.png":
 {
-	"frame": {"x":395,"y":1500,"w":197,"h":72},
+	"frame": {"x":430,"y":1600,"w":197,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":197,"h":72},
@@ -130,7 +130,7 @@
 },
 "closeBtn.png":
 {
-	"frame": {"x":410,"y":1814,"w":100,"h":72},
+	"frame": {"x":410,"y":1780,"w":100,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":72},
@@ -146,7 +146,7 @@
 },
 "green_Light.png":
 {
-	"frame": {"x":387,"y":1622,"w":97,"h":98},
+	"frame": {"x":395,"y":1500,"w":97,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
@@ -159,6 +159,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":97,"h":98},
 	"sourceSize": {"w":97,"h":98}
+},
+"stageIcon.png":
+{
+	"frame": {"x":364,"y":1622,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
 },
 "yellow_Light.png":
 {
@@ -175,6 +183,6 @@
 	"format": "ALPHA",
 	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2d9fc3ec978ceb7822baaa67d8f6fef4$"
+	"smartupdate": "$TexturePacker:SmartUpdate:20e3ac285e4caada7226e20006b57859$"
 }
 }
