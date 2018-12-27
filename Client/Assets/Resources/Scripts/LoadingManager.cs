@@ -164,7 +164,7 @@ public class LoadingManager : MonoBehaviour {
             modelCameraPrefab = objCamera;
 
             modelPositionTransform = objCamera.transform.GetChild(1);
-            Debug.LogError("#modelPositionTransform " + modelPositionTransform);
+//            Debug.LogError("#modelPositionTransform " + modelPositionTransform);
             targetSkyBoxOnModelCamera = objCamera.transform.GetChild(0).GetComponent<Skybox>();
         }
     }

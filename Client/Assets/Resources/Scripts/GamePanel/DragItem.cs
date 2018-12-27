@@ -9,9 +9,9 @@ public class DragItem : UIDragDropItem {
     public UILabel nameLabel;
     public UISprite icon;
     public GameObject dragItemWidget;
+    public bool isDrag = false;  //是否已拖拽过
 
     #endregion
-    public bool isShow = true;
 
     #region 方法
 
@@ -68,7 +68,9 @@ public class DragItem : UIDragDropItem {
             if (GamePanel.Instance.CheckInputNumLegal(GamePanel.Instance.GetTempInputNumber(GameData.Instance.gameLv)))
             {
                 NGUITools.PlaySound(dragMusic, 0.1f);
+                transform.gameObject.GetComponent<DragItem>().isDrag = true;
                 GamePanel.Instance.RefreshDragItemState();
+                
                 return;
             }
             else 

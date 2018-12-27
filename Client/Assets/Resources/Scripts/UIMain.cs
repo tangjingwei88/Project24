@@ -15,7 +15,7 @@ public class UIMain : MonoBehaviour {
 
     #region 变量
 
-    Stack<UIState> uiStateStack = new Stack<UIState>();
+    public Stack<UIState> uiStateStack = new Stack<UIState>();
 
     #endregion
 
@@ -48,6 +48,7 @@ public class UIMain : MonoBehaviour {
     void Awake()
     {
         _Instance = this;
+        uiStateStack.Push(UIState.MainState);
     }
 
     void Start() {
@@ -158,7 +159,9 @@ public class UIMain : MonoBehaviour {
     {
         if (targetState == UIState.MainState)
         {
+            int stageNum = PlayerPrefs.GetInt("GameStage");
             theStagePassedPanel.gameObject.SetActive(true);
+            theStagePassedPanel.Apply(stageNum);
         }
         else if (targetState == UIState.GamePanelState)
         {

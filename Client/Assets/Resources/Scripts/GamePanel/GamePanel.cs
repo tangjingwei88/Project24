@@ -99,8 +99,11 @@ public class GamePanel : MonoBehaviour {
             RefreshPanel(numIconPoolDic);
             //获取系统生成的随机数据
             randomDic = GetRandomNumber(gameStage);
+            selectPoolWidget.gameObject.SetActive(false);
+            selectPoolWidget.gameObject.SetActive(true);
             //显示输入框(老版)
             ShowInputNumRoot(stageConfig.Level);
+            dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
             //显示倒计时
             StartCoroutine(TimeSliping(stageConfig.TimeLong));
             //加载模型
@@ -301,7 +304,7 @@ public class GamePanel : MonoBehaviour {
             go.SetActive(true);
             go.transform.parent = selectPoolWidget.transform;
             go.transform.localScale = Vector3.one;
-            go.transform.localPosition = Vector3.zero;
+          //  go.transform.localPosition = Vector3.zero + new Vector3(0,200,0);
 
             DragItem sc = go.GetComponent<DragItem>();
             sc.Apply(numIconDic[i]);
@@ -439,7 +442,7 @@ public class GamePanel : MonoBehaviour {
             {
                 //将随机生成的1-9的数字保存到输出字典中
                 randDic.Add(key++, tempList[randNum - 1]);
-                Debug.LogError(tempList[randNum - 1]);
+//                Debug.LogError(tempList[randNum - 1]);
 
                 //显示随机生成的测试数据
                 randNumStr += tempList[randNum - 1];
@@ -521,32 +524,27 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     public void RefreshDragItemState()
     {
-/*        Debug.LogError("###RefreshDragItemState");
+        Debug.LogError("###RefreshDragItemState");
         for (int i = 0; i < dragItemList.Count;i++)
         {
             GameObject dragGo = dragItemList[i];
-            for (int j = 0; j < inputList.Count;j++)
+            if (dragGo != null)
             {
-                GameObject go = inputList[j].transform.Find("Label").gameObject;
-
-                if (go.GetComponent<UILabel>().text == dragGo.transform.Find("Label").gameObject.GetComponent<UILabel>().text)
+                if (dragGo.GetComponent<DragItem>().isDrag)
                 {
-                    Debug.LogError("###go");
                     dragGo.SetActive(false);
-                   
                 }
                 else
                 {
-                    Debug.LogError("###go2");
-                  //  dragGo.SetActive(true);
-                   
+                    dragGo.SetActive(true);
                 }
             }
 
         }
-*/
+
     }
-    
+
+
 
     /// <summary>
     /// 返回到选关界面
@@ -574,6 +572,7 @@ public class GamePanel : MonoBehaviour {
             for (int i = 0; i < dragItemList.Count; i++)
             {
                 Destroy(dragItemList[i]);
+                
             }
         }
     }
