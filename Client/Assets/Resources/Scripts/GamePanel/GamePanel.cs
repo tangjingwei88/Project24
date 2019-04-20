@@ -103,7 +103,7 @@ public class GamePanel : MonoBehaviour {
             selectPoolWidget.gameObject.SetActive(true);
             //显示输入框(老版)
             ShowInputNumRoot(stageConfig.Level);
-            dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
+
             //显示倒计时
             StartCoroutine(TimeSliping(stageConfig.TimeLong));
             //加载模型
@@ -113,6 +113,8 @@ public class GamePanel : MonoBehaviour {
         else {
             return;
         }
+        dragInputItemWidget.transform.GetComponent<UIGrid>().Reposition();
+        dragInputItemWidget.transform.GetComponent<UIGrid>().repositionNow = true;
     }
 
 
@@ -283,10 +285,11 @@ public class GamePanel : MonoBehaviour {
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
 
-            dragInputItemWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
-            dragInputItemWidget.GetComponent<UIGrid>().repositionNow = true;
             inputList.Add(go);
         }
+        dragInputItemWidget.transform.GetComponent<UIGrid>().maxPerLine = GameData.Instance.resultColumn;
+        dragInputItemWidget.transform.GetComponent<UIGrid>().Reposition();
+        dragInputItemWidget.transform.GetComponent<UIGrid>().repositionNow = true;
     }
 
 
@@ -312,8 +315,9 @@ public class GamePanel : MonoBehaviour {
             dragItemList.Add(go);
         }
         //设置grid的显示列数
-        selectPoolWidget.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
-        selectPoolWidget.GetComponent<UIGrid>().repositionNow = true;
+        selectPoolWidget.transform.GetComponent<UIGrid>().maxPerLine = GameData.Instance.showColumn;
+        selectPoolWidget.transform.GetComponent<UIGrid>().Reposition();
+        selectPoolWidget.transform.GetComponent<UIGrid>().repositionNow = true;
     }
 
 
